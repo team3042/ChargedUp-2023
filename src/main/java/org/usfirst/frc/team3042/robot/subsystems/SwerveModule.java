@@ -10,6 +10,7 @@ import org.usfirst.frc.team3042.robot.RobotMap;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
 public class SwerveModule {
@@ -103,6 +104,10 @@ public class SwerveModule {
     // Get the current SwerveModuleState of the module
     public SwerveModuleState getState() {
         return new SwerveModuleState(getDriveVelocity(), new Rotation2d(getTurningPosition()));
+    }
+    // This is a new thing in WPILib 2023
+    public SwerveModulePosition getPosition() {
+        return new SwerveModulePosition(getDrivePosition(), new Rotation2d(getTurningPosition()));
     }
 
     // Set the currently desired SwerveModuleState

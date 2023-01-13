@@ -20,7 +20,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -38,7 +37,6 @@ public class Robot extends TimedRobot {
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final OI oi = new OI();;
 
-	static ProfiledPIDController thetaController = new ProfiledPIDController(RobotMap.kP_THETA_CONTROLLER, 0, 0, drivetrain.getkThetaControllerConstraints());
 	public static final PowerDistribution pdp = new PowerDistribution();
 	
 	CommandBase autonomousCommand;
@@ -52,8 +50,6 @@ public class Robot extends TimedRobot {
 	 * This function is run when the robot is first started up and should be used for any initialization code. */
 	public void robotInit() {
 		log.add("Robot Init", Log.Level.TRACE);
-
-		thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
 		drivetrain.zeroGyro();
 		
@@ -143,7 +139,7 @@ public class Robot extends TimedRobot {
 		// Position contollers
 		new PIDController(RobotMap.kP_X_CONTROLLER, 0, 0),
 		new PIDController(RobotMap.kP_Y_CONTROLLER, 0, 0),
-		thetaController,
+		new PIDController(RobotMap.kP_THETA_CONTROLLER, 0, 0),
 
 		drivetrain::setModuleStates, drivetrain);
 

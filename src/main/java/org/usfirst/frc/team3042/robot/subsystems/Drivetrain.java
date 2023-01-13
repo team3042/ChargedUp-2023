@@ -12,6 +12,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.util.sendable.SendableRegistry;
@@ -69,7 +70,12 @@ public class Drivetrain extends SubsystemBase {
 	Log log = new Log(LOG_LEVEL, SendableRegistry.getName(this));
 
 	ADIS16470_IMU gyroscope = new ADIS16470_IMU(); // The gyroscope sensor
-	SwerveDriveOdometry odometry = new SwerveDriveOdometry(kDriveKinematics, Rotation2d.fromDegrees(gyroscope.getAngle()));
+
+	private final SwerveDriveOdometry odometry = new SwerveDriveOdometry(kDriveKinematics, this.getRotation2d(), new SwerveModulePosition[] {
+		frontLeft.getPosition(),
+		frontRight.getPosition(),
+		backLeft.getPosition(),
+		backRight.getPosition()});
 
 	/** Drivetrain Constructor *************************************************/
 	public Drivetrain() {
@@ -95,7 +101,11 @@ public class Drivetrain extends SubsystemBase {
 		return Rotation2d.fromDegrees(getGyroAngle());
 	}
 	public void resetOdometry(Pose2d pose) {
-		odometry.resetPosition(pose, this.getRotation2d());
+		odometry.resetPosition(this.getRotation2d(), new SwerveModulePosition[] {
+														frontLeft.getPosition(),
+														frontRight.getPosition(),
+														backLeft.getPosition(),
+														backRight.getPosition()}, pose);
 	}
 	public Pose2d getPose() {
 		return odometry.getPoseMeters();
@@ -110,7 +120,13 @@ public class Drivetrain extends SubsystemBase {
 	@Override
 	public void periodic() {
 		SmartDashboard.putNumber("Gyro Angle", getGyroAngle()); // The current gyroscope angle
-		odometry.update(this.getRotation2d(), frontLeft.getState(), frontRight.getState(), backLeft.getState(), backRight.getState());
+		odometry.update(getRotation2d(),
+        new SwerveModulePosition[] {
+          frontLeft.getPosition(),
+          frontRight.getPosition(),
+          backLeft.getPosition(),
+          backRight.getPosition()
+        });
 	}
 
 	// Stop all 4 swerve modules
