@@ -14,7 +14,6 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.util.sendable.SendableRegistry;
 
 /** Drivetrain ****************************************************************
@@ -57,8 +56,6 @@ public class Drivetrain extends SubsystemBase {
 		RobotMap.kBackRightDriveAbsoluteEncoderPort,
 		RobotMap.kBackRightDriveAbsoluteEncoderOffsetDegrees,
 		RobotMap.kBackRightDriveAbsoluteEncoderReversed);
-
-	private static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(RobotMap.kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, RobotMap.kMAX_ANGULAR_ACCELERATION_RADIANS_PER_SECOND_SQUARED);
 
 	private static final SwerveDriveKinematics kDriveKinematics =
 		new SwerveDriveKinematics(new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2), 
@@ -112,9 +109,6 @@ public class Drivetrain extends SubsystemBase {
 	}
 	public SwerveDriveKinematics getkDriveKinematics() {
 		return kDriveKinematics;	
-	}
-	public TrapezoidProfile.Constraints getkThetaControllerConstraints() {
-		return kThetaControllerConstraints;
 	}
 
 	@Override
