@@ -92,4 +92,21 @@ public class RobotMap {
 	
 	/** Subsystems ************************************************************/
 	public static final Log.Level	LOG_DRIVETRAIN						= Log.Level.TRACE;
+ 
+	 // Controller Input Axes //
+    public static final int CONTROLLER_USB_PORT_ID = 2; // USB port that the controller is plugged in to
+    public static final int RIGHT_VERTICAL_JOYSTICK_AXIS = 3;
+    public static final int RIGHT_HORIZONTAL_JOYSTICK_AXIS = 2;
+    public static final int LEFT_VERTICAL_JOYSTICK_AXIS = 1;
+    public static final int LEFT_HORIZONTAL_JOYSTICK_AXIS = 0;
+    public static final int X_BUTTON = 1;
+    public static final int A_BUTTON = 2;
+    public static final int B_BUTTON = 3;
+    public static final int Y_BUTTON = 4;
+    public static final int LEFT_BUMPER = 5;
+    public static final int RIGHT_BUMPER = 6;
+    public static final int LEFT_TRIGGER_AXIS = 7;
+    public static final int RIGHT_TRIGGER_AXIS = 8;
+    public static final int PREV_BUTTON = 9;
+    public static final int START_BUTTON = 10;
 }
