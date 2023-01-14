@@ -123,9 +123,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 
-		double ySpeed = oi.getYSpeed(); // empty function; returns zero
-		double xSpeed = oi.getXSpeed(); // empty function; returns zero
-		double zSpeed = oi.getZSpeed(); // empty function; returns zero
+		double ySpeed = oi.getYSpeed();
+		double xSpeed = oi.getXSpeed();
+		double zSpeed = oi.getZSpeed();
 
 		drivetrain.drive(xSpeed, ySpeed, zSpeed, true);
 	} 
