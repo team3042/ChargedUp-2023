@@ -10,8 +10,8 @@ import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 
-/** Drivetrain Gyro Straight **************************************************
- * Command for */
+/** Drivetrain X Stance **************************************************
+ * Command for defensive X Stance */
 public class Drivetrain_XStance extends CommandBase {
 	/** Configuration Constants ***********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN;
@@ -25,7 +25,7 @@ public class Drivetrain_XStance extends CommandBase {
 	SwerveModuleState BackLeftState = new SwerveModuleState(0, Rotation2d.fromDegrees(-45));
 	SwerveModuleState BackRightState = new SwerveModuleState(0, Rotation2d.fromDegrees(45));
 	
-	/** Drivetrain Gyro Straight **********************************************
+	/** Drivetrain X Stance **********************************************
 	 * Required subsystems will cancel commands when this command is run */
 	public Drivetrain_XStance() {
 		log.add("Constructor", Log.Level.TRACE);
