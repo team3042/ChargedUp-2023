@@ -37,18 +37,20 @@ public class Drivetrain_XStance extends CommandBase {
 	public void initialize() {
 		log.add("Initialize", Log.Level.TRACE);
 		drivetrain.stopModules();
-		drivetrain.setModuleStates(new SwerveModuleState[]{FrontLeftState,FrontRightState,BackLeftState,BackRightState}); //list of states on swerve modules
+		drivetrain.getFrontLeft().setDesiredState(FrontLeftState, true);
+		drivetrain.getFrontRight().setDesiredState(FrontRightState, true);
+		drivetrain.getBackLeft().setDesiredState(BackLeftState, true);
+		drivetrain.getBackRight().setDesiredState(BackRightState, true);
 	}
 
 	/** execute ***************************************************************
 	 * Called repeatedly when this Command is scheduled to run */
 	public void execute() {}
-	//drivetrain.setModuleStates(new SwerveModuleState[]{FrontLeftState,FrontRightState,BackLeftState,BackRightState}); //list of states on swerve modules
 
 	/** isFinished ************************************************************	
 	 * Make this return true when this Command no longer needs to run execute() */
 	public boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	// Called once the command ends or is interrupted.
