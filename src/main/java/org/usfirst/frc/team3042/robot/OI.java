@@ -43,7 +43,7 @@ public class OI {
     /** Access to the driving axes values *****************************
 	 * A negative can be added to make pushing forward positive/negative. */
 	public double getXSpeed() {
-		double joystickValue = joyRight.getX();
+		double joystickValue = joyRight.getY();
 		//double joystickValue = driverController.getRightY(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
@@ -53,7 +53,7 @@ public class OI {
 		}	
 	}
 	public double getYSpeed() {
-		double joystickValue = joyRight.getY();
+		double joystickValue = joyRight.getX();
 		//double joystickValue = driverController.getRightX(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
@@ -63,7 +63,7 @@ public class OI {
 		}	
 	}
 	public double getZSpeed() {
-		double joystickValue = joyLeft.getZ();
+		double joystickValue = joyLeft.getX();
 		//double joystickValue = driverController.getLeftX(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
