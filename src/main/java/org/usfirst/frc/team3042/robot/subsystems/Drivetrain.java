@@ -79,11 +79,8 @@ public class Drivetrain extends SubsystemBase {
 		log.add("Constructor", LOG_LEVEL);
 		zeroGyro();
 	}
-	/** initDefaultCommand ****************************************************
-	 * Set the default command for the subsystem. */
-	public void initDefaultCommand() {
-		setDefaultCommand(null);
-	}
+	
+	
 
 	/** Gyroscope Methods ******************************************************/
   	public void zeroGyro() { // Zeroes the heading of the robot

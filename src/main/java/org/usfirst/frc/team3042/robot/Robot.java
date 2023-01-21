@@ -6,6 +6,7 @@ import com.pathplanner.lib.PathPlannerTrajectory.PathPlannerState;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.commands.DriveCommand;
 import org.usfirst.frc.team3042.robot.commands.autonomous.AutonomousMode_Default;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 
@@ -51,7 +52,8 @@ public class Robot extends TimedRobot {
 	 * This function is run when the robot is first started up and should be used for any initialization code. */
 	public void robotInit() {
 		log.add("Robot Init", Log.Level.TRACE);
-
+		drivetrain.setDefaultCommand(new DriveCommand());
+		
 		drivetrain.zeroGyro();
 		
 		// Autonomous Routines //
@@ -123,11 +125,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 
-		double ySpeed = oi.getYSpeed();
-		double xSpeed = oi.getXSpeed();
-		double zSpeed = oi.getZSpeed();
-
-		drivetrain.drive(xSpeed, ySpeed, zSpeed, true);
+		
 	} 
 
 	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this a path name and it will return a PPSwerveControllerCommand for that path :)

@@ -36,8 +36,8 @@ public class OI {
         // Example using the A button on a generic logitech controller:
         // new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new Drivetrain_XStance());
 
-		// Example using the A button on a Xbox controller:
-        // new Trigger(() -> gunnerController.getAButton()).onTrue(new Drivetrain_XStance());
+		// Example using the X button on a Xbox controller:
+        // new Trigger(() -> gunnerController.getXButton()).onTrue(new Drivetrain_XStance());
 	}
 
     /** Access to the driving axes values *****************************
