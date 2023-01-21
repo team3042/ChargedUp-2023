@@ -124,8 +124,6 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("FrontLeft State", drivetrain.getFrontLeft().getState().toString());
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
-
-		
 	} 
 
 	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this a path name and it will return a PPSwerveControllerCommand for that path :)

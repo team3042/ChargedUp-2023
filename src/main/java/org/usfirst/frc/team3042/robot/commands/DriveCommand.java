@@ -2,7 +2,6 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-
 package org.usfirst.frc.team3042.robot.commands;
 
 import org.usfirst.frc.team3042.robot.OI;
@@ -18,7 +17,6 @@ public class DriveCommand extends CommandBase {
   public DriveCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrain);
-
   }
 
   // Called when the command is initially scheduled.
@@ -37,7 +35,8 @@ public class DriveCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.stopModules();}
+    drivetrain.stopModules();
+  }
   
   // Returns true when the command should end.
   @Override
