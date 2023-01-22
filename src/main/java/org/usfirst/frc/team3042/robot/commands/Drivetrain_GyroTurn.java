@@ -19,7 +19,7 @@ public class Drivetrain_GyroTurn extends CommandBase {
 	/** Instance Variables ****************************************************/
 	Drivetrain drivetrain = Robot.drivetrain;
 	Log log = new Log(LOG_LEVEL, SendableRegistry.getName(drivetrain));
-	double goalAngle, lastError;
+	double goalAngle, error;
 	
 	/** Drivetrain Gyro Turn ************************************************** 
 	 * Required subsystems will cancel commands when this command is run.
@@ -44,29 +44,28 @@ public class Drivetrain_GyroTurn extends CommandBase {
 	/** execute ***************************************************************
 	 * Called repeatedly when this Command is scheduled to run */
 	public void execute() {
-		double error = goalAngle - drivetrain.getGyroAngle();
+		error = goalAngle - drivetrain.getGyroAngle();
 		
 		double correction = kP * error;
-				
+		
+		// Prevent setting over 100% power to the motors
 		correction = Math.min(1, correction);
 		correction = Math.max(-1, correction);
 	
 		drivetrain.drive(0, 0, -1 * correction, false);		
 		
-		log.add("***** " + correction, Log.Level.DEBUG);
-
-		lastError = error;
+		log.add("***** " + correction, Log.Level.DEBUG); // Debugging print statement
 	}
 	
 	/** isFinished ************************************************************	
 	 * Make this return true when this Command no longer needs to run execute() */
 	public boolean isFinished() {
-		return Math.abs(lastError) < ANGLE_TOLERANCE;
+		return Math.abs(error) < ANGLE_TOLERANCE; // End this command when our current heading is within the tolerance
 	}
 
 	// Called once the command ends or is interrupted.
 	public void end(boolean interrupted) {
 		log.add("End", Log.Level.TRACE);
-		drivetrain.stopModules();
+		drivetrain.stopModules(); // Stop all modules when this command ends
 	}
 }

@@ -60,7 +60,7 @@ public class RobotMap {
 	public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60; // Convert RPM to radians/sec
 	public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14); // Convert max speed from feet/sec to meters/sec
 	public static final double kPhysicalMaxTurningSpeedRadiansPerSecond = Math.PI * 3; // TODO: This can be tuned to your liking
-	public static final double kP_Turning = 0.4; // TODO: We need to tune this value through testing! (this could cause X stance to perform poorly)
+	public static final double kP_Turning = 0.4; // TODO: We need to tune this value through testing! (this could cause X stance to perform poorly?)
 	public static final double nominalVoltage = 12.0;
     public static final int driveCurrentLimit = 80;
     public static final int steerCurrentLimit = 20;
@@ -87,10 +87,10 @@ public class RobotMap {
 	public static final Log.Level	LOG_AXIS_TRIGGER 					= Log.Level.ERROR;
 	public static final Log.Level	LOG_POV_BUTTON						= Log.Level.ERROR;
 	
-	/** Subsystems ************************************************************/
+	/** Subsystem Log Levels **************************************************/
 	public static final Log.Level	LOG_DRIVETRAIN						= Log.Level.TRACE;
  
-	 // Controller Input Axes //
+	// Controller Input Axes //
     public static final int CONTROLLER_USB_PORT_ID = 2; // USB port that the controller is plugged in to
     public static final int RIGHT_VERTICAL_JOYSTICK_AXIS = 3;
     public static final int RIGHT_HORIZONTAL_JOYSTICK_AXIS = 2;

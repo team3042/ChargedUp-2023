@@ -23,11 +23,11 @@ public class OI {
 	//public static final XboxController gunnerController = new XboxController(RobotMap.GUNNER_XBOX_USB_PORT); // TODO: Uncomment this to use an Xbox controller for the gunner
 
 	/** OI ********************************************************************
-	 * Assign commands to the buttons and triggers*/
+	 * Assign commands to the buttons and triggers */
 	public OI() {
 		log.add("OI Constructor", Log.Level.TRACE);
 
-        // Bind commands to buttons on the controller/joysticks here! //
+        // Bind commands to buttons on the controllers/joysticks below! //
 		new Trigger(() -> joyLeft.getTrigger()).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // Zero the gyro, this is helpful at the start of a match for field-oriented driving
 		new Trigger(() -> joyRight.getTrigger()).onTrue(new Drivetrain_XStance()); // Defensive X-stance command
 		//new Trigger(() -> getLeftTrigger(driverController)).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // TODO: Uncomment this to use an Xbox controller for the driver
@@ -37,13 +37,13 @@ public class OI {
         // new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new Drivetrain_XStance());
 
 		// Example using the X button on a Xbox controller:
-        // new Trigger(() -> gunnerController.getXButton()).onTrue(new Drivetrain_XStance());
+        // new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
 	}
 
     /** Access to the driving axes values *****************************
 	 * A negative can be added to make pushing forward positive/negative. */
 	public double getXSpeed() {
-		double joystickValue = joyRight.getY();
+		double joystickValue = joyRight.getY(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
 		//double joystickValue = driverController.getRightY(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
@@ -53,7 +53,7 @@ public class OI {
 		}	
 	}
 	public double getYSpeed() {
-		double joystickValue = joyRight.getX();
+		double joystickValue = joyRight.getX(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
 		//double joystickValue = driverController.getRightX(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
@@ -63,7 +63,7 @@ public class OI {
 		}	
 	}
 	public double getZSpeed() {
-		double joystickValue = joyLeft.getX();
+		double joystickValue = joyLeft.getX(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
 		//double joystickValue = driverController.getLeftX(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
