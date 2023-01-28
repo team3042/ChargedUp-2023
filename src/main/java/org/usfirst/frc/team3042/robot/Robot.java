@@ -24,6 +24,8 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.cameraserver.CameraServer;
 
+import org.usfirst.frc.team3042.robot.subsystems.SwerveModule;
+
 
 /** Robot *********************************************************************
  * The VM is configured to automatically run this class, and to call the
@@ -55,15 +57,15 @@ public class Robot extends TimedRobot {
 		drivetrain.setDefaultCommand(new DriveCommand());
 		
 		drivetrain.zeroGyro();
-		
+
 		// Autonomous Routines //
 		chooser.setDefaultOption("Default Auto", new AutonomousMode_Default());
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		// Start up the webcam and configure its resolution and framerate
-		camera1 = CameraServer.startAutomaticCapture(0);
-		camera1.setResolution(320, 240);
-		camera1.setFPS(15);
+		// camera1 = CameraServer.startAutomaticCapture(0);
+		// camera1.setResolution(320, 240);
+		// camera1.setFPS(15);
 	}
 
 	/** disabledInit **********************************************************

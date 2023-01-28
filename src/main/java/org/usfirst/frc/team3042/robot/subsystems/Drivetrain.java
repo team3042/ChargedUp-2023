@@ -79,6 +79,11 @@ public class Drivetrain extends SubsystemBase {
 		log.add("Constructor", LOG_LEVEL);
 		zeroGyro();
 	}
+
+	public void resetModules(){
+
+		
+	}
 	
 	
 

@@ -36,16 +36,18 @@ public class Drivetrain_XStance extends CommandBase {
 	 * Called just before this Command runs the first time */
 	public void initialize() {
 		log.add("Initialize", Log.Level.TRACE);
-		drivetrain.stopModules();
+		
+		
+	}
+
+	/** execute ***************************************************************
+	 * Called repeatedly when this Command is scheduled to run */
+	public void execute() {
 		drivetrain.getFrontLeft().setDesiredState(FrontLeftState, true);
 		drivetrain.getFrontRight().setDesiredState(FrontRightState, true);
 		drivetrain.getBackLeft().setDesiredState(BackLeftState, true);
 		drivetrain.getBackRight().setDesiredState(BackRightState, true);
 	}
-
-	/** execute ***************************************************************
-	 * Called repeatedly when this Command is scheduled to run */
-	public void execute() {}
 
 	/** isFinished ************************************************************	
 	 * Make this return true when this Command no longer needs to run execute() */
@@ -56,5 +58,6 @@ public class Drivetrain_XStance extends CommandBase {
 	// Called once the command ends or is interrupted.
 	public void end(boolean interrupted) {
 		log.add("End", Log.Level.TRACE);
+		drivetrain.stopModules();
 	}
 }

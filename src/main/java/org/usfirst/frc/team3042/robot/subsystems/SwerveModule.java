@@ -72,6 +72,7 @@ public class SwerveModule {
         turningPidController.enableContinuousInput(-Math.PI, Math.PI);
 
         resetEncoders();
+
     }
 
     // Methods for getting the current velocity/position of the motors
