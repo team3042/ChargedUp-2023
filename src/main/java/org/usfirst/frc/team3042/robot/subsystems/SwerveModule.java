@@ -111,7 +111,7 @@ public class SwerveModule {
         return new SwerveModulePosition(getDrivePosition(), new Rotation2d(getTurningPosition()));
     }
 
-    // Set the currently desired SwerveModuleState
+    // Set the desired SwerveModuleState
     public void setDesiredState(SwerveModuleState state, boolean xStance) {
         state = SwerveModuleState.optimize(state, getState().angle);
 

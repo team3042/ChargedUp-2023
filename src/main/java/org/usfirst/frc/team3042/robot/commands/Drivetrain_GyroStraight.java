@@ -57,6 +57,7 @@ public class Drivetrain_GyroStraight extends CommandBase {
 		
 		double correction = kP * error;
 
+		// Prevent setting over 100% power to the motors
 		correction = Math.min(1, correction);
 		correction = Math.max(-1, correction);
 		

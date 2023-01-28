@@ -12,7 +12,6 @@ import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -24,20 +23,24 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.cameraserver.CameraServer;
 
+<<<<<<< HEAD
 import org.usfirst.frc.team3042.robot.subsystems.SwerveModule;
 
 
+=======
+>>>>>>> 81e531dd24950d32c160feccd1192a41533e1148
 /** Robot *********************************************************************
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource directory. */
 public class Robot extends TimedRobot { 
+
 	/** Configuration Constants ***********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
+	private Log log = new Log(LOG_LEVEL, "Robot");
 
 	/** Create Subsystems *****************************************************/
-	private Log log = new Log(LOG_LEVEL, "Robot");
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final OI oi = new OI();;
 
@@ -46,9 +49,7 @@ public class Robot extends TimedRobot {
 	CommandBase autonomousCommand;
 	SendableChooser<CommandBase> chooser = new SendableChooser<CommandBase>();
 
-	double goalAngle;
 	UsbCamera camera1;
-	Timer currentTimer = new Timer();
 
 	/** robotInit *************************************************************
 	 * This function is run when the robot is first started up and should be used for any initialization code. */
@@ -126,11 +127,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("FrontLeft State", drivetrain.getFrontLeft().getState().toString());
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
-
-		
 	} 
 
-	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this a path name and it will return a PPSwerveControllerCommand for that path :)
+	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this the name of a .json path and it will return a PPSwerveControllerCommand for that path :)
 		
 		PathPlannerTrajectory path = PathPlanner.loadPath(pathName, velocityMax, accelMax); 
 

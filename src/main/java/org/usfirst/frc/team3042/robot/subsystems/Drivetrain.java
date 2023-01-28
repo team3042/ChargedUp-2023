@@ -17,13 +17,14 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.sendable.SendableRegistry;
 
 /** Drivetrain ****************************************************************
- * The Swerve Drivetrain subsystem of the robot. */
+ * The Swerve Drive subsystem of the robot. */
 public class Drivetrain extends SubsystemBase {
 	/** Configuration Constants ***********************************************/
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN;
 	private static final double TRACK_WIDTH = RobotMap.TRACK_WIDTH;
 	private static final double WHEEL_BASE = RobotMap.WHEEL_BASE;
 
+	// Instantiate our 4 swerve modules
 	private final SwerveModule frontLeft = new SwerveModule(
 		RobotMap.kFrontLeftDriveMotorPort,
 		RobotMap.kFrontLeftTurningMotorPort,
@@ -57,6 +58,7 @@ public class Drivetrain extends SubsystemBase {
 		RobotMap.kBackRightDriveAbsoluteEncoderOffsetDegrees,
 		RobotMap.kBackRightDriveAbsoluteEncoderReversed);
 
+	// This is for autonomous path-following
 	private static final SwerveDriveKinematics kDriveKinematics =
 		new SwerveDriveKinematics(new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2), 
 								   new Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2), 
@@ -66,13 +68,15 @@ public class Drivetrain extends SubsystemBase {
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, SendableRegistry.getName(this));
 
-	ADIS16470_IMU gyroscope = new ADIS16470_IMU(); // The gyroscope sensor
+	ADIS16470_IMU gyroscope = new ADIS16470_IMU(); // The gyroscope sensor on the robot
 
-	private final SwerveDriveOdometry odometry = new SwerveDriveOdometry(kDriveKinematics, this.getRotation2d(), new SwerveModulePosition[] {
-		frontLeft.getPosition(),
-		frontRight.getPosition(),
-		backLeft.getPosition(),
-		backRight.getPosition()});
+	// This is for autonomous path-following
+	private final SwerveDriveOdometry odometry = new SwerveDriveOdometry(kDriveKinematics, 
+																		this.getRotation2d(), 
+																		new SwerveModulePosition[] {frontLeft.getPosition(),
+																									frontRight.getPosition(),
+																									backLeft.getPosition(),
+																									backRight.getPosition()});
 
 	/** Drivetrain Constructor *************************************************/
 	public Drivetrain() {
@@ -85,8 +89,6 @@ public class Drivetrain extends SubsystemBase {
 		
 	}
 	
-	
-
 	/** Gyroscope Methods ******************************************************/
   	public void zeroGyro() { // Zeroes the heading of the robot
     	gyroscope.reset();
@@ -100,11 +102,12 @@ public class Drivetrain extends SubsystemBase {
 		return Rotation2d.fromDegrees(getGyroAngle());
 	}
 	public void resetOdometry(Pose2d pose) {
-		odometry.resetPosition(this.getRotation2d(), new SwerveModulePosition[] {
-														frontLeft.getPosition(),
-														frontRight.getPosition(),
-														backLeft.getPosition(),
-														backRight.getPosition()}, pose);
+		odometry.resetPosition(this.getRotation2d(), 
+								new SwerveModulePosition[] {frontLeft.getPosition(),
+															frontRight.getPosition(),
+															backLeft.getPosition(),
+															backRight.getPosition()}, 
+								pose);
 	}
 	public Pose2d getPose() {
 		return odometry.getPoseMeters();
@@ -116,13 +119,12 @@ public class Drivetrain extends SubsystemBase {
 	@Override
 	public void periodic() {
 		SmartDashboard.putNumber("Gyro Angle", getGyroAngle()); // The current gyroscope angle
+		// This is for autonomous path-following
 		odometry.update(getRotation2d(),
-        new SwerveModulePosition[] {
-          frontLeft.getPosition(),
-          frontRight.getPosition(),
-          backLeft.getPosition(),
-          backRight.getPosition()
-        });
+        				new SwerveModulePosition[] {frontLeft.getPosition(),
+													frontRight.getPosition(),
+													backLeft.getPosition(),
+													backRight.getPosition()});
 	}
 
 	// Stop all 4 swerve modules
@@ -132,7 +134,8 @@ public class Drivetrain extends SubsystemBase {
 		backLeft.stop();
 		backRight.stop();
 	}
-	// Update the current desired state of all 4 modules
+
+	// Set the desired state of all 4 swerve modules
 	public void setModuleStates(SwerveModuleState[] desiredStates) {
 		SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, RobotMap.kPhysicalMaxSpeedMetersPerSecond);
 		frontLeft.setDesiredState(desiredStates[0], false);
@@ -140,6 +143,7 @@ public class Drivetrain extends SubsystemBase {
 		backLeft.setDesiredState(desiredStates[2], false);
 		backRight.setDesiredState(desiredStates[3], false);
 	}
+	
 	// Drive the robot with the specified x, y, and rotation speeds
 	public void drive(double xSpeed, double ySpeed, double rotationSpeed, boolean fieldOriented) {
 
