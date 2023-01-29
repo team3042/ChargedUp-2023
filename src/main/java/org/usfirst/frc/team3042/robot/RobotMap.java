@@ -26,9 +26,9 @@ public class RobotMap {
 	public static final int kBackRightDriveAbsoluteEncoderPort = 12;
 
 	/** Drivetrain Settings ***************************************************/
-	public static final double kP_X_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards
-    public static final double kP_Y_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards	
-    public static final double kP_THETA_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards
+	public static final double kP_X_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
+    public static final double kP_Y_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following	
+    public static final double kP_THETA_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
 	//swerve part :3
     public static final boolean kFrontLeftDriveEncoderReversed = false;
     public static final boolean kFrontLeftTurningEncoderReversed = false;
@@ -58,9 +58,9 @@ public class RobotMap {
 	public static final double kTurningEncoderRot2Rad = kTurnMotorGearRatio * 2 * Math.PI; // Convert rotations to radians
 	public static final double kDriveEncoderRPM2MeterPerSec = kDriveEncoderRot2Meter / 60; // Convert RPM to meters/second
 	public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60; // Convert RPM to radians/sec
-	public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14); // Convert max speed from feet/sec to meters/sec
-	public static final double kPhysicalMaxTurningSpeedRadiansPerSecond = Math.PI * 3; // TODO: This can be tuned to your liking
-	public static final double kP_Turning = 0.4; // TODO: We need to tune this value through testing! (this could cause X stance to perform poorly?)
+	public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14); // Determines the maximum driving speed of the robot
+	public static final double kPhysicalMaxTurningSpeedRadiansPerSecond = Math.PI * 3; // Determines the maximum turning speed of the robot
+	public static final double kP_Turning = 0.4; // TODO: You might need to tune this value through testing (this could maybe cause X stance to perform poorly?)
 	public static final double nominalVoltage = 12.0;
     public static final int driveCurrentLimit = 80;
     public static final int steerCurrentLimit = 20;

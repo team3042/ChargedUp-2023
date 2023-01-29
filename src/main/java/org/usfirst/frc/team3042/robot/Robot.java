@@ -23,12 +23,6 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.cameraserver.CameraServer;
 
-<<<<<<< HEAD
-import org.usfirst.frc.team3042.robot.subsystems.SwerveModule;
-
-
-=======
->>>>>>> 81e531dd24950d32c160feccd1192a41533e1148
 /** Robot *********************************************************************
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
