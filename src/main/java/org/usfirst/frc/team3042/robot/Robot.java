@@ -21,8 +21,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
+<<<<<<< HEAD
 
 
+=======
+import edu.wpi.first.cameraserver.CameraServer;
+>>>>>>> 8ee351fead9525c13f69aa1ed8c7b68bfba7589e
 
 /** Robot *********************************************************************
  * The VM is configured to automatically run this class, and to call the
