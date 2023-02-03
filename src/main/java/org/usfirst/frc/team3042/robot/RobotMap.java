@@ -10,7 +10,7 @@ public class RobotMap {
 	/** Robot Size Parameters **************************************************/
 	public static final double TRACK_WIDTH = Units.inchesToMeters(19.5); // Distance between centers of right and left wheels on robot (in meters)
     public static final double WHEEL_BASE = Units.inchesToMeters(23.5); // Distance between centers of front and back wheels on robot (in meters)
-
+//front wheel reverse
 	/** CAN ID numbers ********************************************************/
 	public static final int kFrontLeftDriveMotorPort = 3;
 	public static final int kFrontLeftTurningMotorPort = 4;
@@ -33,22 +33,22 @@ public class RobotMap {
     public static final boolean kFrontLeftDriveEncoderReversed = false;
     public static final boolean kFrontLeftTurningEncoderReversed = false;
 	public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = false;
-    public static final double kFrontLeftDriveAbsoluteEncoderOffsetDegrees = 49.55; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kFrontLeftDriveAbsoluteEncoderOffsetDegrees = 0; // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kFrontRightDriveEncoderReversed = false;
     public static final boolean kFrontRightTurningEncoderReversed = false;
 	public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
-    public static final double kFrontRightDriveAbsoluteEncoderOffsetDegrees = 183.48; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetDegrees = -2.68; // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kBackLeftDriveEncoderReversed = false;
 	public static final boolean kBackLeftTurningEncoderReversed = false;
 	public static final boolean kBackLeftDriveAbsoluteEncoderReversed = false;
-    public static final double kBackLeftDriveAbsoluteEncoderOffsetDegrees = -35.49; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kBackLeftDriveAbsoluteEncoderOffsetDegrees = -0; // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kBackRightDriveEncoderReversed = false;
     public static final boolean kBackRightTurningEncoderReversed = false;
 	public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
-    public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = 182.81; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = -4.02; // More negative turns wheel more to the left (counter-clockwise)
 
 	/** Swerve Module Settings ************************************************/
 	public static final double kWheelDiameterMeters = Units.inchesToMeters(4); // Convert wheel diameter in inches to meters

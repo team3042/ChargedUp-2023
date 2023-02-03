@@ -82,12 +82,9 @@ public class Drivetrain extends SubsystemBase {
 	public Drivetrain() {
 		log.add("Constructor", LOG_LEVEL);
 		zeroGyro();
-	}
-
-	public void resetModules(){
-
 		
 	}
+
 	
 	/** Gyroscope Methods ******************************************************/
   	public void zeroGyro() { // Zeroes the heading of the robot
