@@ -38,17 +38,18 @@ public class RobotMap {
     public static final boolean kFrontRightDriveEncoderReversed = false;
     public static final boolean kFrontRightTurningEncoderReversed = false;
 	public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
-    public static final double kFrontRightDriveAbsoluteEncoderOffsetDegrees = -2.68; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetDegrees = 180.13; // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kBackLeftDriveEncoderReversed = false;
 	public static final boolean kBackLeftTurningEncoderReversed = false;
 	public static final boolean kBackLeftDriveAbsoluteEncoderReversed = false;
-    public static final double kBackLeftDriveAbsoluteEncoderOffsetDegrees = -0; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kBackLeftDriveAbsoluteEncoderOffsetDegrees = -4.69; // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kBackRightDriveEncoderReversed = false;
     public static final boolean kBackRightTurningEncoderReversed = false;
 	public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
-    public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = -4.02; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = -0.67; // More negative turns wheel more to the left (counter-clockwise)
+
 
 	/** Swerve Module Settings ************************************************/
 	public static final double kWheelDiameterMeters = Units.inchesToMeters(4); // Convert wheel diameter in inches to meters
@@ -73,6 +74,9 @@ public class RobotMap {
 	public static final int USB_JOYSTICK_LEFT 	= 0;
 	public static final int USB_JOYSTICK_RIGHT 	= 1;
 	public static final int USB_GAMEPAD 		= 2;
+	
+	public static final int Gripper_PistonID1 = 0;
+	public static final int Gripper_PistonID2 = 1;
 
 	/** Logger Settings *******************************************************/
 	public static final String 		LOG_FILE_FORMAT 					= "yyyy-MM-dd-hhmmss";

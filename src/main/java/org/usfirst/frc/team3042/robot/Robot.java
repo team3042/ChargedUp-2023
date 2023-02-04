@@ -9,6 +9,7 @@ import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.DriveCommand;
 import org.usfirst.frc.team3042.robot.commands.autonomous.AutonomousMode_Default;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3042.robot.subsystems.Gripper;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -36,6 +37,8 @@ public class Robot extends TimedRobot {
 	/** Create Subsystems *****************************************************/
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final OI oi = new OI();;
+
+	public static final Gripper gripper = new Gripper();
 
 	public static final PowerDistribution pdp = new PowerDistribution();
 	
@@ -78,6 +81,11 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("FrontLeft State", drivetrain.getFrontLeft().getState().toString());
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
+
+	// 	SmartDashboard.putNumber("FrontRight AbsEncoder", drivetrain.getFrontRight().getAbsoluteEncoderRadians());
+	// 	SmartDashboard.putNumber("FrontLeft AbsEncoder", drivetrain.getFrontLeft().getAbsoluteEncoderRadians());
+	// 	SmartDashboard.putNumber("BackRight AbsEncoder", drivetrain.getBackRight().getAbsoluteEncoderRadians());
+	// 	SmartDashboard.putNumber("BackLeft AbsEncoder", drivetrain.getBackLeft().getAbsoluteEncoderRadians());
 	}
 
 	/** autonomousInit ********************************************************

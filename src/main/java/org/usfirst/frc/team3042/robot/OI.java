@@ -33,8 +33,8 @@ public class OI {
 		//new Trigger(() -> getLeftTrigger(driverController)).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // TODO: Uncomment this to use an Xbox controller for the driver
 		//new Trigger(() -> getRightTrigger(driverController)).onTrue(new Drivetrain_XStance()); // TODO: Uncomment this to use an Xbox controller for the driver
 
-        // Example using the A button on a generic logitech controller:
-        // new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new Drivetrain_XStance());
+        //Example using the A button on a generic logitech controller:
+        new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
 
 		// Example using the X button on a Xbox controller:
         // new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
