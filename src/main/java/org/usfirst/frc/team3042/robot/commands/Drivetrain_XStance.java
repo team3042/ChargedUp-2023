@@ -6,6 +6,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.sendable.SendableRegistry;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.OI;
 import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
@@ -52,7 +53,7 @@ public class Drivetrain_XStance extends CommandBase {
 	/** isFinished ************************************************************	
 	 * Make this return true when this Command no longer needs to run execute() */
 	public boolean isFinished() {
-		return false;
+		return Math.abs(OI.joyRight.getX()) > 0.05 || Math.abs(OI.joyRight.getY()) > 0.05 || Math.abs(OI.joyLeft.getX()) > 0.05;
 	}
 
 	// Called once the command ends or is interrupted.

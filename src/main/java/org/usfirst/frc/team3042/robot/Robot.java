@@ -34,6 +34,8 @@ public class Robot extends TimedRobot {
 	private static final Log.Level LOG_LEVEL = RobotMap.LOG_ROBOT;
 	private Log log = new Log(LOG_LEVEL, "Robot");
 
+	int counter = 0;
+
 	/** Create Subsystems *****************************************************/
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final OI oi = new OI();;
@@ -82,10 +84,15 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 
-	// 	SmartDashboard.putNumber("FrontRight AbsEncoder", drivetrain.getFrontRight().getAbsoluteEncoderRadians());
-	// 	SmartDashboard.putNumber("FrontLeft AbsEncoder", drivetrain.getFrontLeft().getAbsoluteEncoderRadians());
-	// 	SmartDashboard.putNumber("BackRight AbsEncoder", drivetrain.getBackRight().getAbsoluteEncoderRadians());
-	// 	SmartDashboard.putNumber("BackLeft AbsEncoder", drivetrain.getBackLeft().getAbsoluteEncoderRadians());
+		if(counter >= 100) {
+			SmartDashboard.putNumber("FrontRight AbsEncoder", drivetrain.getFrontRight().getAbsoluteEncoderRadians() * 180/Math.PI);
+			SmartDashboard.putNumber("FrontLeft AbsEncoder", drivetrain.getFrontLeft().getAbsoluteEncoderRadians() * 180/Math.PI);
+			SmartDashboard.putNumber("BackRight AbsEncoder", drivetrain.getBackRight().getAbsoluteEncoderRadians() * 180/Math.PI);
+			SmartDashboard.putNumber("BackLeft AbsEncoder", drivetrain.getBackLeft().getAbsoluteEncoderRadians() * 180/Math.PI);
+			counter = 0;
+		}
+		
+		counter++;
 	}
 
 	/** autonomousInit ********************************************************

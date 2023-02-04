@@ -33,22 +33,22 @@ public class RobotMap {
     public static final boolean kFrontLeftDriveEncoderReversed = false;
     public static final boolean kFrontLeftTurningEncoderReversed = false;
 	public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = false;
-    public static final double kFrontLeftDriveAbsoluteEncoderOffsetDegrees = 0; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kFrontLeftDriveAbsoluteEncoderOffsetDegrees = -87.4; // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kFrontRightDriveEncoderReversed = false;
     public static final boolean kFrontRightTurningEncoderReversed = false;
 	public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
-    public static final double kFrontRightDriveAbsoluteEncoderOffsetDegrees = 180.13; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kFrontRightDriveAbsoluteEncoderOffsetDegrees = 54.5; // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kBackLeftDriveEncoderReversed = false;
 	public static final boolean kBackLeftTurningEncoderReversed = false;
 	public static final boolean kBackLeftDriveAbsoluteEncoderReversed = false;
-    public static final double kBackLeftDriveAbsoluteEncoderOffsetDegrees = -4.69; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kBackLeftDriveAbsoluteEncoderOffsetDegrees = 155.0; // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kBackRightDriveEncoderReversed = false;
     public static final boolean kBackRightTurningEncoderReversed = false;
 	public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
-    public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = -0.67; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = 107.0; // More negative turns wheel more to the left (counter-clockwise)
 
 
 	/** Swerve Module Settings ************************************************/
