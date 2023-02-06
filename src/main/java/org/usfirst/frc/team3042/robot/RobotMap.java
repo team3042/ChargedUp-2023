@@ -89,6 +89,7 @@ public class RobotMap {
 	
 	/** Subsystem Log Levels **************************************************/
 	public static final Log.Level	LOG_DRIVETRAIN						= Log.Level.TRACE;
+	public static final Log.Level   LOG_LIMELIGHT 						= Log.Level.DEBUG;
  
 	// Controller Input Axes //
     public static final int CONTROLLER_USB_PORT_ID = 2; // USB port that the controller is plugged in to
