@@ -24,6 +24,8 @@ public class RobotMap {
 	public static final int kFrontRightDriveAbsoluteEncoderPort = 9;//11
 	public static final int kBackLeftDriveAbsoluteEncoderPort = 11;//9
 	public static final int kBackRightDriveAbsoluteEncoderPort = 12;
+	public static final int kArmRotationMotor = 13;
+	public static final int kArmExtendMotor = 14;
 
 	/** Drivetrain Settings ***************************************************/
 	public static final double kP_X_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
@@ -50,7 +52,6 @@ public class RobotMap {
 	public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
     public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = 107.0; // More negative turns wheel more to the left (counter-clockwise)
 
-
 	/** Swerve Module Settings ************************************************/
 	public static final double kWheelDiameterMeters = Units.inchesToMeters(4); // Convert wheel diameter in inches to meters
 	public static final double kDriveMotorGearRatio = 1 / 6.75; // Gear Ratio of the Drive Motor
@@ -61,10 +62,25 @@ public class RobotMap {
 	public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60; // Convert RPM to radians/sec
 	public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14); // Determines the maximum driving speed of the robot
 	public static final double kPhysicalMaxTurningSpeedRadiansPerSecond = Math.PI * 3; // Determines the maximum turning speed of the robot
-	public static final double kP_Turning = 0.4; // TODO: You might need to tune this value through testing (this could maybe cause X stance to perform poorly?)
+	public static final double kP_Turning = 0.4;
 	public static final double nominalVoltage = 12.0;
     public static final int driveCurrentLimit = 80;
     public static final int steerCurrentLimit = 20;
+
+	/** Arm Subsystem Settings */
+	public static final boolean rotationMotorReversed = false;
+    public static final boolean extendMotorReversed = false;
+	// TODO: Find the real values of these through testing:
+	public static final double kIntakeArmPosition = 0;
+	public static final double kIntakeExtensionPosition = 0;
+	public static final double kScoringArmPosition1 = 100;
+	public static final double kScoringExtensionPosition1 = 100;
+	public static final double kScoringArmPosition2 = 200;
+	public static final double kScoringExtensionPosition2 = 200;
+	public static final double armThreshold = 10; // TODO: This needs to be tuned
+	public static final double extensionThreshold = 1; // TODO: This needs to be tuned
+	public static final double arm_kP = 0.2; // TODO: This needs to be tuned
+	public static final double extension_kP = 0.1; // TODO: This needs to be tuned
 	
 	/** Drivetrain Gyro Drive Settings ****************************************/
 	public static final double kP_GYRO = 0.005;

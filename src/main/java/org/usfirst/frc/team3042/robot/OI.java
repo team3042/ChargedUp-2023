@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 /** OI ************************************************************************
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot. */
-public class OI { 
+public class OI {
    
     /** Declare Instance Variables ****************************************************/
 	Log log = new Log(RobotMap.LOG_OI, "OI");
@@ -35,6 +35,7 @@ public class OI {
 
         //Example using the A button on a generic logitech controller:
         new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
+		new Trigger(() -> controller.getRawButton(RobotMap.Y_BUTTON)).onTrue(new InstantCommand(() -> Robot.arm.setPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtensionPosition)));
 
 		// Example using the X button on a Xbox controller:
         // new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
@@ -76,7 +77,7 @@ public class OI {
 	// These methods can be used to detect when the left/right trigger of a XboxController is pressed (convert the analog trigger axis to a boolean value: pressed or not pressed)
 	public boolean getLeftTrigger(XboxController controller) {
 		return controller.getLeftTriggerAxis() >= 0.95;
-	  }
+	}
 	public boolean getRightTrigger(XboxController controller) {
 		return controller.getRightTriggerAxis() >= 0.95;
 	}

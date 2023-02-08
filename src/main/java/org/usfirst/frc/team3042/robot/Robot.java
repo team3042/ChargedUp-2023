@@ -8,6 +8,7 @@ import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.DriveCommand;
 import org.usfirst.frc.team3042.robot.commands.autonomous.AutonomousMode_Default;
+import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Gripper;
 
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
 	public static final OI oi = new OI();;
 
 	public static final Gripper gripper = new Gripper();
+	public static final Arm arm = new Arm();
 
 	public static final PowerDistribution pdp = new PowerDistribution();
 	
@@ -56,6 +58,7 @@ public class Robot extends TimedRobot {
 		drivetrain.setDefaultCommand(new DriveCommand());
 		
 		drivetrain.zeroGyro();
+		arm.resetEncoders();
 
 		// Autonomous Routines //
 		chooser.setDefaultOption("Default Auto", new AutonomousMode_Default());
@@ -135,6 +138,10 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("FrontLeft State", drivetrain.getFrontLeft().getState().toString());
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
+
+		// Manual control of the arm motors // TODO: Delete this code after you are done with manual testing
+		arm.setPowerExtendMotor(OI.controller.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
+		arm.setPowerRotationMotor(OI.controller.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
 	} 
 
 	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this the name of a .json path and it will return a PPSwerveControllerCommand for that path :)
