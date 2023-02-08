@@ -34,12 +34,20 @@ public class Arm extends SubsystemBase {
     extendMotor.setIdleMode(IdleMode.kBrake);
   }
 
-  // Methods for setting power to the motor
+  // Methods for setting power to the motors
   public void setPowerRotationMotor(double percentPower) {
     rotationMotor.set(percentPower);
   }
   public void setPowerExtendMotor(double percentPower) {
     extendMotor.set(percentPower);
+  }
+
+  // Methods for setting voltage to the motors
+  public void setVoltageRotationMotor(double volts) {
+    rotationMotor.setVoltage(volts);
+  }
+  public void setVoltageExtendMotor(double volts) {
+    extendMotor.setVoltage(volts);
   }
 
   // Methods for stopping the motors

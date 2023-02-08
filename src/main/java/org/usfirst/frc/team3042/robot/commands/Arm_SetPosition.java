@@ -25,14 +25,18 @@ public class Arm_SetPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { // FIXME: This execute() method needs to be completed as described below!
+
     // TODO: Calculate the rotation position error
-    // TODO: If the error is within the threshold, set some minimal power to the rotation motor to counteract gravity
-      // TODO: Would this minimal power depend on the current angle of the arm though? This seems tricky!
-    // TODO: Otherwise, set power to the rotation motor equal to the error * kP
+    // TODO: If the error is within the threshold, set some minimal VOLTAGE to the rotation motor to counteract gravity
+      // NOTE: This minimal voltage depends on the angle of the arm though, this is tricky!
+      // NOTE: You will need to calculate the minimal voltage needed for when the arm is level
+      // NOTE: Then, the minimal voltage needed at any given time will be levelVoltage * cosine(angle of the arm)
+    // TODO: Otherwise, set voltage to the rotation motor equal to the error * kP
 
     // TODO: Calculate the extension position error
     // TODO: If the error is within the threshold, stop the extension motor
-    // TODO: Otherwise, et power to the extension motor equal to the error * kP
+      // NOTE: The extension shouldn't have to fight against gravity, so we can just stop the motor when in position
+    // TODO: Otherwise, set power to the extension motor equal to the error * kP
   }
 
   // Called once the command ends or is interrupted.
