@@ -50,16 +50,6 @@ public class Arm extends SubsystemBase {
     setPowerExtendMotor(0);
   }
 
-  public void setPosition(double armPosition, double extensionPosition) {
-    double armError = armPosition - getRotationMotorPosition();
-    double extensionError = extensionPosition - getExtendMotorPosition();
-
-    while (Math.abs(armError) > RobotMap.armThreshold || Math.abs(extensionError) > RobotMap.extensionThreshold) {
-      setPowerRotationMotor(armError * RobotMap.arm_kP);
-      setPowerExtendMotor(extensionError * RobotMap.extension_kP);
-    }
-  }
-
   // Encoder methods for getting the motor position
   public double getRotationMotorPosition() {
     return rotationMotor.getEncoder().getPosition();

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3042.robot;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -35,7 +36,8 @@ public class OI {
 
         //Example using the A button on a generic logitech controller:
         new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
-		new Trigger(() -> controller.getRawButton(RobotMap.Y_BUTTON)).onTrue(new InstantCommand(() -> Robot.arm.setPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtensionPosition)));
+		// Bind the Y button on the controller to the intake position
+		new Trigger(() -> controller.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeRotationPosition, RobotMap.kIntakeExtensionPosition));
 
 		// Example using the X button on a Xbox controller:
         // new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
