@@ -34,12 +34,12 @@ public class OI {
 		//new Trigger(() -> getLeftTrigger(driverController)).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // TODO: Uncomment this to use an Xbox controller for the driver
 		//new Trigger(() -> getRightTrigger(driverController)).onTrue(new Drivetrain_XStance()); // TODO: Uncomment this to use an Xbox controller for the driver
 
-        //Example using the A button on a generic logitech controller:
+        // Bind the A button on the controller to toggle the gripper piston:
         new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
-		// Bind the Y button on the controller to the intake position
+		// Bind the Y button on the controller to move the arm to the intake position:
 		new Trigger(() -> controller.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeRotationPosition, RobotMap.kIntakeExtensionPosition));
 
-		// Example using the X button on a Xbox controller:
+		// Example using the X button on a Xbox controller //
         // new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
 	}
 

@@ -139,7 +139,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 
-		// Manual control of the arm motors // TODO: Delete this code after you are done with manual testing
+		// Manual control of the arm motors // TODO: Delete this code after you are done with manual testing of the arm
 		arm.setPowerExtendMotor(OI.controller.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
 		arm.setPowerRotationMotor(OI.controller.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
 	} 
