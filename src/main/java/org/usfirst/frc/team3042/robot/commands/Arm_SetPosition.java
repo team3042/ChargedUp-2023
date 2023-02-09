@@ -27,16 +27,19 @@ public class Arm_SetPosition extends CommandBase {
   public void execute() { // FIXME: This execute() method needs to be completed as described below!
 
     // TODO: Calculate the rotation position error
-    // TODO: If the error is within the threshold, set some minimal VOLTAGE to the rotation motor to counteract gravity
-      // NOTE: This minimal voltage depends on the angle of the arm though, this is tricky!
+    // TODO: Set some minimal VOLTAGE to the rotation motor to counteract gravity PLUS voltage equal to the error * kP
+    // Like this: minimalVoltage = levelVoltage * Math.cos(angle of the arm); 
+    //            arm.setVoltageRotationMotor(minimalVoltage + (error * RobotMap.rotation_kP));
+      // NOTE: The minimal voltage depends on the angle of the arm though, this is tricky!
       // NOTE: You will need to calculate the minimal voltage needed for when the arm is level
-      // NOTE: Then, the minimal voltage needed at any given time will be levelVoltage * cosine(angle of the arm)
-    // TODO: Otherwise, set voltage to the rotation motor equal to the error * kP
+      //       Then, the minimal voltage needed at any given time will simply be levelVoltage * cosine(angle of the arm)
+      //       You will need to determine the angle of the arm based on the position of the rotation motor
 
     // TODO: Calculate the extension position error
     // TODO: If the error is within the threshold, stop the extension motor
       // NOTE: The extension shouldn't have to fight against gravity, so we can just stop the motor when in position
     // TODO: Otherwise, set power to the extension motor equal to the error * kP
+    // Like this: arm.setPowerExtendMotor(error * RobotMap.extension_kP);
   }
 
   // Called once the command ends or is interrupted.
