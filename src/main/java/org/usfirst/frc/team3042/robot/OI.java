@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot;
 import java.time.Instant;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
 //import org.usfirst.frc.team3042.robot.commands.SlowMode;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
@@ -17,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 /** OI ************************************************************************
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot. */
-public class OI { 
+public class OI {
    
     /** Declare Instance Variables ****************************************************/
 	Log log = new Log(RobotMap.LOG_OI, "OI");
@@ -38,6 +39,7 @@ public class OI {
 		new Trigger(() -> getLeftTrigger(driverController)).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // TODO: Uncomment this to use an Xbox controller for the driver
 		new Trigger(() -> getRightTrigger(driverController)).onTrue(new Drivetrain_XStance()); // TODO: Uncomment this to use an Xbox controller for the driver
 
+
         //Example using the A button on a generic logitech controller:
         // new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.arm.setPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtendPosition)));
 		// new Trigger(() -> controller.getRawButton(RobotMap.Y_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
@@ -47,7 +49,14 @@ public class OI {
         new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
 		new Trigger(() -> gunnerController.getBButton()).onTrue(new InstantCommand(() -> Robot.arm.setHomePos()));
 		new Trigger(() -> gunnerController.getBackButton()).onTrue(new InstantCommand(() -> Robot.arm.resetEncoders()));
-		
+
+        // Bind the A button on the controller to toggle the gripper piston:
+        new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
+		// Bind the Y button on the controller to move the arm to the intake position:
+		new Trigger(() -> controller.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeRotationPosition, RobotMap.kIntakeExtensionPosition));
+
+		// Example using the X button on a Xbox controller //
+        // new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
 	}
 
     /** Access to the driving axes values *****************************
@@ -86,7 +95,7 @@ public class OI {
 	// These methods can be used to detect when the left/right trigger of a XboxController is pressed (convert the analog trigger axis to a boolean value: pressed or not pressed)
 	public boolean getLeftTrigger(XboxController controller) {
 		return controller.getLeftTriggerAxis() >= 0.95;
-	  }
+	}
 	public boolean getRightTrigger(XboxController controller) {
 		return controller.getRightTriggerAxis() >= 0.95;
 	}

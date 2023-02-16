@@ -24,8 +24,12 @@ public class RobotMap {
 	public static final int kFrontRightDriveAbsoluteEncoderPort = 9;//11
 	public static final int kBackLeftDriveAbsoluteEncoderPort = 11;//9
 	public static final int kBackRightDriveAbsoluteEncoderPort = 12;
+
 	public static final int kExtendMotorPort = 0; //add CAN ID port (not 0)
     public static final int kRotationMotorPort = 0; // add CAN ID port (not 0)
+
+	public static final int kArmRotationMotor = 13;
+	public static final int kArmExtendMotor = 14;
 
 	/** Drivetrain Settings ***************************************************/
 	public static final double kP_X_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
@@ -52,7 +56,6 @@ public class RobotMap {
 	public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
     public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = 107.0; // More negative turns wheel more to the left (counter-clockwise)
 
-
 	/** Swerve Module Settings ************************************************/
 	public static final double kWheelDiameterMeters = Units.inchesToMeters(4); // Convert wheel diameter in inches to meters
 	public static final double kDriveMotorGearRatio = 1 / 6.75; // Gear Ratio of the Drive Motor
@@ -67,6 +70,21 @@ public class RobotMap {
 	public static final double nominalVoltage = 12.0;
     public static final int driveCurrentLimit = 80;
     public static final int steerCurrentLimit = 20;
+
+	/** Arm Subsystem Settings */
+	public static final boolean rotationMotorReversed = false;
+    public static final boolean extendMotorReversed = false;
+	// TODO: Find the real values of these positions through testing:
+	public static final double kIntakeRotationPosition = 0;
+	public static final double kIntakeExtensionPosition = 0;
+	public static final double kScoringRotationPosition1 = 100;
+	public static final double kScoringExtensionPosition1 = 100;
+	public static final double kScoringRotationPosition2 = 200;
+	public static final double kScoringExtensionPosition2 = 200;
+	public static final double rotationThreshold = 10; // TODO: This needs to be tuned through testing
+	public static final double extensionThreshold = 1; // TODO: This needs to be tuned through testing
+	public static final double rotation_kP = 0.2; // TODO: This needs to be tuned through testing
+	public static final double extension_kP = 0.1; // TODO: This needs to be tuned through testing
 	
 
 
