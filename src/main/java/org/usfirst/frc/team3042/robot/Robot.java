@@ -10,6 +10,7 @@ import org.usfirst.frc.team3042.robot.commands.DriveCommand;
 import org.usfirst.frc.team3042.robot.commands.autonomous.AutonomousMode_Default;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Gripper;
+import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -43,6 +44,8 @@ public class Robot extends TimedRobot {
 	public static final Gripper gripper = new Gripper();
 
 	public static final PowerDistribution pdp = new PowerDistribution();
+
+	public static final Arm arm = new Arm();
 	
 	CommandBase autonomousCommand;
 	SendableChooser<CommandBase> chooser = new SendableChooser<CommandBase>();
@@ -56,6 +59,7 @@ public class Robot extends TimedRobot {
 		drivetrain.setDefaultCommand(new DriveCommand());
 		
 		drivetrain.zeroGyro();
+		arm.resetEncoders();
 
 		// Autonomous Routines //
 		chooser.setDefaultOption("Default Auto", new AutonomousMode_Default());
@@ -135,6 +139,10 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("FrontLeft State", drivetrain.getFrontLeft().getState().toString());
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
+
+		// Manual Control of the arm motors TODO: Only to test, delete when done with manual testing
+		arm.setPowerToExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
+		arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
 	} 
 
 	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this the name of a .json path and it will return a PPSwerveControllerCommand for that path :)

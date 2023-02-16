@@ -1,11 +1,16 @@
 package org.usfirst.frc.team3042.robot;
 
+import java.time.Instant;
+
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
+//import org.usfirst.frc.team3042.robot.commands.SlowMode;
+import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
+// import edu.wpi.first.wpilibj.GenericHID;
+// import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -16,11 +21,11 @@ public class OI {
    
     /** Declare Instance Variables ****************************************************/
 	Log log = new Log(RobotMap.LOG_OI, "OI");
-    public static final GenericHID controller = new GenericHID(RobotMap.CONTROLLER_USB_PORT_ID); // Instantiate our controller at the specified USB port 
-    public static final Joystick joyLeft = new Joystick(RobotMap.USB_JOYSTICK_LEFT); // Instantiate our left joystick at the specified USB port 
-    public static final Joystick joyRight = new Joystick(RobotMap.USB_JOYSTICK_RIGHT); // Instantiate our right joystick at the specified USB port 
-	//public static final XboxController driverController = new XboxController(RobotMap.DRIVER_XBOX_USB_PORT); // TODO: Uncomment this to use an Xbox controller for the driver
-	//public static final XboxController gunnerController = new XboxController(RobotMap.GUNNER_XBOX_USB_PORT); // TODO: Uncomment this to use an Xbox controller for the gunner
+    // public static final GenericHID controller = new GenericHID(RobotMap.CONTROLLER_USB_PORT_ID); // Instantiate our controller at the specified USB port 
+    // public static final Joystick joyLeft = new Joystick(RobotMap.USB_JOYSTICK_LEFT); // Instantiate our left joystick at the specified USB port 
+    // public static final Joystick joyRight = new Joystick(RobotMap.USB_JOYSTICK_RIGHT); // Instantiate our right joystick at the specified USB port 
+	public static final XboxController driverController = new XboxController(RobotMap.DRIVER_XBOX_USB_PORT); // TODO: Uncomment this to use an Xbox controller for the driver
+	public static final XboxController gunnerController = new XboxController(RobotMap.GUNNER_XBOX_USB_PORT); // TODO: Uncomment this to use an Xbox controller for the gunner
 
 	/** OI ********************************************************************
 	 * Assign commands to the buttons and triggers */
@@ -28,23 +33,28 @@ public class OI {
 		log.add("OI Constructor", Log.Level.TRACE);
 
         // Bind commands to buttons on the controllers/joysticks below! //
-		new Trigger(() -> joyLeft.getTrigger()).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // Zero the gyro, this is helpful at the start of a match for field-oriented driving
-		new Trigger(() -> joyRight.getTrigger()).onTrue(new Drivetrain_XStance()); // Defensive X-stance command
-		//new Trigger(() -> getLeftTrigger(driverController)).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // TODO: Uncomment this to use an Xbox controller for the driver
-		//new Trigger(() -> getRightTrigger(driverController)).onTrue(new Drivetrain_XStance()); // TODO: Uncomment this to use an Xbox controller for the driver
+		// new Trigger(() -> drivercontroller.getTrigger()).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // Zero the gyro, this is helpful at the start of a match for field-oriented driving
+		// new Trigger(() -> joyRight.getTrigger()).onTrue(new Drivetrain_XStance()); // Defensive X-stance command
+		new Trigger(() -> getLeftTrigger(driverController)).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // TODO: Uncomment this to use an Xbox controller for the driver
+		new Trigger(() -> getRightTrigger(driverController)).onTrue(new Drivetrain_XStance()); // TODO: Uncomment this to use an Xbox controller for the driver
 
         //Example using the A button on a generic logitech controller:
-        new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
-
+        // new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.arm.setPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtendPosition)));
+		// new Trigger(() -> controller.getRawButton(RobotMap.Y_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
+		
+		// new Trigger(() -> joyRight.getRawButton(RobotMap.joyRight_Button_3)).onTrue(new slowMode());
 		// Example using the X button on a Xbox controller:
-        // new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
+        new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
+		new Trigger(() -> gunnerController.getBButton()).onTrue(new InstantCommand(() -> Robot.arm.setHomePos()));
+		new Trigger(() -> gunnerController.getBackButton()).onTrue(new InstantCommand(() -> Robot.arm.resetEncoders()));
+		
 	}
 
     /** Access to the driving axes values *****************************
 	 * A negative can be added to make pushing forward positive/negative. */
 	public double getXSpeed() {
-		double joystickValue = joyRight.getY(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
-		//double joystickValue = driverController.getRightY(); // TODO: Uncomment this to use an Xbox controller for the driver
+		// double joystickValue = joyRight.getY(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
+		double joystickValue = driverController.getRightY(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
 		}
@@ -53,8 +63,8 @@ public class OI {
 		}	
 	}
 	public double getYSpeed() {
-		double joystickValue = joyRight.getX(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
-		//double joystickValue = driverController.getRightX(); // TODO: Uncomment this to use an Xbox controller for the driver
+		// double joystickValue = joyRight.getX(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
+		double joystickValue = driverController.getRightX(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
 		}
@@ -63,8 +73,8 @@ public class OI {
 		}	
 	}
 	public double getZSpeed() {
-		double joystickValue = joyLeft.getX(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
-		//double joystickValue = driverController.getLeftX(); // TODO: Uncomment this to use an Xbox controller for the driver
+		// double joystickValue = joyLeft.getX(); // TODO: Delete this and use the line below instead if you want to use an Xbox controller for the driver
+		double joystickValue = driverController.getLeftX(); // TODO: Uncomment this to use an Xbox controller for the driver
 		if (Math.abs(joystickValue) < 0.01) { // This is our deadband
 			return 0.0;
 		}

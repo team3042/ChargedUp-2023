@@ -24,6 +24,8 @@ public class RobotMap {
 	public static final int kFrontRightDriveAbsoluteEncoderPort = 9;//11
 	public static final int kBackLeftDriveAbsoluteEncoderPort = 11;//9
 	public static final int kBackRightDriveAbsoluteEncoderPort = 12;
+	public static final int kExtendMotorPort = 0; //add CAN ID port (not 0)
+    public static final int kRotationMotorPort = 0; // add CAN ID port (not 0)
 
 	/** Drivetrain Settings ***************************************************/
 	public static final double kP_X_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
@@ -61,11 +63,33 @@ public class RobotMap {
 	public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60; // Convert RPM to radians/sec
 	public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14); // Determines the maximum driving speed of the robot
 	public static final double kPhysicalMaxTurningSpeedRadiansPerSecond = Math.PI * 3; // Determines the maximum turning speed of the robot
-	public static final double kP_Turning = 0.4; // TODO: You might need to tune this value through testing (this could maybe cause X stance to perform poorly?)
+	public static final double kP_Turning = 0.4;
 	public static final double nominalVoltage = 12.0;
     public static final int driveCurrentLimit = 80;
     public static final int steerCurrentLimit = 20;
 	
+
+
+	//**Arm Settings **/
+
+	public static final boolean rotationMotorReversed = false;
+	public static final boolean extendMotorReversed = false;
+	//TODO:Find the real values of these through testing: (also change names)
+	public static final double kIntakeArmPosition = 0.0005;
+	public static final double kIntakeExtendPosition = 0;
+	public static final double kScoringArmPosition1 = 0.0005;
+	public static final double kScoringExtendArmPosition1 = 0;
+	public static final double kScoringArmPosition2 = 0;
+	public static final double kScoringExtendArmPosition2 = 0;
+
+	public static final double arm_kP = 0.1; //tune
+	public static final double ext_kP = 0.1; //tune
+  
+	public static final double arm_threshold = 5;
+	public static final double ext_threshold = 1;//TODO - tune threshold values (gear ratios)
+
+
+
 	/** Drivetrain Gyro Drive Settings ****************************************/
 	public static final double kP_GYRO = 0.005;
 	public static final double ANGLE_TOLERANCE = 2.0;
@@ -95,7 +119,8 @@ public class RobotMap {
 	public static final Log.Level	LOG_DRIVETRAIN						= Log.Level.TRACE;
  
 	// Controller Input Axes //
-    public static final int CONTROLLER_USB_PORT_ID = 2; // USB port that the controller is plugged in to
+    public static final int DRIVER_XBOX_USB_PORT = 2; // USB port that the controller is plugged in to
+	public static final int GUNNER_XBOX_USB_PORT = 4;// USB port that the controller is plugged in to
     public static final int RIGHT_VERTICAL_JOYSTICK_AXIS = 3;
     public static final int RIGHT_HORIZONTAL_JOYSTICK_AXIS = 2;
     public static final int LEFT_VERTICAL_JOYSTICK_AXIS = 1;
