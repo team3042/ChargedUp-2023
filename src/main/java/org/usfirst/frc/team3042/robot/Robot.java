@@ -11,7 +11,6 @@ import org.usfirst.frc.team3042.robot.commands.autonomous.AutonomousMode_Default
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Gripper;
-import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -43,7 +42,6 @@ public class Robot extends TimedRobot {
 	public static final OI oi = new OI();;
 
 	public static final Gripper gripper = new Gripper();
-	public static final Arm arm = new Arm();
 
 	public static final PowerDistribution pdp = new PowerDistribution();
 
@@ -144,12 +142,8 @@ public class Robot extends TimedRobot {
 
 
 		// Manual Control of the arm motors TODO: Only to test, delete when done with manual testing
-		arm.setPowerToExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
+		arm.setPowertoExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
 		arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
-
-		// Manual control of the arm motors // TODO: Delete this code after you are done with manual testing of the arm
-		arm.setPowerExtendMotor(OI.controller.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
-		arm.setPowerRotationMotor(OI.controller.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
 
 	} 
 

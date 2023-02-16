@@ -47,13 +47,12 @@ public class OI {
 		// new Trigger(() -> joyRight.getRawButton(RobotMap.joyRight_Button_3)).onTrue(new slowMode());
 		// Example using the X button on a Xbox controller:
         new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());
-		new Trigger(() -> gunnerController.getBButton()).onTrue(new InstantCommand(() -> Robot.arm.setHomePos()));
 		new Trigger(() -> gunnerController.getBackButton()).onTrue(new InstantCommand(() -> Robot.arm.resetEncoders()));
 
         // Bind the A button on the controller to toggle the gripper piston:
-        new Trigger(() -> controller.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
+        new Trigger(() -> gunnerController.getRawButton(RobotMap.A_BUTTON)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
 		// Bind the Y button on the controller to move the arm to the intake position:
-		new Trigger(() -> controller.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeRotationPosition, RobotMap.kIntakeExtensionPosition));
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeRotationPosition, RobotMap.kIntakeExtensionPosition));
 
 		// Example using the X button on a Xbox controller //
         // new Trigger(() -> driverController.getXButton()).onTrue(new Drivetrain_XStance());

@@ -90,8 +90,6 @@ public class RobotMap {
 
 	//**Arm Settings **/
 
-	public static final boolean rotationMotorReversed = false;
-	public static final boolean extendMotorReversed = false;
 	//TODO:Find the real values of these through testing: (also change names)
 	public static final double kIntakeArmPosition = 0.0005;
 	public static final double kIntakeExtendPosition = 0;

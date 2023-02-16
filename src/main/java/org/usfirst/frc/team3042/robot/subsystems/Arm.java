@@ -35,10 +35,10 @@ public class Arm extends SubsystemBase {
   }
 
   // Methods for setting power to the motors
-  public void setPowerRotationMotor(double percentPower) {
+  public void setPowerToRotation(double percentPower) {
     rotationMotor.set(percentPower);
   }
-  public void setPowerExtendMotor(double percentPower) {
+  public void setPowertoExtend(double percentPower) {
     extendMotor.set(percentPower);
   }
 
@@ -52,10 +52,10 @@ public class Arm extends SubsystemBase {
 
   // Methods for stopping the motors
   public void stopRotationMotor() {
-    setPowerRotationMotor(0);
+    setPowerToRotation(0);
   }
   public void stopExtendMotor() {
-    setPowerExtendMotor(0);
+    setPowertoExtend(0);
   }
 
   // Encoder methods for getting the motor position
