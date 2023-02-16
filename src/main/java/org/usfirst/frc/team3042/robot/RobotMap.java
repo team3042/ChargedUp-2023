@@ -10,7 +10,7 @@ public class RobotMap {
 	/** Robot Size Parameters **************************************************/
 	public static final double TRACK_WIDTH = Units.inchesToMeters(19.5); // Distance between centers of right and left wheels on robot (in meters)
     public static final double WHEEL_BASE = Units.inchesToMeters(23.5); // Distance between centers of front and back wheels on robot (in meters)
-//front wheel reverse
+
 	/** CAN ID numbers ********************************************************/
 	public static final int kFrontLeftDriveMotorPort = 3;
 	public static final int kFrontLeftTurningMotorPort = 4;
@@ -21,18 +21,17 @@ public class RobotMap {
 	public static final int kBackRightDriveMotorPort = 6;
     public static final int kBackRightTurningMotorPort = 5;
 	public static final int kFrontLeftDriveAbsoluteEncoderPort = 10;
-	public static final int kFrontRightDriveAbsoluteEncoderPort = 9;//11
-	public static final int kBackLeftDriveAbsoluteEncoderPort = 11;//9
+	public static final int kFrontRightDriveAbsoluteEncoderPort = 9;
+	public static final int kBackLeftDriveAbsoluteEncoderPort = 11;
 	public static final int kBackRightDriveAbsoluteEncoderPort = 12;
-
-	public static final int kExtendMotorPort = 0; //add CAN ID port (not 0)
-    public static final int kRotationMotorPort = 0; // add CAN ID port (not 0)
+	public static final int kExtendMotorPort = 0; // TODO: add CAN ID port (not 0)
+    public static final int kRotationMotorPort = 0; // TODO: add CAN ID port (not 0)
 
 	/** Drivetrain Settings ***************************************************/
 	public static final double kP_X_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
     public static final double kP_Y_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following	
     public static final double kP_THETA_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
-	//swerve part :3
+	
     public static final boolean kFrontLeftDriveEncoderReversed = false;
     public static final boolean kFrontLeftTurningEncoderReversed = false;
 	public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = false;
@@ -71,42 +70,20 @@ public class RobotMap {
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = false;
     public static final boolean extendMotorReversed = false;
-	// TODO: Find the real values of these positions through testing:
-	public static final double kIntakeRotationPosition = 0;
-	public static final double kIntakeExtensionPosition = 0;
-	public static final double kScoringRotationPosition1 = 100;
-	public static final double kScoringExtensionPosition1 = 100;
-	public static final double kScoringRotationPosition2 = 200;
-	public static final double kScoringExtensionPosition2 = 200;
-	public static final double rotationThreshold = 10; // TODO: This needs to be tuned through testing
-	public static final double extensionThreshold = 1; // TODO: This needs to be tuned through testing
+	public static final double rotationThreshold = 100; // TODO: This needs to be tuned through testing
+	public static final double extensionThreshold = 100; // TODO: This needs to be tuned through testing
 	public static final double rotation_kP = 0.2; // TODO: This needs to be tuned through testing
-	
-
-
-	//**Arm Settings **/
-
-	public static final int maxArmLength = 15500;
-	public static final double levelVoltage = 0; //TODO: find this value
+	public static final int maxArmLength = 15500; // Measured in encoder counts
+	public static final double levelVoltage = 0; // TODO: find this value
 	public static final double shoulderCountsPerDegree = 11.667;
 	public static final double armStartingDegrees = 15;
-
-	//TODO:Find the real values of these through testing: (also change names)
+	//TODO: Find the real values of these through testing: (also change names?)
 	public static final double kIntakeArmPosition = 0.0005;
 	public static final double kIntakeExtendPosition = 0;
 	public static final double kScoringArmPosition1 = 0.0005;
-	public static final double kScoringExtendArmPosition1 = 0;
+	public static final double kScoringExtendPosition1 = 0;
 	public static final double kScoringArmPosition2 = 0;
-	public static final double kScoringExtendArmPosition2 = 0;
-	
-
-	public static final double arm_kP = 0.1; //tune
-	public static final double ext_kP = 0.1; //tune
-  
-	public static final double arm_threshold = 5;
-	public static final double ext_threshold = 1;//TODO - tune threshold values (gear ratios)
-
-
+	public static final double kScoringExtendPosition2 = 0;
 
 	/** Drivetrain Gyro Drive Settings ****************************************/
 	public static final double kP_GYRO = 0.005;
@@ -117,6 +94,7 @@ public class RobotMap {
 	public static final int USB_JOYSTICK_RIGHT 	= 1;
 	public static final int USB_GAMEPAD 		= 2;
 	
+	/** PCM (Pneumatics Control Module) Channels ******************************/
 	public static final int Gripper_PistonID1 = 0;
 	public static final int Gripper_PistonID2 = 1;
 
@@ -138,7 +116,7 @@ public class RobotMap {
  
 	// Controller Input Axes //
     public static final int DRIVER_XBOX_USB_PORT = 2; // USB port that the controller is plugged in to
-	public static final int GUNNER_XBOX_USB_PORT = 4;// USB port that the controller is plugged in to
+	public static final int GUNNER_XBOX_USB_PORT = 4; // USB port that the controller is plugged in to
     public static final int RIGHT_VERTICAL_JOYSTICK_AXIS = 3;
     public static final int RIGHT_HORIZONTAL_JOYSTICK_AXIS = 2;
     public static final int LEFT_VERTICAL_JOYSTICK_AXIS = 1;
