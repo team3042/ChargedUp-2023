@@ -5,38 +5,55 @@
 package org.usfirst.frc.team3042.robot.commands;
 
 import org.usfirst.frc.team3042.robot.Robot;
+import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+
 public class Arm_SetPosition extends CommandBase {
   Arm arm = Robot.arm;
+
+  public double rotationPosition;
+  public double extentionPosition;
 
   /** Creates a new Arm_SetPosition command. */
   public Arm_SetPosition(double rotationPosition, double extensionPosition) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm);
+
+    rotationPosition = this.rotationPosition;
+    extensionPosition = this.extentionPosition;
+  
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+    extentionPosition = extentionPosition * RobotMap.maxArmLength; //extention position is a percent
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { // FIXME: This execute() method needs to be completed as described below!
 
-    // TODO: Calculate the rotation position error
-    // TODO: Set some minimal VOLTAGE to the rotation motor to counteract gravity PLUS voltage equal to the error * kP
-    // Like this: minimalVoltage = levelVoltage * Math.cos(angle of the arm); 
-    //            arm.setVoltageRotationMotor(minimalVoltage + (error * RobotMap.rotation_kP));
+    double rotationError = arm.getRotationMotorPosition() - rotationPosition;
+    double minimalVoltage = RobotMap.levelVoltage * Math.cos(arm.getArmAngle() * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
+    arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
       // NOTE: The minimal voltage depends on the angle of the arm though, this is tricky!
       // NOTE: You will need to calculate the minimal voltage needed for when the arm is level
       //       Then, the minimal voltage needed at any given time will simply be levelVoltage * cosine(angle of the arm)
       //       You will need to determine the angle of the arm based on the position of the rotation motor
 
-    // TODO: Calculate the extension position error
+    
+    double extentionError = arm.getExtendMotorPosition() - extentionPosition;
     // TODO: If the error is within the threshold, stop the extension motor
+    if (Math.abs(extentionError) > RobotMap.extensionThreshold){
+      arm.setPowertoExtend(Math.copySign(0.2, extentionError)); //increase percent power to make arm more faster
+      // if it keeps oscillating because it can't reach the correct position, add power * kP
+    }
+
       // NOTE: The extension shouldn't have to fight against gravity, so we can just stop the motor when in position
     // TODO: Otherwise, set power to the extension motor equal to the error * kP
     // Like this: arm.setPowerExtendMotor(error * RobotMap.extension_kP);

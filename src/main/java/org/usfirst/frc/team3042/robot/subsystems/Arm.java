@@ -19,8 +19,8 @@ public class Arm extends SubsystemBase {
 
   /** Creates a new Arm Subsystem */
   public Arm() {
-    rotationMotor = new CANSparkMax(RobotMap.kArmRotationMotor, MotorType.kBrushless);
-    extendMotor = new CANSparkMax(RobotMap.kArmExtendMotor, MotorType.kBrushless);
+    rotationMotor = new CANSparkMax(RobotMap.kRotationMotorPort, MotorType.kBrushless);
+    extendMotor = new CANSparkMax(RobotMap.kExtendMotorPort, MotorType.kBrushless);
 
     // Configure Motor Settings
 
@@ -78,6 +78,17 @@ public class Arm extends SubsystemBase {
     rotationMotor.getEncoder().setPosition(0);
     extendMotor.getEncoder().setPosition(0);
   }
+
+  public double getArmAngle(){
+
+    double encoderCounts = getRotationMotorPosition();
+
+    return encoderCounts * RobotMap.shoulderCountsPerDegree + RobotMap.armStartingDegrees;
+
+  } //RETURNS DEGREES
+
+
+
 
   @Override
   public void periodic() {

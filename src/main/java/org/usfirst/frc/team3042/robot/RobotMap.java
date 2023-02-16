@@ -28,9 +28,6 @@ public class RobotMap {
 	public static final int kExtendMotorPort = 0; //add CAN ID port (not 0)
     public static final int kRotationMotorPort = 0; // add CAN ID port (not 0)
 
-	public static final int kArmRotationMotor = 13;
-	public static final int kArmExtendMotor = 14;
-
 	/** Drivetrain Settings ***************************************************/
 	public static final double kP_X_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
     public static final double kP_Y_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following	
@@ -84,11 +81,15 @@ public class RobotMap {
 	public static final double rotationThreshold = 10; // TODO: This needs to be tuned through testing
 	public static final double extensionThreshold = 1; // TODO: This needs to be tuned through testing
 	public static final double rotation_kP = 0.2; // TODO: This needs to be tuned through testing
-	public static final double extension_kP = 0.1; // TODO: This needs to be tuned through testing
 	
 
 
 	//**Arm Settings **/
+
+	public static final int maxArmLength = 15500;
+	public static final double levelVoltage = 0; //TODO: find this value
+	public static final double shoulderCountsPerDegree = 11.667;
+	public static final double armStartingDegrees = 15;
 
 	//TODO:Find the real values of these through testing: (also change names)
 	public static final double kIntakeArmPosition = 0.0005;
@@ -97,6 +98,7 @@ public class RobotMap {
 	public static final double kScoringExtendArmPosition1 = 0;
 	public static final double kScoringArmPosition2 = 0;
 	public static final double kScoringExtendArmPosition2 = 0;
+	
 
 	public static final double arm_kP = 0.1; //tune
 	public static final double ext_kP = 0.1; //tune
