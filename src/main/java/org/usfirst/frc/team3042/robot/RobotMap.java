@@ -76,7 +76,7 @@ public class RobotMap {
 	public static final int maxArmLength = 15500; // Measured in encoder counts
 	public static final double levelVoltage = 0; // TODO: find this value
 	public static final double shoulderCountsPerDegree = 11.667;
-	public static final double armStartingDegrees = 15;
+	public static final double armStartingDegrees = 7.5;
 	//TODO: Find the real values of these through testing: (also change names?)
 	public static final double kIntakeArmPosition = 0.0005;
 	public static final double kIntakeExtendPosition = 0;
