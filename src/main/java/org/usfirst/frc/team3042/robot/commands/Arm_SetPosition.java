@@ -14,22 +14,20 @@ public class Arm_SetPosition extends CommandBase {
   Arm arm = Robot.arm;
 
   public double rotationPosition;
-  public double extentionPosition;
+  public double extensionPosition;
 
   /** Creates a new Arm_SetPosition command. */
-  public Arm_SetPosition(double rotationPosition, double extensionPosition) { // extentionPosition is a percent
+  public Arm_SetPosition(double rotationGoal, double extensionPercent) { // rotationGoal is measured in encoder counts
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm);
 
-    rotationPosition = this.rotationPosition;
-    extensionPosition = this.extentionPosition;
+    this.rotationPosition = rotationGoal;
+    this.extensionPosition = extensionPercent * RobotMap.maxArmLength; // convert from a percent to actual encoder counts
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    extentionPosition = extentionPosition * RobotMap.maxArmLength; // extentionPosition is a percent
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -39,7 +37,7 @@ public class Arm_SetPosition extends CommandBase {
     double minimalVoltage = RobotMap.levelVoltage * Math.cos(arm.getArmAngle() * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
     arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
 
-    double extensionError = arm.getExtendMotorPosition() - extentionPosition;
+    double extensionError = arm.getExtendMotorPosition() - extensionPosition;
     if (Math.abs(extensionError) > RobotMap.extensionThreshold){
       arm.setPowertoExtend(Math.copySign(0.2, extensionError)); // increase percent power to make arm move faster
       // if it keeps oscillating because it can't reach the correct position, use (extensionError * kP) instead
