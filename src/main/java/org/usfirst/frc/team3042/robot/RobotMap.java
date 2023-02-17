@@ -24,8 +24,8 @@ public class RobotMap {
 	public static final int kFrontRightDriveAbsoluteEncoderPort = 9;
 	public static final int kBackLeftDriveAbsoluteEncoderPort = 11;
 	public static final int kBackRightDriveAbsoluteEncoderPort = 12;
-	public static final int kExtendMotorPort = 0; // TODO: add CAN ID port (not 0)
-    public static final int kRotationMotorPort = 0; // TODO: add CAN ID port (not 0)
+	public static final int kRotationMotorPort = 13;
+	public static final int kExtendMotorPort = 14;
 
 	/** Drivetrain Settings ***************************************************/
 	public static final double kP_X_CONTROLLER = 9.6421; // TODO: Find this value by characterizing the drivetrain with SysID, and then by using guess & check afterwards. Only used for autonomous path-following
