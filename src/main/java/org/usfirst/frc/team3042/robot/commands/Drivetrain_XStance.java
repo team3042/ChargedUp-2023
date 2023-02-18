@@ -37,8 +37,6 @@ public class Drivetrain_XStance extends CommandBase {
 	 * Called just before this Command runs the first time */
 	public void initialize() {
 		log.add("Initialize", Log.Level.TRACE);
-		
-		
 	}
 
 	/** execute ***************************************************************
