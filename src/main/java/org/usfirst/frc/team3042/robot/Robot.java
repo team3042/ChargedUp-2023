@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
 
 	/** Create Subsystems *****************************************************/
 	public static final Drivetrain drivetrain = new Drivetrain();
-	public static final OI oi = new OI();;
+	public static final OI oi = new OI();
 
 	public static final Gripper gripper = new Gripper();
 
