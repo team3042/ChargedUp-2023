@@ -73,9 +73,9 @@ public class RobotMap {
     public static final boolean extendMotorReversed = true;
 	public static final double rotationThreshold = 100; // TODO: This needs to be tuned through testing
 	public static final double extensionThreshold = 100; // TODO: This needs to be tuned through testing
-	public static final double rotation_kP = 0.2; // TODO: This needs to be tuned through testing
+	public static final double rotation_kP = 0.02; // TODO: This needs to be tuned through testing
 	public static final int maxArmLength = 15500; // Measured in encoder counts
-	public static final double levelVoltage = 0; // TODO: find this value
+	public static final double levelVoltage = 1.0; // TODO: find this value! (The number of volts needed to hold the arm perfectly level WHEN FULLY EXTENDED)
 	public static final double shoulderCountsPerDegree = 11.667;
 	public static final double armStartingDegrees = 7.5;
 
@@ -84,13 +84,13 @@ public class RobotMap {
 	public static final boolean limitExtend = false;
 	public static final boolean limitRotate = false;
 
-	//TODO: Find the real values of these through testing: (also change names?)
-	public static final double kIntakeArmPosition = 1; //32
-	public static final double kIntakeExtendPosition = 0;
-	public static final double kScoringArmPosition1 = 0.0005;
-	public static final double kScoringExtendPosition1 = 0;
-	public static final double kScoringArmPosition2 = 0;
-	public static final double kScoringExtendPosition2 = 0;
+	//TODO: Find the real values of these positions through testing: (also change names?)
+	public static final double kIntakeArmPosition = 50; // Measured in encoder counts
+	public static final double kIntakeExtendPosition = 0.5; // Measured as a percent of how far extended the arm should be
+	public static final double kScoringArmPosition1 = 2000; // Measured in encoder counts
+	public static final double kScoringExtendPosition1 = 0.25; // Measured as a percent of how far extended the arm should be
+	public static final double kScoringArmPosition2 = 5000; // Measured in encoder counts
+	public static final double kScoringExtendPosition2 = 0.75; // Measured as a percent of how far extended the arm should be
 
 	/** Drivetrain Gyro Drive Settings ****************************************/
 	public static final double kP_GYRO = 0.005;
