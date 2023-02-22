@@ -39,13 +39,15 @@ public class Robot extends TimedRobot {
 
 	/** Create Subsystems *****************************************************/
 	public static final Drivetrain drivetrain = new Drivetrain();
-	public static final OI oi = new OI();;
+
 
 	public static final Gripper gripper = new Gripper();
 
 	public static final PowerDistribution pdp = new PowerDistribution();
 
 	public static final Arm arm = new Arm();
+
+	public static final OI oi = new OI();
 	
 	CommandBase autonomousCommand;
 	SendableChooser<CommandBase> chooser = new SendableChooser<CommandBase>();
@@ -142,9 +144,6 @@ public class Robot extends TimedRobot {
 
 
 		// Manual Control of the arm motors TODO: Only to test, delete when done with manual testing
-		arm.setPowertoExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
-		arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
-
 	} 
 
 	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this the name of a .json path and it will return a PPSwerveControllerCommand for that path :)

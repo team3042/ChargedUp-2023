@@ -16,7 +16,7 @@ public class RobotMap {
 	public static final int kFrontLeftTurningMotorPort = 4;
 	public static final int kFrontRightDriveMotorPort = 8;
     public static final int kFrontRightTurningMotorPort = 7;
-	public static final int kBackLeftDriveMotorPort = 1;
+	public static final int kBackLeftDriveMotorPort = 15;
     public static final int kBackLeftTurningMotorPort = 2;
 	public static final int kBackRightDriveMotorPort = 6;
     public static final int kBackRightTurningMotorPort = 5;
@@ -45,7 +45,7 @@ public class RobotMap {
     public static final boolean kBackLeftDriveEncoderReversed = false;
 	public static final boolean kBackLeftTurningEncoderReversed = false;
 	public static final boolean kBackLeftDriveAbsoluteEncoderReversed = false;
-    public static final double kBackLeftDriveAbsoluteEncoderOffsetDegrees = 155.0; // More negative turns wheel more to the left (counter-clockwise)
+    public static final double kBackLeftDriveAbsoluteEncoderOffsetDegrees = 153.77; //155 // More negative turns wheel more to the left (counter-clockwise)
     
     public static final boolean kBackRightDriveEncoderReversed = false;
     public static final boolean kBackRightTurningEncoderReversed = false;
@@ -64,11 +64,11 @@ public class RobotMap {
 	public static final double kPhysicalMaxTurningSpeedRadiansPerSecond = Math.PI * 3; // Determines the maximum turning speed of the robot
 	public static final double kP_Turning = 0.4;
 	public static final double nominalVoltage = 12.0;
-    public static final int driveCurrentLimit = 80;
-    public static final int steerCurrentLimit = 20;
+    public static final int driveCurrentLimit = 30; //80
+    public static final int steerCurrentLimit = 20;//20
 
 	/** Arm Subsystem Settings */
-	public static final boolean rotationMotorReversed = false;
+	public static final boolean rotationMotorReversed = true;
     public static final boolean extendMotorReversed = false;
 	public static final double rotationThreshold = 100; // TODO: This needs to be tuned through testing
 	public static final double extensionThreshold = 100; // TODO: This needs to be tuned through testing
@@ -78,7 +78,7 @@ public class RobotMap {
 	public static final double shoulderCountsPerDegree = 11.667;
 	public static final double armStartingDegrees = 7.5;
 	//TODO: Find the real values of these through testing: (also change names?)
-	public static final double kIntakeArmPosition = 0.0005;
+	public static final double kIntakeArmPosition = 1; //32
 	public static final double kIntakeExtendPosition = 0;
 	public static final double kScoringArmPosition1 = 0.0005;
 	public static final double kScoringExtendPosition1 = 0;
@@ -115,20 +115,20 @@ public class RobotMap {
 	public static final Log.Level	LOG_DRIVETRAIN						= Log.Level.TRACE;
  
 	// Controller Input Axes //
-    public static final int DRIVER_XBOX_USB_PORT = 2; // USB port that the controller is plugged in to
-	public static final int GUNNER_XBOX_USB_PORT = 4; // USB port that the controller is plugged in to
-    public static final int RIGHT_VERTICAL_JOYSTICK_AXIS = 3;
-    public static final int RIGHT_HORIZONTAL_JOYSTICK_AXIS = 2;
+    public static final int DRIVER_XBOX_USB_PORT = 0; // USB port that the controller is plugged in to
+	public static final int GUNNER_XBOX_USB_PORT = 1; // USB port that the controller is plugged in to
+    public static final int RIGHT_VERTICAL_JOYSTICK_AXIS = 5;
+    public static final int RIGHT_HORIZONTAL_JOYSTICK_AXIS = 4;
     public static final int LEFT_VERTICAL_JOYSTICK_AXIS = 1;
     public static final int LEFT_HORIZONTAL_JOYSTICK_AXIS = 0;
-    public static final int X_BUTTON = 1;
-    public static final int A_BUTTON = 2;
-    public static final int B_BUTTON = 3;
+    public static final int X_BUTTON = 3;
+    public static final int A_BUTTON = 1;
+    public static final int B_BUTTON = 2;
     public static final int Y_BUTTON = 4;
     public static final int LEFT_BUMPER = 5;
     public static final int RIGHT_BUMPER = 6;
     public static final int LEFT_TRIGGER_AXIS = 7;
-    public static final int RIGHT_TRIGGER_AXIS = 8;
+    public static final int RIGHT_TRIGGER_AXIS = 3;
     public static final int PREV_BUTTON = 9;
     public static final int START_BUTTON = 10;
 }

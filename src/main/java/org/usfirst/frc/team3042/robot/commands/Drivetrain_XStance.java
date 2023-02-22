@@ -53,7 +53,7 @@ public class Drivetrain_XStance extends CommandBase {
 	/** isFinished ************************************************************	
 	 * Make this return true when this Command no longer needs to run execute() */
 	public boolean isFinished() {
-		return Math.abs(OI.driverController.getRightX()) > 0.05 || Math.abs(OI.driverController.getRightY()) > 0.05 || Math.abs(OI.driverController.getLeftX()) > 0.05;
+		return Math.abs(OI.driverController.getRawAxis(0)) > 0.05 || Math.abs(OI.driverController.getRawAxis(1)) > 0.05 || Math.abs(OI.driverController.getRawAxis(2)) > 0.05;
 	}
 
 	// Called once the command ends or is interrupted.

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class AutonomousMode_Default extends SequentialCommandGroup {
 
   public AutonomousMode_Default() {
-    addCommands(new Drivetrain_GyroStraight(0.5, 0.5, 0));
+    addCommands(new Drivetrain_GyroStraight(0.4, 0.9, 0));
+    addCommands(new Drivetrain_GyroStraight(0.15, 0.3, 0));
   }
 }
