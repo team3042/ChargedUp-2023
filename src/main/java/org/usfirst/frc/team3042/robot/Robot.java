@@ -144,6 +144,11 @@ public class Robot extends TimedRobot {
 
 
 		// Manual Control of the arm motors TODO: Only to test, delete when done with manual testing
+
+		Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS ));
+		Robot.arm.setPowertoExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
+
+	
 	} 
 
 	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this the name of a .json path and it will return a PPSwerveControllerCommand for that path :)

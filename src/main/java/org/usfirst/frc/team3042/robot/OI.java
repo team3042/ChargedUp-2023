@@ -24,10 +24,10 @@ public class OI {
 	public static final GenericHID driverController = new GenericHID(RobotMap.DRIVER_XBOX_USB_PORT);
 	public static final GenericHID gunnerController = new GenericHID(RobotMap.GUNNER_XBOX_USB_PORT);
 
-	// public boolean getRightTrigger(GenericHID gunnerController){
+	public boolean getRightTrigger(GenericHID gunnerController){
 
-	// 	return gunnerController.getRawAxis(3) >= 0.95 ;
-	// }
+		return gunnerController.getRawAxis(3) >= 0.95 ;
+	}
 
 	/** OI ********************************************************************
 	 * Assign commands to the buttons and triggers */
@@ -68,8 +68,9 @@ public class OI {
 
 		// Examples using the A and Y buttons on a generic logitech controller //
 
-		Robot.arm.setPowertoExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS ));
-		Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS ));
+		// DN WORK new Trigger(() -> gunnerController.getRawButton(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS)).whileTrue(new Arm_SetRotation(leftYjoystick));
+	
+		
 
 	}
 

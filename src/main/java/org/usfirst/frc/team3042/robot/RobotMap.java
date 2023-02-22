@@ -3,6 +3,7 @@ package org.usfirst.frc.team3042.robot;
 import org.usfirst.frc.team3042.lib.Log;
 
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /** RobotMap ******************************************************************
  * This is the robot configuration file. */
@@ -69,7 +70,7 @@ public class RobotMap {
 
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = true;
-    public static final boolean extendMotorReversed = false;
+    public static final boolean extendMotorReversed = true;
 	public static final double rotationThreshold = 100; // TODO: This needs to be tuned through testing
 	public static final double extensionThreshold = 100; // TODO: This needs to be tuned through testing
 	public static final double rotation_kP = 0.2; // TODO: This needs to be tuned through testing
@@ -77,6 +78,12 @@ public class RobotMap {
 	public static final double levelVoltage = 0; // TODO: find this value
 	public static final double shoulderCountsPerDegree = 11.667;
 	public static final double armStartingDegrees = 7.5;
+
+	DigitalInput kLimitSwitchExtensionPort = new DigitalInput(3);
+	DigitalInput kLimitSwitchRotationPort = new DigitalInput(4);
+	public static final boolean limitExtend = false;
+	public static final boolean limitRotate = false;
+
 	//TODO: Find the real values of these through testing: (also change names?)
 	public static final double kIntakeArmPosition = 1; //32
 	public static final double kIntakeExtendPosition = 0;
