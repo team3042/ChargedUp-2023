@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.cscore.UsbCamera;
+//import edu.wpi.first.cscore.UsbCamera; // Uncomment if you want to use a USB webcam
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 
@@ -39,20 +39,17 @@ public class Robot extends TimedRobot {
 
 	/** Create Subsystems *****************************************************/
 	public static final Drivetrain drivetrain = new Drivetrain();
-
-
 	public static final Gripper gripper = new Gripper();
-
-	public static final PowerDistribution pdp = new PowerDistribution();
-
 	public static final Arm arm = new Arm();
+
+	public static final PowerDistribution pdh = new PowerDistribution();
 
 	public static final OI oi = new OI();
 	
 	CommandBase autonomousCommand;
 	SendableChooser<CommandBase> chooser = new SendableChooser<CommandBase>();
 
-	UsbCamera camera1;
+	//UsbCamera camera1; // Uncomment if you want to use a USB webcam
 
 	/** robotInit *************************************************************
 	 * This function is run when the robot is first started up and should be used for any initialization code. */
@@ -65,6 +62,7 @@ public class Robot extends TimedRobot {
 
 		// Autonomous Routines //
 		chooser.setDefaultOption("Default Auto", new AutonomousMode_Default());
+		//chooser.addOption("Autonomous Routine 2", new commandNameHere()); // Example of how to add more autonomous routine choices
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		// Start up the webcam and configure its resolution and framerate
@@ -142,16 +140,13 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 
-
 		// Manual Control of the arm motors TODO: Only to test, delete when done with manual testing
-
-		Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS ));
+		Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
 		Robot.arm.setPowertoExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
-
-	
 	} 
 
-	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) { // Give this the name of a .json path and it will return a PPSwerveControllerCommand for that path :)
+	// Give this method the name of a .json autonomous path and it will return a PPSwerveControllerCommand for that path :)
+	public static SequentialCommandGroup constructTrajectoryCommand(String pathName, double velocityMax, double accelMax) {
 		
 		PathPlannerTrajectory path = PathPlanner.loadPath(pathName, velocityMax, accelMax); 
 
