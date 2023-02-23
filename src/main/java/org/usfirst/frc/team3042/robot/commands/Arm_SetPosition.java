@@ -32,8 +32,8 @@ public class Arm_SetPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rotationError = arm.getRotationMotorPosition() - rotationPositionGoal;
-    double extensionError = arm.getExtendMotorPosition() - extensionPositionGoal;
+    double rotationError = rotationPositionGoal - arm.getRotationMotorPosition();
+    double extensionError = extensionPositionGoal - arm.getExtendMotorPosition();
 
     boolean extensionGoalReached = (Math.abs(extensionError) <= RobotMap.extensionThreshold);
     boolean inIntakePosition = Math.abs(arm.getRotationMotorPosition() - RobotMap.kIntakeArmPosition) <= RobotMap.rotationThreshold;

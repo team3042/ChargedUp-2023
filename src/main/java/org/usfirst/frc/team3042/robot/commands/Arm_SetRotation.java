@@ -32,7 +32,7 @@ public class Arm_SetRotation extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rotationError = arm.getRotationMotorPosition() - rotationPositionGoal;
+    double rotationError = rotationPositionGoal - arm.getRotationMotorPosition();
 
     // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
     double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle()); // TODO: Also scale this minimalVoltage by how far the arm is extended somehow?
