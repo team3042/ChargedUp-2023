@@ -79,18 +79,28 @@ public class RobotMap {
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
 
+	/** Arm Limit Switches */
 	DigitalInput kLimitSwitchExtensionPort = new DigitalInput(3);
 	DigitalInput kLimitSwitchRotationPort = new DigitalInput(4);
 	public static final boolean limitExtend = false;
 	public static final boolean limitRotate = false;
 
-	//TODO: Find the real values of these positions through testing: (also change names?)
-	public static final double kIntakeArmPosition = 50; // Measured in encoder counts
-	public static final double kIntakeExtendPosition = 0.05; // Measured as a percent of how far extended the arm should be
-	public static final double kScoringArmPosition1 = 2000; // Measured in encoder counts
-	public static final double kScoringExtendPosition1 = 0.25; // Measured as a percent of how far extended the arm should be
-	public static final double kScoringArmPosition2 = 5000; // Measured in encoder counts
-	public static final double kScoringExtendPosition2 = 0.75; // Measured as a percent of how far extended the arm should be
+	/** Arm/Extension Positions */
+	// Intake from the floor // TODO: Adjust these values if needed
+	public static final double kIntakeArmPosition = 175; // measured in encoder counts
+	public static final double kIntakeExtendPosition = 0.25; // measured in % of extension
+	// Middle goal // TODO: Adjust these values if needed
+	public static final double kScoringArmPosition1 = 2704; // measured in encoder counts
+	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
+	// Upper goal // TODO: Adjust these values if needed
+	public static final double kScoringArmPosition2 = 4300; // measured in encoder counts
+	public static final double kScoringExtendPosition2 = 0.85; // measured in % of extension
+	// Intake from the shelf // TODO: Adjust these values if needed
+	public static final double kShelfIntakeArmPosition = 4300; // measured in encoder counts
+	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension
+	// Driving around // TODO: Adjust these values if needed
+	public static final double kArmDrivePosition = 0; // measured in encoder counts
+	public static final double kExtendDrivePoistion = 0; // measured in % of extension
 
 	/** Drivetrain Gyro Drive Settings ****************************************/
 	public static final double kP_GYRO = 0.005;
