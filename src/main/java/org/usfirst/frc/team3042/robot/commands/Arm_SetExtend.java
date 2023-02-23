@@ -10,18 +10,19 @@ import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+// NOTE: This command sets ONLY the extension position
+
 public class Arm_SetExtend extends CommandBase {
   Arm arm = Robot.arm;
 
-  public double rotationPositionGoal;
   public double extensionPositionGoal;
+  boolean extensionGoalReached = false; // Determines whent he command should end
 
   /** Creates a new Arm_SetPosition command. */
-  public Arm_SetExtend(double rotationGoal, double extensionPercent) { // rotationGoal is measured in encoder counts
+  public Arm_SetExtend(double extensionPercent) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(arm);
+    addRequirements(arm); // cancel all other arm commands when this runs
 
-    this.rotationPositionGoal = rotationGoal;
     this.extensionPositionGoal = extensionPercent * RobotMap.maxArmLength; // convert from a percent to actual encoder counts
   }
 
@@ -32,33 +33,18 @@ public class Arm_SetExtend extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rotationError = arm.getRotationMotorPosition() - rotationPositionGoal;
     double extensionError = arm.getExtendMotorPosition() - extensionPositionGoal;
 
-    boolean extensionGoalReached = (Math.abs(extensionError) <= RobotMap.extensionThreshold);
-    boolean inIntakePosition = Math.abs(arm.getRotationMotorPosition() - RobotMap.kIntakeArmPosition) <= RobotMap.rotationThreshold;
+    extensionGoalReached = (Math.abs(extensionError) <= RobotMap.extensionThreshold);
 
-    // When going to the intake position, we will wait for the extension to move first before rotating the arm
-    if (rotationPositionGoal != RobotMap.kIntakeArmPosition || (rotationPositionGoal == RobotMap.kIntakeArmPosition && extensionGoalReached)) {
-
-      // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
-      double minimalVoltage = RobotMap.levelVoltage * Math.cos(arm.getArmAngle() * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
-      arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
-
+    // THIS BLOCK OF CODE BELOW MOVES THE EXTENSION //
+    if (!extensionGoalReached) {
+      arm.setPowertoExtend(Math.copySign(0.2, extensionError)); // TODO: Increase percent power if you want to make the extension move faster
+      // If it ends up oscillating because it can't reach its goal position, use (extensionError * kP) instead of (Math.copySign(0.2, extensionError))
+    } else {
+      arm.stopExtendMotor();
     }
-    
-    // We are only going to move the extension if the arm is NOT in the intake position
-    if (!inIntakePosition) {
 
-      // THIS BLOCK OF CODE BELOW MOVES THE EXTENSION //
-      if (!extensionGoalReached) {
-        arm.setPowertoExtend(Math.copySign(0.2, extensionError)); // TODO: Increase percent power if you want to make the extension move faster
-        // If it ends up oscillating because it can't reach its goal position, use (extensionError * kP) instead of (Math.copySign(0.2, extensionError))
-      } else {
-        arm.stopExtendMotor();
-      }
-
-    }
   }
 
   // Called once the command ends or is interrupted.
@@ -66,12 +52,11 @@ public class Arm_SetExtend extends CommandBase {
   public void end(boolean interrupted) {
     // Stop the motors if the command is interrupted
     arm.stopExtendMotor();
-    arm.stopRotationMotor();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false; // We never want this command to end
+    return extensionGoalReached; // End the command when our extensionGoal has been reached
   }
 }

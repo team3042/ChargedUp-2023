@@ -10,6 +10,8 @@ import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+// NOTE: This command sets ONLY the rotation position
+
 public class Arm_SetRotation extends CommandBase {
   Arm arm = Robot.arm;
 
@@ -32,24 +34,15 @@ public class Arm_SetRotation extends CommandBase {
   public void execute() {
     double rotationError = arm.getRotationMotorPosition() - rotationPositionGoal;
 
-
-    // When going to the intake position, we will wait for the extension to move first before rotating the arm
-    if (rotationPositionGoal != RobotMap.kIntakeArmPosition) {
-
-      // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
-      // double minimalVoltage = RobotMap.levelVoltage * Math.cos(arm.getArmAngle() * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
-      arm.setVoltageRotationMotor(rotationError); //+minimal voltage, * kP rotation
-
-    }
-    
-    
+    // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
+    double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle()); // TODO: Also scale this minimalVoltage by how far the arm is extended somehow?
+    arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     // Stop the motors if the command is interrupted
-    arm.stopExtendMotor();
     arm.stopRotationMotor();
   }
 
