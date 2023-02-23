@@ -85,7 +85,7 @@ public class Arm extends SubsystemBase {
     extendMotor.getEncoder().setPosition(0);
   }
 
-  public double getArmAngle(){
+  public double getArmAngle(){ // Returns the absolute angle of the arm where horizontal is 90 degrees
 
     double encoderCounts = getRotationMotorPosition();
 
