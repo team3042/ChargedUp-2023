@@ -65,8 +65,8 @@ public class RobotMap {
 	public static final double kPhysicalMaxTurningSpeedRadiansPerSecond = Math.PI * 3; // Determines the maximum turning speed of the robot
 	public static final double kP_Turning = 0.4;
 	public static final double nominalVoltage = 12.0;
-    public static final int driveCurrentLimit = 30; //80
-    public static final int steerCurrentLimit = 20;//20
+    public static final int driveCurrentLimit = 30; // used to be 80
+    public static final int steerCurrentLimit = 20;
 
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = true;
@@ -77,7 +77,7 @@ public class RobotMap {
 	public static final int maxArmLength = 15500; // Measured in encoder counts
 	public static final double levelVoltage = 1.0; // TODO: find this value! (The number of volts needed to hold the arm perfectly level WHEN FULLY EXTENDED)
 	public static final double shoulderCountsPerDegree = 11.666667;
-	public static final double armStartingDegrees = 7.5;
+	public static final double armStartingDegrees = 7.5; // measured in degrees
 
 	DigitalInput kLimitSwitchExtensionPort = new DigitalInput(3);
 	DigitalInput kLimitSwitchRotationPort = new DigitalInput(4);

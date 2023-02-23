@@ -32,6 +32,9 @@ public class Arm extends SubsystemBase {
 
     rotationMotor.setIdleMode(IdleMode.kBrake);
     extendMotor.setIdleMode(IdleMode.kBrake);
+
+    rotationMotor.getEncoder().setPositionConversionFactor(42);
+    extendMotor.getEncoder().setPositionConversionFactor(42);
   }
 
   // Methods for setting power to the motors
