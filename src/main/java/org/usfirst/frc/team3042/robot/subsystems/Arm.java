@@ -44,9 +44,15 @@ public class Arm extends SubsystemBase {
 
   // Methods for setting voltage to the motors
   public void setVoltageRotationMotor(double volts) {
+    volts = Math.max(volts, -12.0); // Don't allow setting less than -12 volts
+    volts = Math.min(volts, 12.0); // Don't allow setting more than 12 volts
+
     rotationMotor.setVoltage(volts);
   }
   public void setVoltageExtendMotor(double volts) {
+    volts = Math.max(volts, -12.0); // Don't allow setting less than -12 volts
+    volts = Math.min(volts, 12.0); // Don't allow setting more than 12 volts
+
     extendMotor.setVoltage(volts);
   }
 

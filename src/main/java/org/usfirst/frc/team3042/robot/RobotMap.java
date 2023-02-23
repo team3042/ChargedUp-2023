@@ -71,12 +71,12 @@ public class RobotMap {
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = true;
     public static final boolean extendMotorReversed = true;
-	public static final double rotationThreshold = 100; // TODO: This needs to be tuned through testing
-	public static final double extensionThreshold = 100; // TODO: This needs to be tuned through testing
-	public static final double rotation_kP = 0.02; // TODO: This needs to be tuned through testing
+	public static final double rotationThreshold = 15; // TODO: This will probably need to be adjusted (tune via trial-and-error)
+	public static final double extensionThreshold = 155; // TODO: This will probably need to be adjusted (tune via trial-and-error)
+	public static final double rotation_kP = 0.01; // TODO: This definitely needs to be adjusted (tune via trial-and-error)
 	public static final int maxArmLength = 15500; // Measured in encoder counts
 	public static final double levelVoltage = 1.0; // TODO: find this value! (The number of volts needed to hold the arm perfectly level WHEN FULLY EXTENDED)
-	public static final double shoulderCountsPerDegree = 11.667;
+	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5;
 
 	DigitalInput kLimitSwitchExtensionPort = new DigitalInput(3);
@@ -86,7 +86,7 @@ public class RobotMap {
 
 	//TODO: Find the real values of these positions through testing: (also change names?)
 	public static final double kIntakeArmPosition = 50; // Measured in encoder counts
-	public static final double kIntakeExtendPosition = 0.5; // Measured as a percent of how far extended the arm should be
+	public static final double kIntakeExtendPosition = 0.05; // Measured as a percent of how far extended the arm should be
 	public static final double kScoringArmPosition1 = 2000; // Measured in encoder counts
 	public static final double kScoringExtendPosition1 = 0.25; // Measured as a percent of how far extended the arm should be
 	public static final double kScoringArmPosition2 = 5000; // Measured in encoder counts
