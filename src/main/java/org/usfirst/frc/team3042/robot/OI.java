@@ -42,7 +42,6 @@ public class OI {
         new Trigger(() -> gunnerController.getRawButton(RobotMap.LEFT_BUMPER)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
 
 		/* Arm Actions */
-		// TODO: Uncomment these when done testing:
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.A_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtendPosition));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.X_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kScoringArmPosition1, RobotMap.kScoringExtendPosition1));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.B_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePoistion));

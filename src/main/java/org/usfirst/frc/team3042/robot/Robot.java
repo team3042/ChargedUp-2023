@@ -141,9 +141,11 @@ public class Robot extends TimedRobot {
 		// SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 		SmartDashboard.putNumber("Extension Encoder counts", arm.getExtendMotorPosition());
 		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
-		arm.setVoltageRotationMotor(RobotMap.levelVoltage);
 
-		// Manual Control of the arm motors TODO: Only to test, delete when done with manual testing
+		// You can uncomment the line below if you need to tune levelVoltage:
+		// arm.setVoltageRotationMotor(RobotMap.levelVoltage);
+
+		// Manual Control of the arm motors (leave these lines commented out unless you need them):
 		// Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
 		// Robot.arm.setPowertoExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
 	} 

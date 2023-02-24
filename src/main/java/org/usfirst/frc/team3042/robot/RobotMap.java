@@ -71,9 +71,9 @@ public class RobotMap {
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = false;
     public static final boolean extendMotorReversed = true;
-	public static final double rotationThreshold = 15; // TODO: This will probably need to be adjusted (tune via trial-and-error)
-	public static final double extensionThreshold = 155; // TODO: This will probably need to be adjusted (tune via trial-and-error)
-	public static final double rotation_kP = 0.2; // TODO: This definitely needs to be adjusted (tune via trial-and-error)
+	public static final double rotationThreshold = 25; // TODO: This will probably need to be adjusted (tune via trial-and-error)
+	public static final double extensionThreshold = 200; // TODO: This will probably need to be adjusted (tune via trial-and-error)
+	public static final double rotation_kP = 0.1; // TODO: This definitely needs to be adjusted (tune via trial-and-error)
 	public static final int maxArmLength = 12260; // Measured in encoder counts
 	public static final double levelVoltage = 0.35; 
 	public static final double shoulderCountsPerDegree = 11.666667;
@@ -99,8 +99,8 @@ public class RobotMap {
 	public static final double kShelfIntakeArmPosition = 4300; // measured in encoder counts
 	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension
 	// Driving around // TODO: Adjust these values if needed
-	public static final double kArmDrivePosition = 0; // measured in encoder counts
-	public static final double kExtendDrivePoistion = 0; // measured in % of extension
+	public static final double kArmDrivePosition = 50; // measured in encoder counts
+	public static final double kExtendDrivePoistion = 0.05; // measured in % of extension
 
 	/** Drivetrain Gyro Drive Settings ****************************************/
 	public static final double kP_GYRO = 0.005;

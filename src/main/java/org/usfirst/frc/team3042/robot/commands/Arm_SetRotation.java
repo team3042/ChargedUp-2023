@@ -35,7 +35,7 @@ public class Arm_SetRotation extends CommandBase {
     double rotationError = rotationPositionGoal - arm.getRotationMotorPosition();
 
     // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
-    double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle()); // TODO: Also scale this minimalVoltage by how far the arm is extended somehow?
+    double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle());
     arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
   }
 
