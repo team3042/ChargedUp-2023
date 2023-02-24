@@ -3,7 +3,7 @@ package org.usfirst.frc.team3042.robot;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetExtend;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
-// import org.usfirst.frc.team3042.robot.commands.Arm_SetRotation;
+import org.usfirst.frc.team3042.robot.commands.Arm_SetRotation;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -45,9 +45,11 @@ public class OI {
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.A_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtendPosition));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.X_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kScoringArmPosition1, RobotMap.kScoringExtendPosition1));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.B_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePoistion));
-		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetExtend(RobotMap.kScoringExtendPosition2));
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kScoringArmPosition2, RobotMap.kScoringExtendPosition2));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.RIGHT_BUMPER)).onTrue(new Arm_SetPosition(RobotMap.kShelfIntakeArmPosition, RobotMap.kShelfIntakeExtendPosition));
-
+		// Temporary Testing Actions
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.START_BUTTON)).onTrue(new Arm_SetExtend(RobotMap.kScoringExtendPosition2));
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.PREV_BUTTON)).onTrue(new Arm_SetRotation(RobotMap.kScoringArmPosition2));
 	}
 
     /** Access to the driving axes values *****************************
