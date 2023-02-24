@@ -147,5 +147,5 @@ public class RobotMap {
     public static final int LEFT_TRIGGER_AXIS = 7;
     public static final int RIGHT_TRIGGER_AXIS = 3;
     public static final int PREV_BUTTON = 9;
-    public static final int START_BUTTON = 10;
+    public static final int START_BUTTON = 8;
 }

@@ -88,6 +88,10 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
 		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 
+		
+		SmartDashboard.putNumber("Extension Encoder counts", arm.getExtendMotorPosition());
+		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
+
 		if(counter >= 100) {
 			SmartDashboard.putNumber("FrontRight AbsEncoder", drivetrain.getFrontRight().getAbsoluteEncoderRadians() * 180/Math.PI);
 			SmartDashboard.putNumber("FrontLeft AbsEncoder", drivetrain.getFrontLeft().getAbsoluteEncoderRadians() * 180/Math.PI);
@@ -146,7 +150,7 @@ public class Robot extends TimedRobot {
 		// arm.setVoltageRotationMotor(RobotMap.levelVoltage);
 
 		// Manual Control of the arm motors (leave these lines commented out unless you need them):
-		// Robot.arm.setPowerToRotation(-1 * OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
+		// Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
 		// Robot.arm.setPowertoExtend(-1 * OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
 	} 
 
