@@ -33,7 +33,7 @@ public class Arm_SetPosition extends CommandBase {
   @Override
   public void execute() {
     double rotationError = rotationPositionGoal - arm.getRotationMotorPosition();
-    double extensionError = extensionPositionGoal - arm.getExtendMotorPosition();
+    double extensionError = arm.getExtendMotorPosition() - extensionPositionGoal;
 
     boolean extensionGoalReached = (Math.abs(extensionError) <= RobotMap.extensionThreshold);
     boolean inIntakePosition = Math.abs(arm.getRotationMotorPosition() - RobotMap.kIntakeArmPosition) <= RobotMap.rotationThreshold;

@@ -69,13 +69,13 @@ public class RobotMap {
     public static final int steerCurrentLimit = 20;
 
 	/** Arm Subsystem Settings */
-	public static final boolean rotationMotorReversed = true;
+	public static final boolean rotationMotorReversed = false;
     public static final boolean extendMotorReversed = true;
 	public static final double rotationThreshold = 15; // TODO: This will probably need to be adjusted (tune via trial-and-error)
 	public static final double extensionThreshold = 155; // TODO: This will probably need to be adjusted (tune via trial-and-error)
-	public static final double rotation_kP = 0.01; // TODO: This definitely needs to be adjusted (tune via trial-and-error)
-	public static final int maxArmLength = 15500; // Measured in encoder counts
-	public static final double levelVoltage = 1.0; // TODO: find this value! (The number of volts needed to hold the arm perfectly level WHEN FULLY EXTENDED)
+	public static final double rotation_kP = 0.2; // TODO: This definitely needs to be adjusted (tune via trial-and-error)
+	public static final int maxArmLength = 12260; // Measured in encoder counts
+	public static final double levelVoltage = 0.35; 
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
 
@@ -94,7 +94,7 @@ public class RobotMap {
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
 	// Upper goal // TODO: Adjust these values if needed
 	public static final double kScoringArmPosition2 = 4300; // measured in encoder counts
-	public static final double kScoringExtendPosition2 = 0.85; // measured in % of extension
+	public static final double kScoringExtendPosition2 = 0.35; // measured in % of extension
 	// Intake from the shelf // TODO: Adjust these values if needed
 	public static final double kShelfIntakeArmPosition = 4300; // measured in encoder counts
 	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension

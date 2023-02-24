@@ -72,7 +72,7 @@ public class Arm extends SubsystemBase {
     return rotationMotor.getEncoder().getPosition();
   }
   public double getExtendMotorPosition() {
-    return extendMotor.getEncoder().getPosition();
+    return extendMotor.getEncoder().getPosition() * -1;
   }
   // Encoder methods for getting the motor velocity
   public double getRotationMotorVelocity() {

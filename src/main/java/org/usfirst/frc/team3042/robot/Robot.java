@@ -135,14 +135,17 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		CommandScheduler.getInstance().run();
 		       
-        SmartDashboard.putString("BackLeft State", drivetrain.getBackLeft().getState().toString());
-		SmartDashboard.putString("FrontLeft State", drivetrain.getFrontLeft().getState().toString());
-		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
-		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
+        // SmartDashboard.putString("BackLeft State", drivetrain.getBackLeft().getState().toString());
+		// SmartDashboard.putString("FrontLeft State", drivetrain.getFrontLeft().getState().toString());
+		// SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
+		// SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
+		SmartDashboard.putNumber("Extension Encoder counts", arm.getExtendMotorPosition());
+		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
+		arm.setVoltageRotationMotor(RobotMap.levelVoltage);
 
 		// Manual Control of the arm motors TODO: Only to test, delete when done with manual testing
-		Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
-		Robot.arm.setPowertoExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
+		// Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS));
+		// Robot.arm.setPowertoExtend(OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS));
 	} 
 
 	// Give this method the name of a .json autonomous path and it will return a PPSwerveControllerCommand for that path :)
