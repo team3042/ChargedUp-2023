@@ -70,7 +70,7 @@ public class RobotMap {
 
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = false;
-    public static final boolean extendMotorReversed = true;
+    public static final boolean extendMotorReversed = false;
 	public static final double rotationThreshold = 25; // TODO: This will probably need to be adjusted (tune via trial-and-error)
 	public static final double extensionThreshold = 200; // TODO: This will probably need to be adjusted (tune via trial-and-error)
 	public static final double rotation_kP = 0.1; // TODO: This definitely needs to be adjusted (tune via trial-and-error)

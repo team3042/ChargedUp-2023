@@ -72,7 +72,7 @@ public class Arm extends SubsystemBase {
     return rotationMotor.getEncoder().getPosition();
   }
   public double getExtendMotorPosition() {
-    return extendMotor.getEncoder().getPosition() * -1;
+    return extendMotor.getEncoder().getPosition();
   }
   // Encoder methods for getting the motor velocity
   public double getRotationMotorVelocity() {
@@ -95,9 +95,6 @@ public class Arm extends SubsystemBase {
     return encoderCounts * RobotMap.shoulderCountsPerDegree + RobotMap.armStartingDegrees;
 
   } //RETURNS DEGREES
-
-
-
 
   @Override
   public void periodic() {
