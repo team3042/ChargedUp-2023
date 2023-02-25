@@ -43,9 +43,11 @@ public class Arm_SetPosition extends CommandBase {
     if (rotationPositionGoal != RobotMap.kArmDrivePosition || (rotationPositionGoal == RobotMap.kArmDrivePosition && extensionGoalReached)) {
 
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
-      double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle());
+      double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle()); // We might need to also scale this based on how far extended the arm is
       arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
 
+    } else {
+      arm.stopRotationMotor();;
     }
     
     // We are only going to move the extension if the arm is NOT in the intake position
@@ -59,6 +61,8 @@ public class Arm_SetPosition extends CommandBase {
         arm.stopExtendMotor();
       }
 
+    } else {
+      arm.stopExtendMotor();
     }
   }
 
