@@ -44,7 +44,7 @@ public class OI {
 		/* Arm Actions */
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.A_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtendPosition));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.X_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kScoringArmPosition1, RobotMap.kScoringExtendPosition1));
-		new Trigger(() -> gunnerController.getRawButton(RobotMap.B_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePoistion));
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.B_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePosition));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kScoringArmPosition2, RobotMap.kScoringExtendPosition2));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.RIGHT_BUMPER)).onTrue(new Arm_SetPosition(RobotMap.kShelfIntakeArmPosition, RobotMap.kShelfIntakeExtendPosition));
 		// Temporary Testing Actions
