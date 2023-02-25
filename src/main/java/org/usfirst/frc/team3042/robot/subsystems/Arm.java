@@ -26,8 +26,8 @@ public class Arm extends SubsystemBase {
     rotationMotor = new CANSparkMax(RobotMap.kRotationMotorPort, MotorType.kBrushless);
     extendMotor = new CANSparkMax(RobotMap.kExtendMotorPort, MotorType.kBrushless);
 
-    ExtensionLimitSwitch = new DigitalInput(3);
-	  RotationLimitSwitch = new DigitalInput(4);
+    ExtensionLimitSwitch = new DigitalInput(3); // This limit switch is currently inverted, so !ExtensionLimitSwitch.get() means it is being pressed!
+	  RotationLimitSwitch = new DigitalInput(4); // This limit switch is currently inverted, so !RotationLimitSwitch.get() means it is being pressed!
 
     // Configure Motor Settings
 
@@ -46,7 +46,7 @@ public class Arm extends SubsystemBase {
 
   // Methods for setting power to the motors
   public void setPowerToRotation(double percentPower) {
-    if (!RotationLimitSwitch.get() || (RotationLimitSwitch.get() && percentPower >= 0)){
+    if (RotationLimitSwitch.get() || (!RotationLimitSwitch.get() && percentPower >= 0)){
       rotationMotor.set(percentPower);
     } else {
       stopRotationMotor();
@@ -65,7 +65,7 @@ public class Arm extends SubsystemBase {
     volts = Math.max(volts, -12.0); // Don't allow setting less than -12 volts
     volts = Math.min(volts, 12.0); // Don't allow setting more than 12 volts
 
-    if (!RotationLimitSwitch.get() || (RotationLimitSwitch.get() && volts >= 0)){
+    if (RotationLimitSwitch.get() || (!RotationLimitSwitch.get() && volts >= 0)){
       rotationMotor.setVoltage(volts);
     } else {
       stopRotationMotor();
@@ -111,15 +111,16 @@ public class Arm extends SubsystemBase {
     extendMotor.getEncoder().setPosition(0);
   }
   
-  public void resetExtendEncoders() {
+  // Reset the extension encoder to 0
+  public void resetExtendEncoder() {
     extendMotor.getEncoder().setPosition(0);
   }
-  
-  public void resetRotationEncoders() {
+  // Reset the rotation encoder to 0
+  public void resetRotationEncoder() {
     rotationMotor.getEncoder().setPosition(0);
   }
 
-  public double getArmAngle(){ // Returns the absolute angle of the arm where horizontal is 90 degrees
+  public double getArmAngle() { // Returns the absolute angle of the arm where horizontal is 90 degrees
 
     double encoderCounts = getRotationMotorPosition();
 

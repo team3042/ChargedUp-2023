@@ -72,7 +72,7 @@ public class RobotMap {
     public static final boolean extendMotorReversed = false;
 	public static final double rotationThreshold = 100; // TODO: This will probably need to be adjusted (via trial-and-error)
 	public static final double extensionThreshold = 40; // TODO: This might still need to be adjusted (via trial-and-error)
-	public static final double rotation_kP = 0.1; // TODO: This definitely needs to be adjusted (tune via trial-and-error)
+	public static final double rotation_kP = 0.1; // TODO: This needs to be tuned via trial-and-error
 	public static final int maxArmLength = 12260; // Measured in encoder counts
 	public static final double levelVoltage = 0.35; 
 	public static final double shoulderCountsPerDegree = 11.666667;

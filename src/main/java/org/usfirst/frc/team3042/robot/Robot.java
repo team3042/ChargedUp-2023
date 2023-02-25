@@ -100,15 +100,12 @@ public class Robot extends TimedRobot {
 			counter = 0;
 		}
 
+		// Check if limit switches are pressed
 		if (!arm.ExtensionLimitSwitch.get()){ 
-      
-			arm.resetExtendEncoders();
-
+			arm.resetExtendEncoder();
 		}
-
-		if (arm.RotationLimitSwitch.get()){ 
-      
-			arm.resetRotationEncoders();
+		if (!arm.RotationLimitSwitch.get()){ 
+			arm.resetRotationEncoder();
 		}
 		
 		counter++;
@@ -132,15 +129,12 @@ public class Robot extends TimedRobot {
 	public void autonomousPeriodic() {
 		CommandScheduler.getInstance().run();
 
+		// Check if limit switches are pressed
 		if (!arm.ExtensionLimitSwitch.get()){ 
-      
-			arm.resetExtendEncoders();
-
+			arm.resetExtendEncoder();
 		}
-
-		if (arm.RotationLimitSwitch.get()){ 
-      
-			arm.resetRotationEncoders();
+		if (!arm.RotationLimitSwitch.get()){ 
+			arm.resetRotationEncoder();
 		}
 	}
 	
@@ -174,15 +168,13 @@ public class Robot extends TimedRobot {
 		// Manual Control of the arm motors (leave these lines commented out unless you need them):
 		// Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
 		// Robot.arm.setPowertoExtend(-1 * OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
+
+		// Check if limit switches are pressed
 		if (!arm.ExtensionLimitSwitch.get()){ 
-      
-			arm.resetExtendEncoders();
-
+			arm.resetExtendEncoder();
 		}
-
-		if (arm.RotationLimitSwitch.get()){ 
-      
-			arm.resetRotationEncoders();
+		if (!arm.RotationLimitSwitch.get()){ 
+			arm.resetRotationEncoder();
 		}
 	} 
 
