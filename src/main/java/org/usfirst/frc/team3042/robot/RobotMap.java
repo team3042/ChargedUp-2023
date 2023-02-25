@@ -3,7 +3,6 @@ package org.usfirst.frc.team3042.robot;
 import org.usfirst.frc.team3042.lib.Log;
 
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.DigitalInput;
 
 /** RobotMap ******************************************************************
  * This is the robot configuration file. */
@@ -72,7 +71,7 @@ public class RobotMap {
 	public static final boolean rotationMotorReversed = false;
     public static final boolean extendMotorReversed = false;
 	public static final double rotationThreshold = 25; // TODO: This will probably need to be adjusted (tune via trial-and-error)
-	public static final double extensionThreshold = 200; // TODO: This will probably need to be adjusted (tune via trial-and-error)
+	public static final double extensionThreshold = 40; // TODO: This will probably need to be adjusted (tune via trial-and-error)
 	public static final double rotation_kP = 0.1; // TODO: This definitely needs to be adjusted (tune via trial-and-error)
 	public static final int maxArmLength = 12260; // Measured in encoder counts
 	public static final double levelVoltage = 0.35; 
@@ -80,10 +79,7 @@ public class RobotMap {
 	public static final double armStartingDegrees = 7.5; // measured in degrees
 
 	/** Arm Limit Switches */
-	DigitalInput kLimitSwitchExtensionPort = new DigitalInput(3);
-	DigitalInput kLimitSwitchRotationPort = new DigitalInput(4);
-	public static final boolean limitExtend = false;
-	public static final boolean limitRotate = false;
+	
 
 	/** Arm/Extension Positions */
 	// Intake from the floor // TODO: Adjust these values if needed
@@ -94,7 +90,7 @@ public class RobotMap {
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
 	// Upper goal // TODO: Adjust these values if needed
 	public static final double kScoringArmPosition2 = 4300; // measured in encoder counts
-	public static final double kScoringExtendPosition2 = 0.35; // measured in % of extension
+	public static final double kScoringExtendPosition2 = 0.7; // measured in % of extension
 	// Intake from the shelf // TODO: Adjust these values if needed
 	public static final double kShelfIntakeArmPosition = 4300; // measured in encoder counts
 	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension

@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
@@ -17,10 +18,16 @@ public class Arm extends SubsystemBase {
   private final CANSparkMax rotationMotor;
   private final CANSparkMax extendMotor;
 
+  public final DigitalInput ExtensionLimitSwitch;
+  public final DigitalInput RotationLimitSwitch;
+
   /** Creates a new Arm Subsystem */
   public Arm() {
     rotationMotor = new CANSparkMax(RobotMap.kRotationMotorPort, MotorType.kBrushless);
     extendMotor = new CANSparkMax(RobotMap.kExtendMotorPort, MotorType.kBrushless);
+
+    ExtensionLimitSwitch = new DigitalInput(3);
+	  RotationLimitSwitch = new DigitalInput(4);
 
     // Configure Motor Settings
 
@@ -39,10 +46,18 @@ public class Arm extends SubsystemBase {
 
   // Methods for setting power to the motors
   public void setPowerToRotation(double percentPower) {
-    rotationMotor.set(percentPower);
+    if (!RotationLimitSwitch.get() || (RotationLimitSwitch.get() && percentPower >= 0)){
+      rotationMotor.set(percentPower);
+    } else {
+      stopRotationMotor();
+    }
   }
   public void setPowertoExtend(double percentPower) {
-    extendMotor.set(percentPower);
+    if (ExtensionLimitSwitch.get() || (!ExtensionLimitSwitch.get() && percentPower >= 0)){
+      extendMotor.set(percentPower);
+    } else {
+      stopExtendMotor();
+    }
   }
 
   // Methods for setting voltage to the motors
@@ -50,13 +65,21 @@ public class Arm extends SubsystemBase {
     volts = Math.max(volts, -12.0); // Don't allow setting less than -12 volts
     volts = Math.min(volts, 12.0); // Don't allow setting more than 12 volts
 
-    rotationMotor.setVoltage(volts);
+    if (!RotationLimitSwitch.get() || (RotationLimitSwitch.get() && volts >= 0)){
+      rotationMotor.setVoltage(volts);
+    } else {
+      stopRotationMotor();
+    }
   }
   public void setVoltageExtendMotor(double volts) {
     volts = Math.max(volts, -12.0); // Don't allow setting less than -12 volts
     volts = Math.min(volts, 12.0); // Don't allow setting more than 12 volts
 
-    extendMotor.setVoltage(volts);
+    if (ExtensionLimitSwitch.get() || (!ExtensionLimitSwitch.get() && volts >= 0)){
+      extendMotor.setVoltage(volts);
+    } else{
+      stopExtendMotor();
+    }
   }
 
   // Methods for stopping the motors
@@ -87,6 +110,14 @@ public class Arm extends SubsystemBase {
     rotationMotor.getEncoder().setPosition(0);
     extendMotor.getEncoder().setPosition(0);
   }
+  
+  public void resetExtendEncoders() {
+    extendMotor.getEncoder().setPosition(0);
+  }
+  
+  public void resetRotationEncoders() {
+    rotationMotor.getEncoder().setPosition(0);
+  }
 
   public double getArmAngle(){ // Returns the absolute angle of the arm where horizontal is 90 degrees
 
@@ -99,5 +130,6 @@ public class Arm extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
   }
 }

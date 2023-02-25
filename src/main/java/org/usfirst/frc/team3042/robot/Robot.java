@@ -99,6 +99,17 @@ public class Robot extends TimedRobot {
 			SmartDashboard.putNumber("BackLeft AbsEncoder", drivetrain.getBackLeft().getAbsoluteEncoderRadians() * 180/Math.PI);
 			counter = 0;
 		}
+
+		if (!arm.ExtensionLimitSwitch.get()){ 
+      
+			arm.resetExtendEncoders();
+
+		}
+
+		if (arm.RotationLimitSwitch.get()){ 
+      
+			arm.resetRotationEncoders();
+		}
 		
 		counter++;
 	}
@@ -120,6 +131,17 @@ public class Robot extends TimedRobot {
 	 * This function is called periodically during autonomous */
 	public void autonomousPeriodic() {
 		CommandScheduler.getInstance().run();
+
+		if (!arm.ExtensionLimitSwitch.get()){ 
+      
+			arm.resetExtendEncoders();
+
+		}
+
+		if (arm.RotationLimitSwitch.get()){ 
+      
+			arm.resetRotationEncoders();
+		}
 	}
 	
 	/** teleopInit ************************************************************
@@ -152,6 +174,16 @@ public class Robot extends TimedRobot {
 		// Manual Control of the arm motors (leave these lines commented out unless you need them):
 		// Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
 		// Robot.arm.setPowertoExtend(-1 * OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
+		if (!arm.ExtensionLimitSwitch.get()){ 
+      
+			arm.resetExtendEncoders();
+
+		}
+
+		if (arm.RotationLimitSwitch.get()){ 
+      
+			arm.resetRotationEncoders();
+		}
 	} 
 
 	// Give this method the name of a .json autonomous path and it will return a PPSwerveControllerCommand for that path :)

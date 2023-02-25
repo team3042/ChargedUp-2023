@@ -41,7 +41,7 @@ public class Arm_SetExtend extends CommandBase {
 
     // THIS BLOCK OF CODE BELOW MOVES THE EXTENSION //
     if (!extensionGoalReached) {
-      arm.setPowertoExtend(Math.copySign(0.2, extensionError)); // TODO: Increase percent power if you want to make the extension move faster
+      arm.setPowertoExtend(Math.copySign(0.4, extensionError)); // TODO: Increase percent power if you want to make the extension move faster
       // If it ends up oscillating because it can't reach its goal position, use (extensionError * kP) instead of (Math.copySign(0.2, extensionError))
     } else {
       arm.stopExtendMotor();
