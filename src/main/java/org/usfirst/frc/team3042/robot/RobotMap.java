@@ -78,9 +78,6 @@ public class RobotMap {
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
 
-	/** Arm Limit Switches */
-	
-
 	/** Arm/Extension Positions */
 	// Intake from the floor // TODO: Adjust these values if needed
 	public static final double kIntakeArmPosition = 175; // measured in encoder counts
