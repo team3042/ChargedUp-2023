@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3042.robot;
 
 import org.usfirst.frc.team3042.lib.Log;
+import org.usfirst.frc.team3042.robot.commands.Arm_Brownout_Reset;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetExtend;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetRotation;
@@ -50,7 +51,7 @@ public class OI {
 		// Temporary Testing Actions
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.START_BUTTON)).onTrue(new Arm_SetExtend(RobotMap.kScoringExtendPosition2));
 
-		new Trigger(() -> gunnerController.getRawButton(RobotMap.PREV_BUTTON)).onTrue(new Arm_SetRotation(RobotMap.kScoringArmPosition2));
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.PREV_BUTTON)).onTrue(new Arm_Brownout_Reset());
 	}
 
     /** Access to the driving axes values *****************************

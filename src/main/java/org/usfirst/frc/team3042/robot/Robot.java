@@ -8,6 +8,7 @@ import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.DriveCommand;
 import org.usfirst.frc.team3042.robot.commands.autonomous.AutonomousMode_Default;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Score_And_Exit;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Gripper;
@@ -62,7 +63,8 @@ public class Robot extends TimedRobot {
 
 		// Autonomous Routines //
 		chooser.setDefaultOption("Default Auto", new AutonomousMode_Default());
-		//chooser.addOption("Autonomous Routine 2", new commandNameHere()); // Example of how to add more autonomous routine choices
+		chooser.addOption("Score Mid", new Score_And_Exit(RobotMap.kScoringArmPosition1,RobotMap.kScoringExtendPosition1));
+		chooser.addOption("Score High", new Score_And_Exit(RobotMap.kScoringArmPosition2,RobotMap.kScoringExtendPosition2)); // Example of how to add more autonomous routine choices
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		// Start up the webcam and configure its resolution and framerate

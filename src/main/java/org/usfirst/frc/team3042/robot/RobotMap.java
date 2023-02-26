@@ -70,26 +70,27 @@ public class RobotMap {
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = false;
     public static final boolean extendMotorReversed = false;
-	public static final double rotationThreshold = 100; // TODO: This will probably need to be adjusted (via trial-and-error)
-	public static final double extensionThreshold = 40; // TODO: This might still need to be adjusted (via trial-and-error)
-	public static final double rotation_kP = 0.1; // TODO: This needs to be tuned via trial-and-error
-	public static final int maxArmLength = 12260; // Measured in encoder counts
+	public static final double rotationThreshold = 80; // TODO: This will probably need to be adjusted (via trial-and-error)
+	public static final double extensionThreshold = 80; // TODO: This might still need to be adjusted (via trial-and-error)
+	public static final double rotation_kP = 0.003; // TODO: This needs to be tuned via trial-and-error
+	public static final double minimalPowerExtend = 0.5; //TODO: Tune 
+	public static final int maxArmLength = 15200; // Measured in encoder counts
 	public static final double levelVoltage = 0.35; 
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
 
 	/** Arm/Extension Positions */
 	// Intake from the floor // TODO: Adjust these values if needed
-	public static final double kIntakeArmPosition = 175; // measured in encoder counts
-	public static final double kIntakeExtendPosition = 0.25; // measured in % of extension
+	public static final double kIntakeArmPosition = 200; // measured in encoder counts
+	public static final double kIntakeExtendPosition = 0.43; // measured in % of extension
 	// Middle goal // TODO: Adjust these values if needed
-	public static final double kScoringArmPosition1 = 2704; // measured in encoder counts
+	public static final double kScoringArmPosition1 = 1100; // measured in encoder counts
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
 	// Upper goal // TODO: Adjust these values if needed
-	public static final double kScoringArmPosition2 = 4300; // measured in encoder counts
-	public static final double kScoringExtendPosition2 = 0.7; // measured in % of extension
+	public static final double kScoringArmPosition2 = 1300; // measured in encoder counts
+	public static final double kScoringExtendPosition2 = 0.95; // measured in % of extension
 	// Intake from the shelf // TODO: Adjust these values if needed
-	public static final double kShelfIntakeArmPosition = 4300; // measured in encoder counts
+	public static final double kShelfIntakeArmPosition = 1100; // measured in encoder counts
 	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension
 	// Driving around // TODO: Adjust these values if needed
 	public static final double kArmDrivePosition = 50; // measured in encoder counts
@@ -139,6 +140,6 @@ public class RobotMap {
     public static final int RIGHT_BUMPER = 6;
     public static final int LEFT_TRIGGER_AXIS = 7;
     public static final int RIGHT_TRIGGER_AXIS = 3;
-    public static final int PREV_BUTTON = 9;
+    public static final int PREV_BUTTON = 7;
     public static final int START_BUTTON = 8;
 }
