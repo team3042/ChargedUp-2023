@@ -33,7 +33,7 @@ public class Arm_Brownout_Reset extends CommandBase {
 
     if(arm.ExtensionLimitSwitch.get()) {
 
-      arm.setPowertoExtend(-0.15);
+      arm.setPowertoExtend(-0.35);
     }else{
 
       arm.setPowertoExtend(0);

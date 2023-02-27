@@ -82,7 +82,7 @@ public class RobotMap {
 	/** Arm/Extension Positions */
 	// Intake from the floor // TODO: Adjust these values if needed
 	public static final double kIntakeArmPosition = 200; // measured in encoder counts
-	public static final double kIntakeExtendPosition = 0.43; // measured in % of extension
+	public static final double kIntakeExtendPosition = 0.44; // measured in % of extension
 	// Middle goal // TODO: Adjust these values if needed
 	public static final double kScoringArmPosition1 = 1100; // measured in encoder counts
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
@@ -90,7 +90,7 @@ public class RobotMap {
 	public static final double kScoringArmPosition2 = 1300; // measured in encoder counts
 	public static final double kScoringExtendPosition2 = 0.95; // measured in % of extension
 	// Intake from the shelf // TODO: Adjust these values if needed
-	public static final double kShelfIntakeArmPosition = 1100; // measured in encoder counts
+	public static final double kShelfIntakeArmPosition = 1300; // measured in encoder counts
 	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension
 	// Driving around // TODO: Adjust these values if needed
 	public static final double kArmDrivePosition = 50; // measured in encoder counts
