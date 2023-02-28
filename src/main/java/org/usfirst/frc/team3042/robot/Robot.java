@@ -21,7 +21,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-//import edu.wpi.first.cscore.UsbCamera; // Uncomment if you want to use a USB webcam
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera; // Uncomment if you want to use a USB webcam
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 
@@ -50,7 +51,7 @@ public class Robot extends TimedRobot {
 	CommandBase autonomousCommand;
 	SendableChooser<CommandBase> chooser = new SendableChooser<CommandBase>();
 
-	//UsbCamera camera1; // Uncomment if you want to use a USB webcam
+	UsbCamera camera1; // Uncomment if you want to use a USB webcam
 
 	/** robotInit *************************************************************
 	 * This function is run when the robot is first started up and should be used for any initialization code. */
@@ -68,9 +69,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		// Start up the webcam and configure its resolution and framerate
-		// camera1 = CameraServer.startAutomaticCapture(0);
-		// camera1.setResolution(320, 240);
-		// camera1.setFPS(15);
+		 camera1 = CameraServer.startAutomaticCapture(0);
+		 camera1.setResolution(320, 240);
+		 camera1.setFPS(15);
 	}
 
 	/** disabledInit **********************************************************

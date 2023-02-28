@@ -87,7 +87,7 @@ public class RobotMap {
 	public static final double kScoringArmPosition1 = 1100; // measured in encoder counts
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
 	// Upper goal // TODO: Adjust these values if needed
-	public static final double kScoringArmPosition2 = 1300; // measured in encoder counts
+	public static final double kScoringArmPosition2 = 1200; // measured in encoder counts
 	public static final double kScoringExtendPosition2 = 0.95; // measured in % of extension
 	// Intake from the shelf // TODO: Adjust these values if needed
 	public static final double kShelfIntakeArmPosition = 1300; // measured in encoder counts
