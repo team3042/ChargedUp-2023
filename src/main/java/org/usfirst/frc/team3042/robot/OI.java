@@ -4,7 +4,6 @@ import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.Arm_Brownout_Reset;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetExtend;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
-import org.usfirst.frc.team3042.robot.commands.Arm_SetRotation;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -75,11 +74,8 @@ public class OI {
 			return 0.0;
 		}
 		else {
-<<<<<<< Updated upstream
-			return Math.pow(joystickValue, 2) * RobotMap.kPhysicalMaxSpeedMetersPerSecond * -1; // Multiply by -1 reverses the direction, 0.5 to reduce speed
-=======
 			return Math.pow(joystickValue, 3) * RobotMap.kPhysicalMaxSpeedMetersPerSecond * -0.5; // Multiply by -1 reverses the direction, 0.5 to reduce speed
->>>>>>> Stashed changes
+
 		}	
 	}
 	public double getZSpeed() {
@@ -89,11 +85,9 @@ public class OI {
 			return 0.0;
 		}
 		else {
-<<<<<<< Updated upstream
-			return Math.pow(joystickValue, 2) * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * -1; // Multiply by -1 reverses the direction
-=======
+
 			return Math.pow(joystickValue, 3) * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * -0.5; // Multiply by -1 reverses the direction
->>>>>>> Stashed changes
+
 		}	
 	}
 }

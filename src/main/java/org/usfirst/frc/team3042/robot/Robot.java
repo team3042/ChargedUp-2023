@@ -69,15 +69,11 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		// Start up the webcam and configure its resolution and framerate
-<<<<<<< Updated upstream
+
 		 camera1 = CameraServer.startAutomaticCapture(0);
 		 camera1.setResolution(320, 240);
 		 camera1.setFPS(15);
-=======
-		camera1 = CameraServer.startAutomaticCapture(0);
-		camera1.setResolution(320, 240);
-		camera1.setFPS(15);
->>>>>>> Stashed changes
+
 	}
 
 	/** disabledInit **********************************************************
