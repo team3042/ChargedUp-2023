@@ -73,7 +73,7 @@ public class OI {
 			return 0.0;
 		}
 		else {
-			return joystickValue * RobotMap.kPhysicalMaxSpeedMetersPerSecond * -1; // Multiply by -1 reverses the direction, 0.5 to reduce speed
+			return Math.pow(joystickValue, 2) * RobotMap.kPhysicalMaxSpeedMetersPerSecond * -1; // Multiply by -1 reverses the direction, 0.5 to reduce speed
 		}	
 	}
 	public double getZSpeed() {
@@ -83,7 +83,7 @@ public class OI {
 			return 0.0;
 		}
 		else {
-			return joystickValue * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * -1; // Multiply by -1 reverses the direction
+			return Math.pow(joystickValue, 2) * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * -1; // Multiply by -1 reverses the direction
 		}	
 	}
 }
