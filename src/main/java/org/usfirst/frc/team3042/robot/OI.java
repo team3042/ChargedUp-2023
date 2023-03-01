@@ -38,6 +38,8 @@ public class OI {
 		/* Drivetrain actions */
 		new Trigger(() -> driverController.getRawButton(RobotMap.RIGHT_BUMPER)).onTrue(new InstantCommand(Robot.drivetrain::zeroGyro, Robot.drivetrain)); // Zero the gyro, this is helpful at the start of a match for field-oriented driving
 		new Trigger(() -> driverController.getRawButton(RobotMap.X_BUTTON)).onTrue(new Drivetrain_XStance()); // Defensive X-stance command
+		
+		// new Trigger(() -> driverController.getRawButton(RobotMap.LEFT_BUMPER).onTrue
 
 		/* Gripper Actions */
         new Trigger(() -> gunnerController.getRawButton(RobotMap.LEFT_BUMPER)).onTrue(new InstantCommand(() -> Robot.gripper.toggle()));
@@ -63,7 +65,7 @@ public class OI {
 			return 0.0;
 		}
 		else {
-			return joystickValue * RobotMap.kPhysicalMaxSpeedMetersPerSecond * -1; // Multiply by -1 reverses the direction
+			return Math.pow(joystickValue, 3) * RobotMap.kPhysicalMaxSpeedMetersPerSecond * -0.5; // Multiply by -1 reverses the direction
 		}	
 	}
 	public double getYSpeed() {
@@ -73,7 +75,11 @@ public class OI {
 			return 0.0;
 		}
 		else {
+<<<<<<< Updated upstream
 			return Math.pow(joystickValue, 2) * RobotMap.kPhysicalMaxSpeedMetersPerSecond * -1; // Multiply by -1 reverses the direction, 0.5 to reduce speed
+=======
+			return Math.pow(joystickValue, 3) * RobotMap.kPhysicalMaxSpeedMetersPerSecond * -0.5; // Multiply by -1 reverses the direction, 0.5 to reduce speed
+>>>>>>> Stashed changes
 		}	
 	}
 	public double getZSpeed() {
@@ -83,7 +89,11 @@ public class OI {
 			return 0.0;
 		}
 		else {
+<<<<<<< Updated upstream
 			return Math.pow(joystickValue, 2) * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * -1; // Multiply by -1 reverses the direction
+=======
+			return Math.pow(joystickValue, 3) * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * -0.5; // Multiply by -1 reverses the direction
+>>>>>>> Stashed changes
 		}	
 	}
 }
