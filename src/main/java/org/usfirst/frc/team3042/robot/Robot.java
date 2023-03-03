@@ -134,6 +134,9 @@ public class Robot extends TimedRobot {
 	public void autonomousPeriodic() {
 		CommandScheduler.getInstance().run();
 
+		SmartDashboard.putNumber("Extension Encoder counts", arm.getExtendMotorPosition());
+		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
+
 		// Check if limit switches are pressed
 		if (!arm.ExtensionLimitSwitch.get()){ 
 			arm.resetExtendEncoder();
@@ -166,13 +169,15 @@ public class Robot extends TimedRobot {
 		// SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 		SmartDashboard.putNumber("Extension Encoder counts", arm.getExtendMotorPosition());
 		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
+		SmartDashboard.putBoolean("limit esxtension", arm.ExtensionLimitSwitch.get());
 
 		// You can uncomment the line below if you need to tune levelVoltage:
 		// arm.setVoltageRotationMotor(RobotMap.levelVoltage);
 
 		// Manual Control of the arm motors (leave these lines commented out unless you need them):
 		// Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
-		// Robot.arm.setPowertoExtend(-1 * OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
+		// Robot.arm.setPowertoExtend(-1 * OI.gunnerControlle
+		r.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
 
 		// Check if limit switches are pressed
 		if (!arm.ExtensionLimitSwitch.get()){ 

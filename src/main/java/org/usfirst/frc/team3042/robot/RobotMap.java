@@ -52,6 +52,10 @@ public class RobotMap {
 	public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
     public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = 107.0; // More negative turns wheel more to the left (counter-clockwise)
 
+	
+	public static final double JOYSTICK_DRIVE_SCALE = 0.8; // Determines the max driving speed of the robot
+	public static final double JOYSTICK_DRIVE_SCALE_LOW = 0.5; // Determines driving speed of the robot when in slow mode
+
 	/** Swerve Module Settings ************************************************/
 	public static final double kWheelDiameterMeters = Units.inchesToMeters(4); // Convert wheel diameter in inches to meters
 	public static final double kDriveMotorGearRatio = 1 / 6.75; // Gear Ratio of the Drive Motor
@@ -81,10 +85,10 @@ public class RobotMap {
 
 	/** Arm/Extension Positions */
 	// Intake from the floor // TODO: Adjust these values if needed
-	public static final double kIntakeArmPosition = 200; // measured in encoder counts
+	public static final double kIntakeArmPosition = 225; // measured in encoder counts
 	public static final double kIntakeExtendPosition = 0.44; // measured in % of extension
 	// Middle goal // TODO: Adjust these values if needed
-	public static final double kScoringArmPosition1 = 1100; // measured in encoder counts
+	public static final double kScoringArmPosition1 = 1050; // measured in encoder counts
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
 	// Upper goal // TODO: Adjust these values if needed
 	public static final double kScoringArmPosition2 = 1200; // measured in encoder counts
