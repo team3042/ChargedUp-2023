@@ -64,8 +64,8 @@ public class Robot extends TimedRobot {
 
 		// Autonomous Routines //
 		chooser.setDefaultOption("Default Auto", new AutonomousMode_Default());
-		chooser.addOption("Score Mid", new Score_And_Exit(RobotMap.kScoringArmPosition1,RobotMap.kScoringExtendPosition1));
-		chooser.addOption("Score High", new Score_And_Exit(RobotMap.kScoringArmPosition2,RobotMap.kScoringExtendPosition2)); // Example of how to add more autonomous routine choices
+		chooser.addOption("Score Mid", new Score_And_Exit(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
+		chooser.addOption("Score High", new Score_And_Exit(RobotMap.kHighArmPosCone,RobotMap.kScoringExtendPosition2)); // Example of how to add more autonomous routine choices
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		// Start up the webcam and configure its resolution and framerate
@@ -176,8 +176,7 @@ public class Robot extends TimedRobot {
 
 		// Manual Control of the arm motors (leave these lines commented out unless you need them):
 		// Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
-		// Robot.arm.setPowertoExtend(-1 * OI.gunnerControlle
-		r.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
+		// Robot.arm.setPowertoExtend(-1 * OI.gunnerController.getRawAxis(RobotMap.RIGHT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick
 
 		// Check if limit switches are pressed
 		if (!arm.ExtensionLimitSwitch.get()){ 

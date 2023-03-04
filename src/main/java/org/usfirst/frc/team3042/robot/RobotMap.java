@@ -4,6 +4,7 @@ import org.usfirst.frc.team3042.lib.Log;
 
 import edu.wpi.first.math.util.Units;
 
+
 /** RobotMap ******************************************************************
  * This is the robot configuration file. */
 public class RobotMap {	
@@ -53,7 +54,7 @@ public class RobotMap {
     public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = 107.0; // More negative turns wheel more to the left (counter-clockwise)
 
 	
-	public static final double JOYSTICK_DRIVE_SCALE = 0.8; // Determines the max driving speed of the robot
+	public static final double JOYSTICK_DRIVE_SCALE = 0.82; // Determines the max driving speed of the robot
 	public static final double JOYSTICK_DRIVE_SCALE_LOW = 0.5; // Determines driving speed of the robot when in slow mode
 
 	/** Swerve Module Settings ************************************************/
@@ -74,29 +75,33 @@ public class RobotMap {
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = false;
     public static final boolean extendMotorReversed = false;
-	public static final double rotationThreshold = 80; // TODO: This will probably need to be adjusted (via trial-and-error)
-	public static final double extensionThreshold = 80; // TODO: This might still need to be adjusted (via trial-and-error)
+	public static final double rotationThreshold = 50; // 
+	public static final double extensionThreshold = 80; //
 	public static final double rotation_kP = 0.003; // TODO: This needs to be tuned via trial-and-error
 	public static final double minimalPowerExtend = 0.5; //TODO: Tune 
 	public static final int maxArmLength = 15200; // Measured in encoder counts
-	public static final double levelVoltage = 0.35; 
+	public static final double levelVoltage = 0.35; //TODO: Tunwit his righ NOe!!
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
+	public static final double levelVoltageRetracted = 0.35; //TODO: TUne like right now
+	public static final double levelVoltageExtended = 0.35; //TODO: TUne like right now
 
 	/** Arm/Extension Positions */
-	// Intake from the floor // TODO: Adjust these values if needed
-	public static final double kIntakeArmPosition = 225; // measured in encoder counts
-	public static final double kIntakeExtendPosition = 0.44; // measured in % of extension
-	// Middle goal // TODO: Adjust these values if needed
-	public static final double kScoringArmPosition1 = 1050; // measured in encoder counts
+	// Intake from the floor // 
+	public static final double kIntakeArmPosition = 235; // measured in encoder counts
+	public static final double kIntakeExtendPosition = 0.41; // measured in % of extension
+	// Middle goal //
+	public static final double kMidArmPosCone = 1050; // measured in encoder counts
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
-	// Upper goal // TODO: Adjust these values if needed
-	public static final double kScoringArmPosition2 = 1200; // measured in encoder counts
+	public static final double kMidArmPosCube = 950;
+	// Upper goal
+	public static final double kHighArmPosCone = 1200; // measured in encoder counts
 	public static final double kScoringExtendPosition2 = 0.95; // measured in % of extension
-	// Intake from the shelf // TODO: Adjust these values if needed
+	public static final double kHighArmPosCube = 110;
+	// Intake from the shelf
 	public static final double kShelfIntakeArmPosition = 950; // measured in encoder counts
 	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension
-	// Driving around // TODO: Adjust these values if needed
+	// Driving around
 	public static final double kArmDrivePosition = 50; // measured in encoder counts
 	public static final double kExtendDrivePosition = 0.02; // measured in % of extension
 
@@ -146,4 +151,6 @@ public class RobotMap {
     public static final int RIGHT_TRIGGER_AXIS = 3;
     public static final int PREV_BUTTON = 7;
     public static final int START_BUTTON = 8;
+
+	
 }

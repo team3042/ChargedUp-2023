@@ -6,6 +6,8 @@ import org.usfirst.frc.team3042.robot.commands.Arm_SetExtend;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
 
+import edu.wpi.first.wpilibj2.command.button.POVButton;
+
 import edu.wpi.first.wpilibj.GenericHID;
 // import edu.wpi.first.wpilibj.Joystick; // flight joystick
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -53,9 +55,11 @@ public class OI {
 
 		/* Arm Actions */
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.A_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtendPosition));
-		new Trigger(() -> gunnerController.getRawButton(RobotMap.X_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kScoringArmPosition1, RobotMap.kScoringExtendPosition1));
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.X_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kMidArmPosCone, RobotMap.kScoringExtendPosition1));
+		new POVButton(gunnerController, 90).onTrue(new Arm_SetPosition(RobotMap.kMidArmPosCube,RobotMap.kScoringExtendPosition1));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.B_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePosition));
-		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kScoringArmPosition2, RobotMap.kScoringExtendPosition2));
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kHighArmPosCone, RobotMap.kScoringExtendPosition2));
+		new POVButton(gunnerController, 270).onTrue(new Arm_SetPosition(RobotMap.kHighArmPosCube,RobotMap.kScoringExtendPosition2));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.RIGHT_BUMPER)).onTrue(new Arm_SetPosition(RobotMap.kShelfIntakeArmPosition, RobotMap.kShelfIntakeExtendPosition));
 		// Temporary Testing Actions
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.START_BUTTON)).onTrue(new Arm_SetExtend(RobotMap.kScoringExtendPosition2));
