@@ -82,10 +82,8 @@ public class Drivetrain extends SubsystemBase {
 	public Drivetrain() {
 		log.add("Constructor", LOG_LEVEL);
 		zeroGyro();
-		
 	}
 
-	
 	/** Gyroscope Methods ******************************************************/
   	public void zeroGyro() { // Zeroes the heading of the robot
     	gyroscope.reset();
@@ -93,18 +91,20 @@ public class Drivetrain extends SubsystemBase {
 	public double getGyroAngle() { // Returns the heading of the robot
 		return Math.IEEEremainder(gyroscope.getAngle(), 360); // Force the value between -180 and 180
 	}
+	public double getRawGyroAngle() { // Returns the raw heading of the robot (NOT bound between -180 and 180)
+		return gyroscope.getAngle();
+	}
 
 	/** Odometry Methods *******************************************************/
 	public Rotation2d getRotation2d() {
 		return Rotation2d.fromDegrees(getGyroAngle());
 	}
 	public void resetOdometry(Pose2d pose) {
-		odometry.resetPosition(this.getRotation2d(), 
-								new SwerveModulePosition[] {frontLeft.getPosition(),
-															frontRight.getPosition(),
-															backLeft.getPosition(),
-															backRight.getPosition()}, 
-								pose);
+		odometry.resetPosition(this.getRotation2d(), new SwerveModulePosition[] {frontLeft.getPosition(),
+																				frontRight.getPosition(),
+																				backLeft.getPosition(),
+																				backRight.getPosition()}, 
+																				pose);
 	}
 	public Pose2d getPose() {
 		return odometry.getPoseMeters();
@@ -117,11 +117,10 @@ public class Drivetrain extends SubsystemBase {
 	public void periodic() {
 		SmartDashboard.putNumber("Gyro Angle", getGyroAngle()); // The current gyroscope angle
 		// This is for autonomous path-following
-		odometry.update(getRotation2d(),
-        				new SwerveModulePosition[] {frontLeft.getPosition(),
-													frontRight.getPosition(),
-													backLeft.getPosition(),
-													backRight.getPosition()});
+		odometry.update(getRotation2d(), new SwerveModulePosition[] {frontLeft.getPosition(),
+																	frontRight.getPosition(),
+																	backLeft.getPosition(),
+																	backRight.getPosition()});
 	}
 
 	// Stop all 4 swerve modules
