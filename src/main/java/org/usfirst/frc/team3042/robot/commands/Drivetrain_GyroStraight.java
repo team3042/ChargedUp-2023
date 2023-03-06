@@ -27,8 +27,8 @@ public class Drivetrain_GyroStraight extends CommandBase {
 	 * Required subsystems will cancel commands when this command is run */
 	public Drivetrain_GyroStraight(double distance, double xSpeed, double ySpeed) { // distance is measured in meters and speed is measured in meters per second
 		log.add("Constructor", Log.Level.TRACE);
-		forwardSpeed = xSpeed;
-		sideSpeed = ySpeed;
+		forwardSpeed = xSpeed; // Measured in meters per second
+		sideSpeed = ySpeed; // Measured in meters per second
 		
 		// convert distance to revolutions
 		goalDistance = distance / CIRCUMFRENCE;
@@ -55,9 +55,9 @@ public class Drivetrain_GyroStraight extends CommandBase {
 	public void execute() {
 		double error = goalAngle - drivetrain.getGyroAngle();
 		
-		double correction = kP * error;
+		double correction = kP * error; // correction will be measured in radians per second
 
-		// Prevent setting over 100% power to the motors
+		// We shouldn't need to rotate any faster than this
 		correction = Math.min(1, correction);
 		correction = Math.max(-1, correction);
 		
