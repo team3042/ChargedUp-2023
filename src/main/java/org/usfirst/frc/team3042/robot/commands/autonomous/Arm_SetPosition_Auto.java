@@ -49,7 +49,7 @@ public class Arm_SetPosition_Auto extends CommandBase {
     if (rotationPositionGoal != RobotMap.kArmDrivePosition || (rotationPositionGoal == RobotMap.kArmDrivePosition && extensionGoalReached)) {
 
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
-      double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle()); // We might need to also scale this based on how far extended the arm is
+      double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle()) * (RobotMap.levelVoltageRetracted * (1 - ((arm.getExtendMotorPosition()/RobotMap.maxArmLength) * 100)) + RobotMap.levelVoltageExtended * 1 * ((arm.getExtendMotorPosition()/RobotMap.maxArmLength) * 100)); // We might need to also scale this based on how far extended the arm is
       arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
 
     } else {

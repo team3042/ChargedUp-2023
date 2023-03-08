@@ -84,20 +84,20 @@ public class RobotMap {
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
 	public static final double levelVoltageRetracted = 0.35; //TODO: TUne like right now
-	public static final double levelVoltageExtended = 0.35; //TODO: TUne like right now
+	public static final double levelVoltageExtended = 0.45; //TODO: TUne like right now
 
 	/** Arm/Extension Positions */
 	// Intake from the floor // 
 	public static final double kIntakeArmPosition = 235; // measured in encoder counts
 	public static final double kIntakeExtendPosition = 0.41; // measured in % of extension
 	// Middle goal //
-	public static final double kMidArmPosCone = 1050; // measured in encoder counts
+	public static final double kMidArmPosCone = 1100; // measured in encoder counts
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
 	public static final double kMidArmPosCube = 950;
 	// Upper goal
 	public static final double kHighArmPosCone = 1200; // measured in encoder counts
 	public static final double kScoringExtendPosition2 = 0.95; // measured in % of extension
-	public static final double kHighArmPosCube = 110;
+	public static final double kHighArmPosCube = 1100;
 	// Intake from the shelf
 	public static final double kShelfIntakeArmPosition = 950; // measured in encoder counts
 	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension
