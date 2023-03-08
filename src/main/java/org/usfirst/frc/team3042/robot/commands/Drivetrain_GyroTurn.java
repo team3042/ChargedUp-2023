@@ -46,15 +46,13 @@ public class Drivetrain_GyroTurn extends CommandBase {
 	public void execute() {
 		error = goalAngle - drivetrain.getGyroAngle();
 		
-		double correction = kP * error;
+		double correction = kP * error; // correction will be measured in radians per second
 		
-		// Prevent setting over 100% power to the motors
+		// Set a maximum rotation speed
 		correction = Math.min(1, correction);
 		correction = Math.max(-1, correction);
 	
 		drivetrain.drive(0, 0, -1 * correction, false);		
-		
-		log.add("***** " + correction, Log.Level.DEBUG); // Debugging print statement
 	}
 	
 	/** isFinished ************************************************************	
