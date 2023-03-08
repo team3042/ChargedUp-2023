@@ -54,8 +54,8 @@ public class RobotMap {
     public static final double kBackRightDriveAbsoluteEncoderOffsetDegrees = 107.0; // More negative turns wheel more to the left (counter-clockwise)
 
 	
-	public static final double JOYSTICK_DRIVE_SCALE = 0.82; // Determines the max driving speed of the robot
-	public static final double JOYSTICK_DRIVE_SCALE_LOW = 0.5; // Determines driving speed of the robot when in slow mode
+	public static final double JOYSTICK_DRIVE_SCALE = 0.7; // Determines the max driving speed of the robot
+	public static final double JOYSTICK_DRIVE_SCALE_LOW = 0.2; // Determines driving speed of the robot when in slow mode
 
 	/** Swerve Module Settings ************************************************/
 	public static final double kWheelDiameterMeters = Units.inchesToMeters(4); // Convert wheel diameter in inches to meters

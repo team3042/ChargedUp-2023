@@ -100,38 +100,32 @@ public class OI {
 	 * A negative can be added to make pushing forward positive/negative. */
 	public double getXSpeed() {
 		double joystickValue = driverController.getRawAxis(1);
-		joystickValue = scaleJoyStick(joystickValue);
 		// double joystickValue = driverController.getRightY();
 		if (Math.abs(joystickValue) < 0.05) { // This is our deadband
 			return 0.0;
 		}
 		else {
-			return Math.pow(joystickValue, 3) * RobotMap.kPhysicalMaxSpeedMetersPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
+			return RobotMap.kPhysicalMaxSpeedMetersPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
 		}	
 	}
 	public double getYSpeed() {
 		// double joystickValue = joyRight.getX();
 		double joystickValue = driverController.getRawAxis(0);
-		joystickValue = scaleJoyStick(joystickValue);
 		if (Math.abs(joystickValue) < 0.05) { // This is our deadband
 			return 0.0;
 		}
 		else {
-			return Math.pow(joystickValue, 3) * RobotMap.kPhysicalMaxSpeedMetersPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction, 0.5 to reduce speed
-
+			return RobotMap.kPhysicalMaxSpeedMetersPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction, 0.5 to reduce speed
 		}	
 	}
 	public double getZSpeed() {
 		// double joystickValue = joyLeft.getX();
 		double joystickValue = driverController.getRawAxis(4);
-		joystickValue = scaleJoyStick(joystickValue);
 		if (Math.abs(joystickValue) < 0.05) { // This is our deadband
 			return 0.0;
 		}
 		else {
-
-			return Math.pow(joystickValue, 3) * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
-
+			return RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
 		}	
 	}
 } 
