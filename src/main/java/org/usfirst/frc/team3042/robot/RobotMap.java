@@ -106,7 +106,7 @@ public class RobotMap {
 	public static final double kExtendDrivePosition = 0.02; // measured in % of extension
 
 	/** Drivetrain Gyro Drive Settings ****************************************/
-	public static final double kP_GYRO = 0.005;
+	public static final double kP_GYRO = 0.07;
 	public static final double ANGLE_TOLERANCE = 2.0;
 	
 	/** USB ports *************************************************************/					

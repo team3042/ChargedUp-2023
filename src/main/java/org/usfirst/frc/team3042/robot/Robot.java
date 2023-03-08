@@ -170,6 +170,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Extension Encoder counts", arm.getExtendMotorPosition());
 		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
 		SmartDashboard.putBoolean("limit esxtension", arm.ExtensionLimitSwitch.get());
+		SmartDashboard.putNumber("gyroscope", drivetrain.getGyroAngle());
 
 		// You can uncomment the line below if you need to tune levelVoltage:
 		// arm.setVoltageRotationMotor(RobotMap.levelVoltage);

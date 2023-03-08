@@ -105,7 +105,7 @@ public class OI {
 			return 0.0;
 		}
 		else {
-			return RobotMap.kPhysicalMaxSpeedMetersPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
+			return joystickValue * RobotMap.kPhysicalMaxSpeedMetersPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
 		}	
 	}
 	public double getYSpeed() {
@@ -115,7 +115,7 @@ public class OI {
 			return 0.0;
 		}
 		else {
-			return RobotMap.kPhysicalMaxSpeedMetersPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction, 0.5 to reduce speed
+			return joystickValue * RobotMap.kPhysicalMaxSpeedMetersPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction, 0.5 to reduce speed
 		}	
 	}
 	public double getZSpeed() {
@@ -125,7 +125,7 @@ public class OI {
 			return 0.0;
 		}
 		else {
-			return RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
+			return joystickValue * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
 		}	
 	}
 } 

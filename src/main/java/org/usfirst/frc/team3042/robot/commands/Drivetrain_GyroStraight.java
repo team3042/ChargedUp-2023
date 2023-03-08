@@ -20,8 +20,7 @@ public class Drivetrain_GyroStraight extends CommandBase {
 	Drivetrain drivetrain = Robot.drivetrain;
 	Log log = new Log(LOG_LEVEL, SendableRegistry.getName(drivetrain));
 
-	double forwardSpeed, sideSpeed, goalAngle, goalDistance;
-	double frontLeftStart, frontRightStart, backLeftStart, backRightStart;
+	double forwardSpeed, sideSpeed, goalAngle, goalDistance, distance;
 	
 	/** Drivetrain Gyro Straight **********************************************
 	 * Required subsystems will cancel commands when this command is run */
@@ -29,9 +28,7 @@ public class Drivetrain_GyroStraight extends CommandBase {
 		log.add("Constructor", Log.Level.TRACE);
 		forwardSpeed = xSpeed; // Measured in meters per second
 		sideSpeed = ySpeed; // Measured in meters per second
-		
-		// convert distance to revolutions
-		goalDistance = distance / CIRCUMFRENCE;
+		this.distance = distance;
 
 		addRequirements(drivetrain);
 	}
@@ -42,12 +39,9 @@ public class Drivetrain_GyroStraight extends CommandBase {
 		log.add("Initialize", Log.Level.TRACE);
 		drivetrain.stopModules();
 		goalAngle = drivetrain.getGyroAngle();
-		
-		// Get the current/initial position of all the drive encoders
-		frontLeftStart = drivetrain.getFrontLeft().getDrivePosition();
-		frontRightStart = drivetrain.getFrontRight().getDrivePosition();
-		backLeftStart = drivetrain.getBackLeft().getDrivePosition();
-		backRightStart = drivetrain.getBackRight().getDrivePosition();
+
+		// convert distance to revolutions
+		goalDistance = (distance / CIRCUMFRENCE) + drivetrain.getFrontLeft().getDrivePosition();
 	}
 
 	/** execute ***************************************************************
@@ -56,20 +50,15 @@ public class Drivetrain_GyroStraight extends CommandBase {
 		double error = goalAngle - drivetrain.getGyroAngle();
 		
 		double correction = kP * error; // correction will be measured in radians per second
-
-		// We shouldn't need to rotate any faster than this
-		correction = Math.min(1, correction);
-		correction = Math.max(-1, correction);
 		
-		drivetrain.drive(forwardSpeed, sideSpeed, -1 * correction, false);
+		drivetrain.drive(forwardSpeed, sideSpeed, correction, false);
 	}
 	
 	/** isFinished ************************************************************	
 	 * Make this return true when this Command no longer needs to run execute() */
 	public boolean isFinished() {
 		boolean leftFrontGoalReached = Math.abs(drivetrain.getFrontLeft().getDrivePosition()) >= goalDistance;
-		boolean rightFrontGoalReached = Math.abs(drivetrain.getFrontRight().getDrivePosition()) >= goalDistance;
-		return leftFrontGoalReached || rightFrontGoalReached;
+		return leftFrontGoalReached;
 	}
 
 	// Called once the command ends or is interrupted.
