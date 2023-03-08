@@ -28,10 +28,7 @@ public class Arm_SetPosition extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    if (rotationPositionGoal >= RobotMap.kHighArmPosCone){
-      
-    }
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
