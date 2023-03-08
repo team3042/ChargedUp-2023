@@ -2,7 +2,6 @@ package org.usfirst.frc.team3042.robot;
 
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.Arm_Brownout_Reset;
-import org.usfirst.frc.team3042.robot.commands.Arm_SetExtend;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
 
@@ -66,24 +65,15 @@ public class OI {
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.PREV_BUTTON)).onTrue(new Arm_Brownout_Reset());
 	}
 
-	/** SlowMode scaling ************************************************* */
-
-	public double scaleJoyStick(double joystickValue){
-
-		joystickValue *= CURRENT_DRIVE_SCALE;
-		return joystickValue;
-	}
-
+	/** SlowMode Scaling Methods ************************************************* */
 	public void setNormalScale() {
 		CURRENT_DRIVE_SCALE = JOYSTICK_DRIVE_SCALE;
 		isLowScale = false;
 	}
-
 	public void setLowScale(){
 		CURRENT_DRIVE_SCALE = JOYSTICK_DRIVE_SCALE_LOW;
 		isLowScale = true;
 	}
-
 	public void toggleScale() {
 
 		if (isLowScale){
@@ -100,7 +90,7 @@ public class OI {
 	 * A negative can be added to make pushing forward positive/negative. */
 	public double getXSpeed() {
 		double joystickValue = driverController.getRawAxis(1);
-		// double joystickValue = driverController.getRightY();
+		// double joystickValue = driverController.getRightY(); // this would be for a flight joystick
 		if (Math.abs(joystickValue) < 0.05) { // This is our deadband
 			return 0.0;
 		}
@@ -109,7 +99,7 @@ public class OI {
 		}	
 	}
 	public double getYSpeed() {
-		// double joystickValue = joyRight.getX();
+		// double joystickValue = joyRight.getX(); // this would be for a flight joystick
 		double joystickValue = driverController.getRawAxis(0);
 		if (Math.abs(joystickValue) < 0.05) { // This is our deadband
 			return 0.0;
@@ -119,7 +109,7 @@ public class OI {
 		}	
 	}
 	public double getZSpeed() {
-		// double joystickValue = joyLeft.getX();
+		// double joystickValue = joyLeft.getX(); // this would be for a flight joystick
 		double joystickValue = driverController.getRawAxis(4);
 		if (Math.abs(joystickValue) < 0.05) { // This is our deadband
 			return 0.0;
