@@ -60,7 +60,6 @@ public class OI {
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kHighArmPosCone, RobotMap.kScoringExtendPosition2));
 		new POVButton(gunnerController, 270).onTrue(new Arm_SetPosition(RobotMap.kHighArmPosCube,RobotMap.kScoringExtendPosition2));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.RIGHT_BUMPER)).onTrue(new Arm_SetPosition(RobotMap.kShelfIntakeArmPosition, RobotMap.kShelfIntakeExtendPosition));
-		// Temporary Testing Actions
 
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.PREV_BUTTON)).onTrue(new Arm_Brownout_Reset());
 	}
