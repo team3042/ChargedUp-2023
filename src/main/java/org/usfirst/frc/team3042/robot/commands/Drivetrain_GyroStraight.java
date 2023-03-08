@@ -38,7 +38,7 @@ public class Drivetrain_GyroStraight extends CommandBase {
 	public void initialize() {
 		log.add("Initialize", Log.Level.TRACE);
 		drivetrain.stopModules();
-		goalAngle = drivetrain.getGyroAngle();
+		goalAngle = drivetrain.getRawGyroAngle();
 
 		// convert distance to revolutions
 		goalDistance = (distance / CIRCUMFRENCE) + drivetrain.getFrontLeft().getDrivePosition();
@@ -47,7 +47,7 @@ public class Drivetrain_GyroStraight extends CommandBase {
 	/** execute ***************************************************************
 	 * Called repeatedly when this Command is scheduled to run */
 	public void execute() {
-		double error = goalAngle - drivetrain.getGyroAngle();
+		double error = goalAngle - drivetrain.getRawGyroAngle();
 		
 		double correction = kP * error; // correction will be measured in radians per second
 		
