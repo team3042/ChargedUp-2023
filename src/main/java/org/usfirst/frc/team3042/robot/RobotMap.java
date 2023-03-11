@@ -97,8 +97,8 @@ public class RobotMap {
 	public static final double kHighArmPosCone = 1020; // measured in encoder counts
 	public static final double kScoringExtendPosition2 = 0.95; // measured in % of extension
 	// Intake from the shelf
-	public static final double kShelfIntakeArmPosition = 950; // measured in encoder counts
-	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension
+	public static final double kShelfIntakeArmPosition = 880; // measured in encoder counts
+	public static final double kShelfIntakeExtendPosition = 0.20; // measured in % of extension
 	// Driving around
 	public static final double kArmDrivePosition = 50; // measured in encoder counts
 	public static final double kExtendDrivePosition = 0.02; // measured in % of extension
