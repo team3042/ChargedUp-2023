@@ -55,10 +55,8 @@ public class OI {
 		/* Arm Actions */
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.A_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kIntakeArmPosition, RobotMap.kIntakeExtendPosition));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.X_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kMidArmPosCone, RobotMap.kScoringExtendPosition1));
-		new POVButton(gunnerController, 90).onTrue(new Arm_SetPosition(RobotMap.kMidArmPosCube,RobotMap.kScoringExtendPosition1));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.B_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePosition));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kHighArmPosCone, RobotMap.kScoringExtendPosition2));
-		new POVButton(gunnerController, 270).onTrue(new Arm_SetPosition(RobotMap.kHighArmPosCube,RobotMap.kScoringExtendPosition2));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.RIGHT_BUMPER)).onTrue(new Arm_SetPosition(RobotMap.kShelfIntakeArmPosition, RobotMap.kShelfIntakeExtendPosition));
 
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.PREV_BUTTON)).onTrue(new Arm_Brownout_Reset());

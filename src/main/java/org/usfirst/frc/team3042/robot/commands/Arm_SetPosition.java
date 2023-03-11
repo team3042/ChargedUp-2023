@@ -45,16 +45,12 @@ public class Arm_SetPosition extends CommandBase {
     // Rotation threshold determines how far from the drive position we should be to wait for the arm before moving the extension
     boolean inDrivePosition = Math.abs(arm.getRotationMotorPosition() - RobotMap.kArmDrivePosition) <= RobotMap.rotationThreshold;
 
-    // When going to the intake position, we will wait for the extension to move first before rotating the arm
-    if (rotationPositionGoal != RobotMap.kArmDrivePosition || (rotationPositionGoal == RobotMap.kArmDrivePosition && extensionGoalReached)) {
-
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
       double minimalVoltage =(RobotMap.levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + RobotMap.levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
-      arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
-
-    } else {
-      arm.stopRotationMotor();
-    }
+      double rotationVoltage = minimalVoltage + (rotationError * RobotMap.rotation_kP);
+      rotationVoltage = Math.min(8, rotationVoltage);
+      rotationVoltage = Math.max(-1, rotationVoltage);
+      arm.setVoltageRotationMotor(rotationVoltage); 
     
     // We are only going to move the extension if the arm is NOT in the intake position
     if (!inDrivePosition) {
@@ -62,6 +58,11 @@ public class Arm_SetPosition extends CommandBase {
       // THIS BLOCK OF CODE BELOW MOVES THE EXTENSION //
       if (!extensionGoalReached) {
         extensionPower = extensionError * RobotMap.extension_kP;
+        extensionPower = Math.min(0.8, extensionPower);
+        extensionPower = Math.max(-0.8, extensionPower);
+        
+        extensionPower = Math.copySign(Math.max(Math.abs(extensionPower), 0.2), extensionError);
+
         arm.setPowertoExtend(extensionPower);
       } else {
         arm.stopExtendMotor();
