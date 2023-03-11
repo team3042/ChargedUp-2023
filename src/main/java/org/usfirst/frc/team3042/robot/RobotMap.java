@@ -77,27 +77,27 @@ public class RobotMap {
     public static final boolean extendMotorReversed = false;
 	public static final double rotationThreshold = 50; // 
 	public static final double extensionThreshold = 80; //
-	public static final double rotation_kP = 0.003; // TODO: This needs to be tuned via trial-and-error
-	public static final double minimalPowerExtend = 0.5; //TODO: Tune 
+	public static final double rotation_kP = 0.007; // TODO: This needs to be tuned via trial-and-error
+	public static final double extension_kP = 0.00015;
 	public static final int maxArmLength = 15200; // Measured in encoder counts
-	public static final double levelVoltage = 0.35; //TODO: Tunwit his righ NOe!!
+	public static final double levelVoltage = 0.35;
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
-	public static final double levelVoltageRetracted = 0.35; //TODO: TUne like right now
-	public static final double levelVoltageExtended = 0.45; //TODO: TUne like right now
+	public static final double levelVoltageRetracted = 0.35;
+	public static final double levelVoltageExtended = 0.65;
 
 	/** Arm/Extension Positions */
 	// Intake from the floor // 
 	public static final double kIntakeArmPosition = 235; // measured in encoder counts
 	public static final double kIntakeExtendPosition = 0.41; // measured in % of extension
 	// Middle goal //
-	public static final double kMidArmPosCone = 1100; // measured in encoder counts
+	public static final double kMidArmPosCone = 800; // measured in encoder counts
 	public static final double kScoringExtendPosition1 = 0.42; // measured in % of extension
 	public static final double kMidArmPosCube = 950;
 	// Upper goal
-	public static final double kHighArmPosCone = 1200; // measured in encoder counts
+	public static final double kHighArmPosCone = 1000; // measured in encoder counts
 	public static final double kScoringExtendPosition2 = 0.95; // measured in % of extension
-	public static final double kHighArmPosCube = 1100;
+	public static final double kHighArmPosCube = 1000;
 	// Intake from the shelf
 	public static final double kShelfIntakeArmPosition = 950; // measured in encoder counts
 	public static final double kShelfIntakeExtendPosition = 0.33; // measured in % of extension
@@ -137,8 +137,8 @@ public class RobotMap {
 	// Controller Input Axes //
     public static final int DRIVER_XBOX_USB_PORT = 0; // USB port that the controller is plugged in to
 	public static final int GUNNER_XBOX_USB_PORT = 1; // USB port that the controller is plugged in to
-    public static final int RIGHT_VERTICAL_JOYSTICK_AXIS = 5;
-    public static final int RIGHT_HORIZONTAL_JOYSTICK_AXIS = 4;
+    public static final int RIGHT_VERTICAL_JOYSTICK_AXIS = 4;
+    public static final int RIGHT_HORIZONTAL_JOYSTICK_AXIS = 3;
     public static final int LEFT_VERTICAL_JOYSTICK_AXIS = 1;
     public static final int LEFT_HORIZONTAL_JOYSTICK_AXIS = 0;
     public static final int X_BUTTON = 3;

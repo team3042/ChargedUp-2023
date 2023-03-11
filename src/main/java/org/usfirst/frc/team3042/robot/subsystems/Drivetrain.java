@@ -168,4 +168,8 @@ public class Drivetrain extends SubsystemBase {
 	public SwerveModule getBackRight() {
 		return backRight;
 	}
+
+	public double pitchAngle(){
+		return 0;
+	}
 }

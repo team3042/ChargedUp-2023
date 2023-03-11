@@ -8,6 +8,7 @@ import org.usfirst.frc.team3042.robot.Robot;
 import org.usfirst.frc.team3042.robot.RobotMap;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Arm_SetPosition extends CommandBase {
@@ -15,6 +16,8 @@ public class Arm_SetPosition extends CommandBase {
 
   public double rotationPositionGoal;
   public double extensionPositionGoal;
+  public double rotationError;
+  double extensionPower;
 
   /** Creates a new Arm_SetPosition command. */
   public Arm_SetPosition(double rotationGoal, double extensionPercent) { // rotationGoal is measured in encoder counts
@@ -34,7 +37,8 @@ public class Arm_SetPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rotationError = rotationPositionGoal - arm.getRotationMotorPosition();
+
+    rotationError = rotationPositionGoal - arm.getRotationMotorPosition();
     double extensionError = extensionPositionGoal - arm.getExtendMotorPosition();
 
     boolean extensionGoalReached = (Math.abs(extensionError) <= RobotMap.extensionThreshold);
@@ -45,7 +49,7 @@ public class Arm_SetPosition extends CommandBase {
     if (rotationPositionGoal != RobotMap.kArmDrivePosition || (rotationPositionGoal == RobotMap.kArmDrivePosition && extensionGoalReached)) {
 
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
-      double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle()); // TODO: Replace this line with: double minimalVoltage = Math.sin(arm.getArmAngle()) * (levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
+      double minimalVoltage =(RobotMap.levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + RobotMap.levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
       arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
 
     } else {
@@ -57,8 +61,8 @@ public class Arm_SetPosition extends CommandBase {
 
       // THIS BLOCK OF CODE BELOW MOVES THE EXTENSION //
       if (!extensionGoalReached) {
-        arm.setPowertoExtend(Math.copySign(0.4, extensionError)); // Increase the percent power if you want to make the extension move faster
-        // At some point we will want to use PID control instead: (extensionError * extension_kP) instead of (Math.copySign(0.2, extensionError))
+        extensionPower = extensionError * RobotMap.extension_kP;
+        arm.setPowertoExtend(extensionPower);
       } else {
         arm.stopExtendMotor();
       }
@@ -66,6 +70,9 @@ public class Arm_SetPosition extends CommandBase {
     } else {
       arm.stopExtendMotor();
     }
+
+    SmartDashboard.putNumber("extensionError", extensionError);
+    SmartDashboard.putNumber("extensionPower", extensionPower);
   }
 
   // Called once the command ends or is interrupted.
