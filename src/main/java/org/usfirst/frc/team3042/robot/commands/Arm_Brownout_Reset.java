@@ -10,17 +10,15 @@ import org.usfirst.frc.team3042.robot.subsystems.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-// NOTE: This command sets ONLY the extension position
+// Slowly moves both the rotation and extension until they hit the limit switches
 
 public class Arm_Brownout_Reset extends CommandBase {
   Arm arm = Robot.arm;
-
 
   /** Creates a new Arm_SetPosition command. */
   public Arm_Brownout_Reset() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm); // cancel all other arm commands when this runs
-
   }
 
   // Called when the command is initially scheduled.
@@ -31,22 +29,17 @@ public class Arm_Brownout_Reset extends CommandBase {
   @Override
   public void execute() {
     
-
     if(arm.ExtensionLimitSwitch.get()) {
-
       arm.setPowertoExtend(-0.5);
     }else{
-
       arm.setPowertoExtend(0);
     }
 
     if(!arm.ExtensionLimitSwitch.get() && arm.RotationLimitSwitch.get()) {
-
-      arm.setVoltageRotationMotor(-1 + (RobotMap.levelVoltage * Math.sin(arm.getArmAngle())));
+      arm.setVoltageRotationMotor(-1 + (RobotMap.levelVoltageRetracted * Math.sin(arm.getArmAngle())));
     }else{
       arm.setPowerToRotation(0);
     }
-
   }
 
   // Called once the command ends or is interrupted.
@@ -60,7 +53,6 @@ public class Arm_Brownout_Reset extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
-      return (!arm.ExtensionLimitSwitch.get() && !arm.RotationLimitSwitch.get());
+    return (!arm.ExtensionLimitSwitch.get() && !arm.RotationLimitSwitch.get());
   }
 }

@@ -75,12 +75,11 @@ public class RobotMap {
 	/** Arm Subsystem Settings */
 	public static final boolean rotationMotorReversed = false;
     public static final boolean extendMotorReversed = false;
-	public static final double rotationThreshold = 50; // 
-	public static final double extensionThreshold = 80; //
-	public static final double rotation_kP = 0.008; // TODO: This needs to be tuned via trial-and-error
+	public static final double rotationThreshold = 50;
+	public static final double extensionThreshold = 80;
+	public static final double rotation_kP = 0.008;
 	public static final double extension_kP = 0.0003;
 	public static final int maxArmLength = 15200; // Measured in encoder counts
-	public static final double levelVoltage = 0.35;
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
 	public static final double levelVoltageRetracted = 0.35;
