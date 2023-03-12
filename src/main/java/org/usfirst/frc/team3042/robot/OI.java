@@ -5,8 +5,6 @@ import org.usfirst.frc.team3042.robot.commands.Arm_Brownout_Reset;
 import org.usfirst.frc.team3042.robot.commands.Arm_SetPosition;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
 
-import edu.wpi.first.wpilibj2.command.button.POVButton;
-
 import edu.wpi.first.wpilibj.GenericHID;
 // import edu.wpi.first.wpilibj.Joystick; // flight joystick
 import edu.wpi.first.wpilibj2.command.InstantCommand;
