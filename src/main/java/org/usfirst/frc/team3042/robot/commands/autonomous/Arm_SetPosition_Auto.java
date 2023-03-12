@@ -17,8 +17,10 @@ public class Arm_SetPosition_Auto extends CommandBase {
   public double extensionPositionGoal;
   boolean extensionGoalReached;
   boolean rotationGoalReached;
+  public double rotationError;
+  double extensionPower;
 
-  /** Creates a new Arm_SetPosition command. */
+  /** Creates a new Arm_SetPosition_Auto command. */
   public Arm_SetPosition_Auto(double rotationGoal, double extensionPercent) { // rotationGoal is measured in encoder counts
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm);
@@ -37,7 +39,7 @@ public class Arm_SetPosition_Auto extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rotationError = rotationPositionGoal - arm.getRotationMotorPosition();
+    rotationError = rotationPositionGoal - arm.getRotationMotorPosition();
     double extensionError = extensionPositionGoal - arm.getExtendMotorPosition();
 
     extensionGoalReached = (Math.abs(extensionError) <= RobotMap.extensionThreshold);
@@ -45,24 +47,25 @@ public class Arm_SetPosition_Auto extends CommandBase {
     // Rotation threshold determines how far from the drive position we should be to wait for the arm before moving the extension
     boolean inDrivePosition = Math.abs(arm.getRotationMotorPosition() - RobotMap.kArmDrivePosition) <= RobotMap.rotationThreshold;
 
-    // When going to the intake position, we will wait for the extension to move first before rotating the arm
-    if (rotationPositionGoal != RobotMap.kArmDrivePosition || (rotationPositionGoal == RobotMap.kArmDrivePosition && extensionGoalReached)) {
-
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
-      double minimalVoltage = RobotMap.levelVoltage * Math.sin(arm.getArmAngle()); // TODO: Replace this line with: double minimalVoltage = Math.sin(arm.getArmAngle()) * (levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
-      arm.setVoltageRotationMotor(minimalVoltage + (rotationError * RobotMap.rotation_kP)); 
-
-    } else {
-      arm.stopRotationMotor();;
-    }
+      double minimalVoltage =(RobotMap.levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + RobotMap.levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
+      double rotationVoltage = minimalVoltage + (rotationError * RobotMap.rotation_kP);
+      rotationVoltage = Math.min(8, rotationVoltage);
+      rotationVoltage = Math.max(-1, rotationVoltage);
+      arm.setVoltageRotationMotor(rotationVoltage); 
     
     // We are only going to move the extension if the arm is NOT in the intake position
     if (!inDrivePosition) {
 
       // THIS BLOCK OF CODE BELOW MOVES THE EXTENSION //
       if (!extensionGoalReached) {
-        arm.setPowertoExtend(Math.copySign(0.4, extensionError)); // Increase the percent power if you want to make the extension move faster
-        // At some point we will want to use PID control instead: (extensionError * extension_kP) instead of (Math.copySign(0.2, extensionError))
+        extensionPower = extensionError * RobotMap.extension_kP;
+        extensionPower = Math.min(0.8, extensionPower);
+        extensionPower = Math.max(-0.8, extensionPower);
+        
+        extensionPower = Math.copySign(Math.max(Math.abs(extensionPower), 0.2), extensionError);
+
+        arm.setPowertoExtend(extensionPower);
       } else {
         arm.stopExtendMotor();
       }
@@ -77,7 +80,8 @@ public class Arm_SetPosition_Auto extends CommandBase {
   public void end(boolean interrupted) {
     // Stop the motors if the command is interrupted
     arm.stopExtendMotor();
-    arm.setVoltageRotationMotor(RobotMap.levelVoltage * Math.sin(arm.getArmAngle()));
+    double minimalVoltage =(RobotMap.levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + RobotMap.levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
+    arm.setVoltageRotationMotor(minimalVoltage);
   }
 
   // Returns true when the command should end.
