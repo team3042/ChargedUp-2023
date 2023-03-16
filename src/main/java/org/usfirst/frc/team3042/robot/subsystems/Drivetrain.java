@@ -3,7 +3,9 @@ package org.usfirst.frc.team3042.robot.subsystems;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -68,7 +70,7 @@ public class Drivetrain extends SubsystemBase {
 	/** Instance Variables ****************************************************/
 	Log log = new Log(LOG_LEVEL, SendableRegistry.getName(this));
 
-	ADIS16470_IMU gyroscope = new ADIS16470_IMU(); // The gyroscope sensor on the robot
+	AHRS gyroscope = new AHRS(SPI.Port.kMXP); // The gyroscope sensor on the robot
 
 	// This is for autonomous path-following
 	private final SwerveDriveOdometry odometry = new SwerveDriveOdometry(kDriveKinematics, 
@@ -89,10 +91,10 @@ public class Drivetrain extends SubsystemBase {
     	gyroscope.reset();
 	}
 	public double getGyroAngle() { // Returns the heading of the robot
-		return Math.IEEEremainder(gyroscope.getAngle(), 360); // Force the value between -180 and 180
+		return Math.IEEEremainder(getRawGyroAngle(), 360); // Force the value between -180 and 180
 	}
 	public double getRawGyroAngle() { // Returns the raw heading of the robot (NOT bound between -180 and 180)
-		return gyroscope.getAngle();
+		return -gyroscope.getAngle();
 	}
 
 	/** Odometry Methods *******************************************************/
@@ -115,7 +117,7 @@ public class Drivetrain extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		SmartDashboard.putNumber("Gyro Angle", getGyroAngle()); // The current gyroscope angle
+		SmartDashboard.putNumber("Gyro Angle", pitchAngle()); // The current gyroscope angle
 		// This is for autonomous path-following
 		odometry.update(getRotation2d(), new SwerveModulePosition[] {frontLeft.getPosition(),
 																	frontRight.getPosition(),
@@ -170,6 +172,6 @@ public class Drivetrain extends SubsystemBase {
 	}
 
 	public double pitchAngle(){
-		return 0;
+		return gyroscope.getPitch();
 	}
 }

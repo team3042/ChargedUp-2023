@@ -8,6 +8,7 @@ import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 import org.usfirst.frc.team3042.lib.Log;
 import org.usfirst.frc.team3042.robot.commands.DriveCommand;
 import org.usfirst.frc.team3042.robot.commands.autonomous.AutonomousMode_Default;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Balance_On_Station;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Score_And_Balance;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Score_And_Exit;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
@@ -26,6 +27,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera; // Uncomment if you want to use a USB webcam
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
+
 
 /** Robot *********************************************************************
  * The VM is configured to automatically run this class, and to call the
@@ -69,6 +71,7 @@ public class Robot extends TimedRobot {
 		chooser.addOption("Score High", new Score_And_Exit(RobotMap.kHighArmPosCone,RobotMap.kScoringExtendPosition2));
 		chooser.addOption("Score Mid + Balance", new Score_And_Balance(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
 		chooser.addOption("Score High + Balance", new Score_And_Balance(RobotMap.kHighArmPosCone,RobotMap.kScoringExtendPosition2));
+		chooser.addOption("Balance", new Balance_On_Station());
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		// Start up the webcam and configure its resolution and framerate
@@ -122,6 +125,7 @@ public class Robot extends TimedRobot {
 	/** autonomousInit ********************************************************
 	 * Runs once at the start of autonomous mode. */
 	public void autonomousInit() {
+
 		log.add("Autonomous Init", Log.Level.TRACE);
 
 		autonomousCommand = chooser.getSelected();
@@ -139,6 +143,13 @@ public class Robot extends TimedRobot {
 
 		SmartDashboard.putNumber("Extension Encoder counts", arm.getExtendMotorPosition());
 		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
+
+		
+		       
+        SmartDashboard.putString("BackLeft State", drivetrain.getBackLeft().getState().toString());
+		SmartDashboard.putString("FrontLeft State", drivetrain.getFrontLeft().getState().toString());
+		SmartDashboard.putString("BackRight State", drivetrain.getBackRight().getState().toString());
+		SmartDashboard.putString("FrontRight State", drivetrain.getFrontRight().getState().toString());
 
 		// Check if limit switches are pressed
 		if (!arm.ExtensionLimitSwitch.get()){ 
@@ -173,7 +184,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Extension Encoder counts", arm.getExtendMotorPosition());
 		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
 		SmartDashboard.putBoolean("limit esxtension", arm.ExtensionLimitSwitch.get());
-		SmartDashboard.putNumber("gyroscope", drivetrain.getGyroAngle());
+		SmartDashboard.putNumber("gyroscope", drivetrain.getRawGyroAngle());
 
 		// You can uncomment the line below if you need to tune levelVoltage:
 		// arm.setVoltageRotationMotor(RobotMap.levelVoltage);

@@ -87,6 +87,6 @@ public class Arm_SetPosition_Auto extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return extensionGoalReached || rotationGoalReached; // It's going to end now
+    return extensionGoalReached && rotationGoalReached; // It's going to end now
   }
-}
+} 
