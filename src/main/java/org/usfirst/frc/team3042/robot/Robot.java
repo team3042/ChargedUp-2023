@@ -47,12 +47,11 @@ public class Robot extends TimedRobot {
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final Gripper gripper = new Gripper();
 	public static final Arm arm = new Arm();
+	public static final Limelight limelight = new Limelight();
 
 	public static final PowerDistribution pdh = new PowerDistribution();
 
-	public static final OI oi = new OI();
-
-	public static final Limelight limelight = new Limelight();
+	public static final OI oi = new OI(); // ALL SUBSYSTEMS MUST BE INSTANTIATED BEFORE THIS LINE!
 	
 	CommandBase autonomousCommand;
 	SendableChooser<CommandBase> chooser = new SendableChooser<CommandBase>();
