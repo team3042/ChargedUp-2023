@@ -48,8 +48,8 @@ public class Arm_SetPosition extends CommandBase {
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
       double minimalVoltage =(RobotMap.levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + RobotMap.levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
       double rotationVoltage = minimalVoltage + (rotationError * RobotMap.rotation_kP);
-      rotationVoltage = Math.min(8, rotationVoltage);
-      rotationVoltage = Math.max(-1, rotationVoltage);
+      rotationVoltage = Math.min(6, rotationVoltage);
+      rotationVoltage = Math.max(-2, rotationVoltage);
       arm.setVoltageRotationMotor(rotationVoltage); 
     
     // We are only going to move the extension if the arm is NOT in the intake position

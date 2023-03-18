@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 public class Score_And_Balance extends SequentialCommandGroup {
 
   public Score_And_Balance(double rotationGoal, double extensionGoal) {
-    // ParallelCommandGroup balance = new ParallelCommandGroup(new Balance_On_Station(), new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePosition));
-    SequentialCommandGroup score = new SequentialCommandGroup (new InstantCommand(() -> Robot.gripper.extend()), new Wait(1));
-    SequentialCommandGroup scoreAndBalance = new SequentialCommandGroup(score, new Drive_Balance());
+    ParallelCommandGroup balance = new ParallelCommandGroup( new Drive_Balance(), new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePosition));
+    SequentialCommandGroup score = new SequentialCommandGroup (new InstantCommand(() -> Robot.gripper.extend()), new Wait(1), new Arm_SetPosition_Auto(rotationGoal, RobotMap.kExtendDrivePosition));
+    SequentialCommandGroup scoreAndBalance = new SequentialCommandGroup(score, balance);
 
     addCommands(new InstantCommand(() -> Robot.gripper.retract()));
     addCommands(new Wait(1));

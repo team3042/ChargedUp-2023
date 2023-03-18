@@ -82,8 +82,8 @@ public class RobotMap {
 	public static final int maxArmLength = 15200; // Measured in encoder counts
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
-	public static final double levelVoltageRetracted = 0.35;
-	public static final double levelVoltageExtended = 0.65;
+	public static final double levelVoltageRetracted = 0.3115; //TODO: tune 
+	public static final double levelVoltageExtended = 0.5; //TODO: tune 
 
 	/** Arm/Extension Positions */
 	// Intake from the floor // 
@@ -130,6 +130,7 @@ public class RobotMap {
 	
 	/** Subsystem Log Levels **************************************************/
 	public static final Log.Level	LOG_DRIVETRAIN						= Log.Level.TRACE;
+	public static final Log.Level   LOG_LIMELIGHT 						= Log.Level.DEBUG;
  
 	// Controller Input Axes //
     public static final int DRIVER_XBOX_USB_PORT = 0; // USB port that the controller is plugged in to

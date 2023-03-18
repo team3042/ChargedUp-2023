@@ -14,6 +14,7 @@ import org.usfirst.frc.team3042.robot.commands.autonomous.Score_And_Exit;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3042.robot.subsystems.Gripper;
+import org.usfirst.frc.team3042.robot.subsystems.Limelight;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -50,6 +51,8 @@ public class Robot extends TimedRobot {
 	public static final PowerDistribution pdh = new PowerDistribution();
 
 	public static final OI oi = new OI();
+
+	public static final Limelight limelight = new Limelight();
 	
 	CommandBase autonomousCommand;
 	SendableChooser<CommandBase> chooser = new SendableChooser<CommandBase>();
@@ -124,9 +127,10 @@ public class Robot extends TimedRobot {
 
 	/** autonomousInit ********************************************************
 	 * Runs once at the start of autonomous mode. */
-	public void autonomousInit() {
-
+	public void autonomousInit(){
 		log.add("Autonomous Init", Log.Level.TRACE);
+		
+		limelight.pipeline.setNumber(0);
 
 		autonomousCommand = chooser.getSelected();
 		
@@ -134,6 +138,8 @@ public class Robot extends TimedRobot {
 		if (autonomousCommand != null) {
 			autonomousCommand.schedule();
 		}
+
+
 	}
 
 	/** autonomousPeriodic ****************************************************
@@ -158,12 +164,18 @@ public class Robot extends TimedRobot {
 		if (!arm.RotationLimitSwitch.get()){ 
 			arm.resetRotationEncoder();
 		}
+
+
 	}
 	
 	/** teleopInit ************************************************************
 	 * This function is called when first entering teleop mode. */
 	public void teleopInit() {
+
+		
 		log.add("Teleop Init", Log.Level.TRACE);
+		
+		limelight.pipeline.setNumber(0);
 
 		// This makes sure that the autonomous command stops running when teleop starts. 
 		//If you want the autonomous command to continue until interrupted by another command, remove this line or comment it out.
@@ -187,7 +199,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("gyroscope", drivetrain.getRawGyroAngle());
 
 		// You can uncomment the line below if you need to tune levelVoltage:
-		// arm.setVoltageRotationMotor(RobotMap.levelVoltage);
+		// arm.setVoltageRotationMotor(RobotMap.levelVoltageExtended);
 
 		// Manual Control of the arm motors (leave these lines commented out unless you need them):
 		// Robot.arm.setPowerToRotation(OI.gunnerController.getRawAxis(RobotMap.LEFT_VERTICAL_JOYSTICK_AXIS)); // Multiply by -1 to invert joystick

@@ -37,20 +37,18 @@ public class Balance_On_Station extends CommandBase {
 
 		// System.out.println(moving_fast);
 
-    if(moving_fast == true && drivetrain.pitchAngle() <= -1) {
+    if(moving_fast == true && drivetrain.pitchAngle() <= -8) {
 
       System.out.println("in if");
       moving_fast = false;
-      drivetrain.stopModules();
-      drivetrain.drive(-0.3,0,0,false); // Drive forward slowly with the drive() method
 
-    } else if(drivetrain.pitchAngle() >= 1) {
+    }
+    
+    if(moving_fast == false) {
 
-      overshot = true;
-      moving_fast = false;
-      drivetrain.drive(0.3,0,0,false); 
+      drivetrain.drive(-0.3,0,0,false); 
 
-    } else {
+    } else if (moving_fast == true){
 
       drivetrain.drive(-1, 0, 0, false); // Move forward fast using the drive() method
     }
@@ -67,6 +65,6 @@ public class Balance_On_Station extends CommandBase {
   @Override
   public boolean isFinished() {
     // If we are moving slowly and our pitch drops below a certain number of degrees, then we are done!
-    return !moving_fast && drivetrain.pitchAngle() >= -1 && drivetrain.pitchAngle() <= 1 && overshot;
+    return !moving_fast && drivetrain.pitchAngle() >= -2 && drivetrain.pitchAngle() <= 2;
   }
 }
