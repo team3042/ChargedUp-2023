@@ -15,9 +15,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Balance_On_Station extends CommandBase {
 
   Drivetrain drivetrain = Robot.drivetrain;
-  public boolean moving_fast = true;
   public boolean overshot = false;
-
+  
   /** Creates a new Balance_On_Station command. */
   public Balance_On_Station() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -27,7 +26,6 @@ public class Balance_On_Station extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    moving_fast = true; // We start the command by moving fast until we get onto the charging station
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,21 +34,15 @@ public class Balance_On_Station extends CommandBase {
     // When we get onto the charging station, slow down but continue driving forward
 
 		// System.out.println(moving_fast);
-
-    if(moving_fast == true && drivetrain.pitchAngle() <= -8) {
-
-      System.out.println("in if");
-      moving_fast = false;
-
-    }
     
-    if(moving_fast == false) {
+  if (drivetrain.pitchAngle() <= -1){
 
-      drivetrain.drive(-0.3,0,0,false); 
-
-    } else if (moving_fast == true){
-
-      drivetrain.drive(-1, 0, 0, false); // Move forward fast using the drive() method
+      drivetrain.drive(-0.3, 0, 0, false); // Move forward fast using the drive() method
+      
+    } else if (drivetrain.pitchAngle() >= 1){
+      
+      overshot = true;
+      drivetrain.drive(0.3, 0, 0, false); // Move forward fast using the drive() method
     }
   }
 
@@ -65,6 +57,6 @@ public class Balance_On_Station extends CommandBase {
   @Override
   public boolean isFinished() {
     // If we are moving slowly and our pitch drops below a certain number of degrees, then we are done!
-    return !moving_fast && drivetrain.pitchAngle() >= -2 && drivetrain.pitchAngle() <= 2;
+    return  /*overshot &&*/ drivetrain.pitchAngle() >= -1 && drivetrain.pitchAngle() <= 1;
   }
 }
