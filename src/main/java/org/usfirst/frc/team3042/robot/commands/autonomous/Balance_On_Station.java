@@ -5,16 +5,15 @@
 package org.usfirst.frc.team3042.robot.commands.autonomous;
 
 import org.usfirst.frc.team3042.robot.Robot;
-import org.usfirst.frc.team3042.robot.commands.Drivetrain_GyroStraight;
 import org.usfirst.frc.team3042.robot.commands.Drivetrain_XStance;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Balance_On_Station extends CommandBase {
 
   Drivetrain drivetrain = Robot.drivetrain;
+
   public boolean overshot = false;
   
   /** Creates a new Balance_On_Station command. */
@@ -31,7 +30,11 @@ public class Balance_On_Station extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
+		// System.out.println(moving_fast); // Useful print statement for debugging
+
     // When we get onto the charging station, slow down but continue driving forward
+
 
 		// System.out.println(moving_fast);
     
@@ -43,6 +46,7 @@ public class Balance_On_Station extends CommandBase {
       
       overshot = true;
       drivetrain.drive(0.3, 0, 0, false); // Move forward fast using the drive() method
+
     }
   }
 
