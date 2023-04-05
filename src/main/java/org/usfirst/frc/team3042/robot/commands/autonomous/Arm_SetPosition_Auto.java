@@ -50,7 +50,7 @@ public class Arm_SetPosition_Auto extends CommandBase {
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
       double minimalVoltage =(RobotMap.levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + RobotMap.levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
       double rotationVoltage = minimalVoltage + (rotationError * RobotMap.rotation_kP);
-      rotationVoltage = Math.min(6, rotationVoltage);
+      rotationVoltage = Math.min(4, rotationVoltage);
       rotationVoltage = Math.max(-2, rotationVoltage);
       arm.setVoltageRotationMotor(rotationVoltage); 
     

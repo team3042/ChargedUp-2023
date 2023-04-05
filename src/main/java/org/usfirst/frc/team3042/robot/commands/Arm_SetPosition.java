@@ -48,12 +48,12 @@ public class Arm_SetPosition extends CommandBase {
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
       double minimalVoltage =(RobotMap.levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + RobotMap.levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));
       double rotationVoltage = minimalVoltage + (rotationError * RobotMap.rotation_kP);
-      rotationVoltage = Math.min(6, rotationVoltage);
+      rotationVoltage = Math.min(4, rotationVoltage);
       rotationVoltage = Math.max(-2, rotationVoltage);
       arm.setVoltageRotationMotor(rotationVoltage); 
     
     // We are only going to move the extension if the arm is NOT in the intake position
-    if (!inDrivePosition) {
+
 
       // THIS BLOCK OF CODE BELOW MOVES THE EXTENSION //
       if (!extensionGoalReached) {
@@ -68,9 +68,6 @@ public class Arm_SetPosition extends CommandBase {
         arm.stopExtendMotor();
       }
 
-    } else {
-      arm.stopExtendMotor();
-    }
 
     SmartDashboard.putNumber("extensionError", extensionError);
     SmartDashboard.putNumber("extensionPower", extensionPower);

@@ -15,6 +15,7 @@ public class Balance_On_Station extends CommandBase {
   Drivetrain drivetrain = Robot.drivetrain;
 
   public boolean overshot = false;
+  int i = 0;
   
   /** Creates a new Balance_On_Station command. */
   public Balance_On_Station() {
@@ -25,11 +26,14 @@ public class Balance_On_Station extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    i = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    i += 1; 
     
 		// System.out.println(moving_fast); // Useful print statement for debugging
 
@@ -38,14 +42,16 @@ public class Balance_On_Station extends CommandBase {
 
 		// System.out.println(moving_fast);
     
-  if (drivetrain.pitchAngle() <= -1){
+  if (drivetrain.pitchAngle() <= -2){
 
-      drivetrain.drive(-0.3, 0, 0, false); // Move forward fast using the drive() method
+      i = 0;
+      drivetrain.drive(-0.25, 0, 0, false); // Move forward fast using the drive() method
       
-    } else if (drivetrain.pitchAngle() >= 1){
+    } else if (drivetrain.pitchAngle() >= 2){
       
       overshot = true;
-      drivetrain.drive(0.3, 0, 0, false); // Move forward fast using the drive() method
+      i = 0;
+      drivetrain.drive(0.25, 0, 0, false); // Move forward fast using the drive() method
 
     }
   }
@@ -61,6 +67,6 @@ public class Balance_On_Station extends CommandBase {
   @Override
   public boolean isFinished() {
     // If we are moving slowly and our pitch drops below a certain number of degrees, then we are done!
-    return  /*overshot &&*/ drivetrain.pitchAngle() >= -1 && drivetrain.pitchAngle() <= 1;
+    return  i > 5 && /*overshot &&*/ drivetrain.pitchAngle() >= -1 && drivetrain.pitchAngle() <= 1;
   }
 }

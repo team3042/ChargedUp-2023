@@ -57,6 +57,7 @@ public class OI {
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.Y_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kHighArmPosCone, RobotMap.kScoringExtendPosition2));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.RIGHT_BUMPER)).onTrue(new Arm_SetPosition(RobotMap.kShelfIntakeArmPosition, RobotMap.kShelfIntakeExtendPosition));
 
+		new Trigger(() -> gunnerController.getRawButton(RobotMap.START_BUTTON)).onTrue(new Arm_SetPosition(RobotMap.kArmDefensePosition, RobotMap.kExtendDefensePosition));
 		new Trigger(() -> gunnerController.getRawButton(RobotMap.PREV_BUTTON)).onTrue(new Arm_Brownout_Reset());
 	}
 
@@ -110,7 +111,7 @@ public class OI {
 			return 0.0;
 		}
 		else {
-			return joystickValue * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * CURRENT_DRIVE_SCALE * -1; // Multiply by -1 reverses the direction
+			return joystickValue * RobotMap.kPhysicalMaxTurningSpeedRadiansPerSecond * CURRENT_DRIVE_SCALE * -0.75; // Multiply by -1 reverses the direction
 		}	
 	}
 } 
