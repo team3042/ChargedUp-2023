@@ -82,8 +82,9 @@ public class RobotMap {
 	public static final int maxArmLength = 15200; // Measured in encoder counts
 	public static final double shoulderCountsPerDegree = 11.666667;
 	public static final double armStartingDegrees = 7.5; // measured in degrees
-	public static final double levelVoltageRetracted = 0.3115; // TODO: Adjust this if needed 
-	public static final double levelVoltageExtended = 0.5; // TODO: Adjust this if needed  
+	public static final double levelVoltageRetracted = 0.3115; // Adjust this if needed 
+	public static final double levelVoltageExtended = 0.5; // Adjust this if needed
+	public static final double coneAmp = 20; //TODO: tune value
 
 	/** Arm/Extension Positions */
 	// Intake from the floor // 

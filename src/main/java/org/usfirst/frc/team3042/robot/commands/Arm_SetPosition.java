@@ -43,7 +43,6 @@ public class Arm_SetPosition extends CommandBase {
 
     boolean extensionGoalReached = (Math.abs(extensionError) <= RobotMap.extensionThreshold);
     // Rotation threshold determines how far from the drive position we should be to wait for the arm before moving the extension
-    boolean inDrivePosition = Math.abs(arm.getRotationMotorPosition() - RobotMap.kArmDrivePosition) <= RobotMap.rotationThreshold;
 
       // THIS BLOCK OF CODE BELOW ROTATES THE ARM SHOULDER //
       double minimalVoltage =(RobotMap.levelVoltageRetracted * (1 - (arm.getExtendMotorPosition()/RobotMap.maxArmLength)) + RobotMap.levelVoltageExtended * (arm.getExtendMotorPosition()/RobotMap.maxArmLength));

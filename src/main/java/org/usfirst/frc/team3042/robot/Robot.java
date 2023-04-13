@@ -10,7 +10,10 @@ import org.usfirst.frc.team3042.robot.commands.DriveCommand;
 import org.usfirst.frc.team3042.robot.commands.autonomous.AutonomousMode_Default;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Drive_Balance;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Score_And_Balance;
-import org.usfirst.frc.team3042.robot.commands.autonomous.Score_And_Exit;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Score_Drive_Out_And_Balance;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Drive_Out_And_Balance;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Score_And_Exit_Long;
+import org.usfirst.frc.team3042.robot.commands.autonomous.Score_And_Exit_Short;
 import org.usfirst.frc.team3042.robot.commands.autonomous.Just_Score;
 import org.usfirst.frc.team3042.robot.subsystems.Arm;
 import org.usfirst.frc.team3042.robot.subsystems.Drivetrain;
@@ -71,10 +74,10 @@ public class Robot extends TimedRobot {
 		// Autonomous Routines //
 		chooser.setDefaultOption("Default Auto", new AutonomousMode_Default());
 		chooser.addOption("Just Score", new Just_Score(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
-		chooser.addOption("Score Mid", new Score_And_Exit(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
-		chooser.addOption("Score High", new Score_And_Exit(RobotMap.kHighArmPosCone,RobotMap.kScoringExtendPosition2));
+		chooser.addOption("Score Mid Short", new Score_And_Exit_Short(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
+		chooser.addOption("Score Mid Long", new Score_And_Exit_Long(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
 		chooser.addOption("Score Mid + Balance", new Score_And_Balance(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
-		chooser.addOption("Score High + Balance", new Score_And_Balance(RobotMap.kHighArmPosCone,RobotMap.kScoringExtendPosition2));
+		chooser.addOption("Drive Out Of Community + Balance", new Drive_Out_And_Balance());
 		chooser.addOption("Balance", new Drive_Balance());
 		SmartDashboard.putData("Auto Mode", chooser);
 
@@ -198,6 +201,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Rotation Encoder Counts", arm.getRotationMotorPosition());
 		SmartDashboard.putBoolean("limit esxtension", arm.ExtensionLimitSwitch.get());
 		SmartDashboard.putNumber("gyroscope", drivetrain.getRawGyroAngle());
+		SmartDashboard.putNumber("Extension Amerage", pdh.getCurrent(5));
 
 		// You can uncomment the line below if you need to tune levelVoltage:
 		// arm.setVoltageRotationMotor(RobotMap.levelVoltageExtended);
@@ -212,6 +216,11 @@ public class Robot extends TimedRobot {
 		}
 		if (!arm.RotationLimitSwitch.get()){ 
 			arm.resetRotationEncoder();
+		}
+
+		if (pdh.getCurrent(5) > RobotMap.coneAmp){
+
+			arm.stopExtendMotor();
 		}
 	} 
 
