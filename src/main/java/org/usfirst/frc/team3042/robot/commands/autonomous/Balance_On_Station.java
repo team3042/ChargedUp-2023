@@ -35,7 +35,7 @@ public class Balance_On_Station extends CommandBase {
 
     i += 1; 
     
-		// System.out.println(moving_fast); // Useful print statement for debugging
+		System.out.println("In balance"); // Useful print statement for debugging
 
     // When we get onto the charging station, slow down but continue driving forward
 

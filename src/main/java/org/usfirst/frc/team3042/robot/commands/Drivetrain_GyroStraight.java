@@ -40,8 +40,13 @@ public class Drivetrain_GyroStraight extends CommandBase {
 		drivetrain.stopModules();
 		goalAngle = drivetrain.getRawGyroAngle();
 
+		drivetrain.getBackLeft().resetEncoders();
+		drivetrain.getFrontLeft().resetEncoders();
+		drivetrain.getBackRight().resetEncoders();
+		drivetrain.getFrontRight().resetEncoders();
+
 		// convert distance to revolutions
-		goalDistance = (distance / CIRCUMFRENCE) + drivetrain.getFrontLeft().getDrivePosition();
+		goalDistance = (distance / CIRCUMFRENCE);
 	}
 
 	/** execute ***************************************************************

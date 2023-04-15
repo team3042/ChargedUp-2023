@@ -74,10 +74,11 @@ public class Robot extends TimedRobot {
 		// Autonomous Routines //
 		chooser.setDefaultOption("Default Auto", new AutonomousMode_Default());
 		chooser.addOption("Just Score", new Just_Score(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
-		chooser.addOption("Score Mid Short", new Score_And_Exit_Short(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
-		chooser.addOption("Score Mid Long", new Score_And_Exit_Long(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
+		chooser.addOption("Score Mid + Drive Out Short Side", new Score_And_Exit_Short(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
+		chooser.addOption("Score Mid + Drive Out Long Side", new Score_And_Exit_Long(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
 		chooser.addOption("Score Mid + Balance", new Score_And_Balance(RobotMap.kMidArmPosCone,RobotMap.kScoringExtendPosition1));
 		chooser.addOption("Drive Out Of Community + Balance", new Drive_Out_And_Balance());
+		chooser.addOption("Score + Drive Out Of Community + Balance", new Score_Drive_Out_And_Balance(RobotMap.kMidArmPosCone, RobotMap.kScoringExtendPosition1));
 		chooser.addOption("Balance", new Drive_Balance());
 		SmartDashboard.putData("Auto Mode", chooser);
 
