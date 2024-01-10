@@ -12,9 +12,9 @@ public class Drive_Out_And_Balance extends SequentialCommandGroup {
 
   public Drive_Out_And_Balance() {
 
-    CommandBase initialDrive = new Drivetrain_GyroStraight(.75, -1, 0);
-    CommandBase slowerDrive = new Drivetrain_GyroStraight(0.7, -0.8, 0);
-    CommandBase backupDrive = new Drivetrain_GyroStraight(.75, 1, 0);
+    CommandBase initialDrive = new Drivetrain_GyroStraight(.8, -2, 0);
+    CommandBase slowerDrive = new Drivetrain_GyroStraight(0.7, -1.5, 0);
+    CommandBase backupDrive = new Drivetrain_GyroStraight(.8, 2, 0);
 
     SequentialCommandGroup driveOut = new SequentialCommandGroup(initialDrive, slowerDrive, backupDrive, new Balance_On_Station());
     // SequentialCommandGroup balance = new SequentialCommandGroup(new Drivetrain_GyroStraight(0.75, 1, 0), new Balance_On_Station());

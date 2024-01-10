@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 public class Score_And_Exit_Long extends SequentialCommandGroup {
 
   public Score_And_Exit_Long(double rotationGoal, double extensionGoal) {
-    ParallelCommandGroup leaveZone = new ParallelCommandGroup(new Drivetrain_GyroStraight(3, -0.9, 0), new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePosition));
+    ParallelCommandGroup leaveZone = new ParallelCommandGroup(new Drivetrain_GyroStraight(1.5, -0.9, 0), new Arm_SetPosition(RobotMap.kArmDrivePosition, RobotMap.kExtendDrivePosition));
     SequentialCommandGroup score = new SequentialCommandGroup (new InstantCommand(() -> Robot.gripper.extend()), new Wait(1));
     SequentialCommandGroup scoreAndLeave = new SequentialCommandGroup(score, leaveZone);
 
